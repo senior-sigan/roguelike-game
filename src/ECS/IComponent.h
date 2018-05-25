@@ -5,9 +5,20 @@
 #ifndef ROGUELIKE_ICOMPONENT_H
 #define ROGUELIKE_ICOMPONENT_H
 
+#include "Platform.h"
+#include "IEntity.h"
 namespace ECS {
-class IComponent {
 
+using ComponentTypeID = TypeID;
+using ComponentID = ObjectID;
+
+class IComponent {
+ public:
+  virtual const ComponentTypeID GetTypeID() const = 0;
+
+  virtual const ComponentID GetID() const = 0;
+
+  virtual const EntityID GetEntity() const = 0;
 };
 }
 
