@@ -9,5 +9,7 @@ set(TARGET roguelike)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
-add_executable(${TARGET} src/main.cpp)
+file(GLOB SOURCES "src/*.h" "src/*.cpp" "src/**/*.h" "src/**/*.cpp")
+
+add_executable(${TARGET} ${SOURCES})
 target_link_libraries(${TARGET} ${CURSES_LIBRARY} ${ADDITIONAL_LIBRARIES})

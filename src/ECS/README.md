@@ -9,7 +9,3 @@ Entity = Collection<Component>
 
 System - controls Components behaviour. 
 For example, MovementSystem controls components for entities which have TransformComponent and ControlComponent
-
-## Event Loop
-
-We need a mechanism to send events without threading. Just put a message or task into the eventLoop.
