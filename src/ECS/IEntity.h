@@ -1,30 +1,38 @@
 /**
- * Created by Илья Сиганов on 25.05.2018.
+ * Created by Илья Сиганов on 26.05.2018.
  */
 
 #ifndef ROGUELIKE_IENTITY_H
 #define ROGUELIKE_IENTITY_H
 
 #include "Platform.h"
+#include "ComponentManager.h"
 namespace ECS {
-
-using EntityTypeID = TypeID;
-using EntityID = ObjectID;
-
 class IEntity {
+  ComponentManager *componentManager{}; // TODO: should be filled in the EntityManager
+ protected:
+  EntityID entityID{}; // TODO: should bew filled in the EntityManager
  public:
   virtual const EntityTypeID GetTypeID() const = 0;
 
-  virtual const EntityID GetID() const = 0;
+  const EntityID GetID() const {
+      return this->entityID;
+  }
 
-  template<class C>
-  virtual C *GetComponent() = 0;
+  template<class TComponent>
+  TComponent *GetComponent() {
+      return this->componentManager->GetComponent<TComponent>();
+  }
 
-  template<class C, class ...P>
-  virtual C *AddComponent(P &&... params) = 0;
+  template<class TComponent, class ...TParam>
+  TComponent *AddComponent(TParam &&... params) {
+      return this->componentManager->AddComponent<TComponent>(this->entityID, std::forward<TParam>(params)...);
+  }
 
-  template<class C>
-  virtual void RemoveComponent() = 0;
+  template<class TComponent>
+  void RemoveComponent() {
+      this->componentManager->RemoveComponent<TComponent>();
+  }
 };
 }
 

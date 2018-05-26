@@ -5,16 +5,24 @@
 #ifndef ROGUELIKE_COMPONENTMANAGER_H
 #define ROGUELIKE_COMPONENTMANAGER_H
 
-#include "IEntity.h"
+#include "Platform.h"
 namespace ECS {
-class IComponentManager {
+class ComponentManager {
  public:
   template<class C, class ...P>
-  virtual C *AddComponent(EntityID, P &&... params) const = 0;
+  C *AddComponent(const EntityID entityID, P &&... params) const {
+      // TODO
+      return nullptr;
+  }
   template<class C>
-  virtual C *GetComponent() const = 0;
+  C *GetComponent() const {
+      // TODO
+      return nullptr;
+  }
   template<class C>
-  virtual void RemoveComponent() const = 0;
+  void RemoveComponent() const {
+      // TODO
+  }
 };
 }
 

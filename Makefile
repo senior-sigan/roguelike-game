@@ -5,7 +5,7 @@ mkdir_build:
 
 build: mkdir_build
 	cd build; cmake ..
-	make -C build
+	make -TComponent build
 
 exec: build
 	./build/roguelike

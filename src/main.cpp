@@ -1,64 +1,21 @@
 
-#include <ncurses.h>
+#include <iostream>
+#include "ECS/Entity.h"
 
-void erase(int row, int col) {
-    mvaddch(row, col, ' ');
-}
+class GameObject : public ECS::Entity<GameObject> {
 
-void gameLoop(int row, int col) {
-    char symbol = '@';
-    bool looping = true;
+};
 
-    mvaddch(row, col, symbol);
-    while (looping) {
-        switch (getch()) {
-            case KEY_LEFT: {
-                erase(row, col);
-                col -= 1;
-                mvaddch(row, col, symbol);
-                refresh();
-                break;
-            }
-            case KEY_RIGHT: {
-                erase(row, col);
-                col += 1;
-                mvaddch(row, col, symbol);
-                refresh();
-                break;
-            }
-            case KEY_UP: {
-                erase(row, col);
-                row -= 1;
-                mvaddch(row, col, symbol);
-                refresh();
-                break;
-            }
-            case KEY_DOWN: {
-                erase(row, col);
-                row += 1;
-                mvaddch(row, col, symbol);
-                refresh();
-                break;
-            }
-            case 'q': {
-                looping = false;
-                break;
-            }
-            default: break;
-        }
-    }
-}
+class AnotherObject : public ECS::Entity<AnotherObject> {
+
+};
 
 int main() {
-    initscr();
-    raw();
-    clear();
-    noecho();
-    cbreak();
-    keypad(stdscr, TRUE);
-    curs_set(0);
-    gameLoop(10, 10);
-    endwin();
-
+    auto e1 = GameObject();
+    auto e2 = AnotherObject();
+    auto e3 = GameObject();
+    std::cout << e1.GetID() << " " << e1.GetTypeID() << std::endl;
+    std::cout << e2.GetID() << " " << e2.GetTypeID() << std::endl;
+    std::cout << e3.GetID() << " " << e3.GetTypeID() << std::endl;
     return 0;
 }

@@ -6,11 +6,7 @@
 #define ROGUELIKE_ICOMPONENT_H
 
 #include "Platform.h"
-#include "IEntity.h"
 namespace ECS {
-
-using ComponentTypeID = TypeID;
-using ComponentID = ObjectID;
 
 class IComponent {
  public:

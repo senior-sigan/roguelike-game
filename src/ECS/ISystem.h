@@ -2,8 +2,8 @@
  * Created by Илья Сиганов on 25.05.2018.
  */
 
-#ifndef ROGUELIKE_ISYSTEM_H
-#define ROGUELIKE_ISYSTEM_H
+#ifndef ROGUELIKE_SYSTEM_H
+#define ROGUELIKE_SYSTEM_H
 
 namespace ECS {
 class ISystem {
@@ -11,4 +11,4 @@ class ISystem {
 };
 }
 
-#endif //ROGUELIKE_ISYSTEM_H
+#endif //ROGUELIKE_SYSTEM_H

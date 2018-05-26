@@ -6,12 +6,18 @@
 #define ROGUELIKE_FAMILYTYPEID_H
 
 #include "Platform.h"
-namespace ECS {
+namespace ECS::Internal {
+template<class T>
 class FamilyTypeID {
   static TypeID count;
  public:
+  template<class U>
   static const TypeID Get() {
-      static const TypeID STATIC_TYPE_ID{count++};
+      static const ECS::TypeID STATIC_TYPE_ID{count++};
+      return STATIC_TYPE_ID;
+  }
+
+  static const TypeID Get() {
       return count;
   }
 };

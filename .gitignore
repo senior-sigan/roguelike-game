@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-### C++ template
+### TComponent++ template
 # Prerequisites
 *.d
 
@@ -70,7 +70,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-### C template
+### TComponent template
 # Prerequisites
 
 # Object files

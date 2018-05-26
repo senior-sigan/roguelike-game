@@ -14,6 +14,15 @@ namespace ECS {
 using ObjectID = size_t;
 using TypeID = size_t;
 
+using ComponentTypeID = TypeID;
+using ComponentID = ObjectID;
+
+using EntityTypeID = TypeID;
+using EntityID = ObjectID;
+
+static const TypeID INITIAL_TYPE_ID = 0;
+static const ObjectID INITIAL_OBJECT_ID = 0;
+
 static const ObjectID INVALID_OBJECT_ID = std::numeric_limits<ObjectID>::max();
 static const TypeID INVALID_TYPE_ID = std::numeric_limits<TypeID>::max();
 

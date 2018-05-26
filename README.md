@@ -2,7 +2,7 @@
 
 There should be description of the game.
 
-The game is developed just for Lulz and for learning C++.
+The game is developed just for Lulz and for learning TComponent++.
 
 ## How to run
 
