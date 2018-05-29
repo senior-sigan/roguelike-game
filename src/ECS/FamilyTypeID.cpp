@@ -3,11 +3,14 @@
  */
 
 #include "FamilyTypeID.h"
-#include "IEntity.h"
-#include "IComponent.h"
-#include "ISystem.h"
 
-namespace ECS::Internal {
+namespace ECS {
+
+class IEntity;
+class IComponent;
+class ISystem;
+
+namespace Internal {
 
 template<>
 TypeID FamilyTypeID<IEntity>::count = INITIAL_TYPE_ID;
@@ -24,4 +27,5 @@ class ECS::Internal::FamilyTypeID<IComponent>;
 
 template
 class ECS::Internal::FamilyTypeID<ISystem>;
+}
 }

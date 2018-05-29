@@ -44,9 +44,9 @@ class ComponentManager {
       return component;
   }
   template<class TComponent>
-  TComponent *GetComponent(EntityID entityID) const {
+  TComponent *GetComponent(EntityID entityID) {
       auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
-      return (TComponent *) container.at(key);
+      return (TComponent *) container[key];
   }
   template<class TComponent>
   void RemoveComponent(EntityID entityID) {

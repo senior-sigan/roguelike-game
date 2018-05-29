@@ -11,5 +11,5 @@ include_directories(${CURSES_INCLUDE_DIR})
 
 file(GLOB SOURCES "src/*.h" "src/*.cpp" "src/**/*.h" "src/**/*.cpp")
 
-add_executable(${TARGET} ${SOURCES})
+add_executable(${TARGET} ${SOURCES} src/ECS/System.h src/ECS/ISystem.h)
 target_link_libraries(${TARGET} ${CURSES_LIBRARY} ${ADDITIONAL_LIBRARIES})

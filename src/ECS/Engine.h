@@ -7,6 +7,7 @@
 
 #include "EntityManager.h"
 #include "SystemManager.h"
+#include "ComponentManager.h"
 namespace ECS {
 class Engine {
   EntityManager *entityManager;
@@ -16,7 +17,7 @@ class Engine {
   Engine() {
       componentManager = new ComponentManager();
       entityManager = new EntityManager(componentManager);
-      systemManager = new SystemManager();
+      systemManager = new SystemManager(entityManager);
   }
 
   virtual ~Engine() {

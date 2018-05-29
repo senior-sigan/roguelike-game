@@ -10,6 +10,7 @@
 #include "IEntity.h"
 namespace ECS {
 class EntityManager {
+  friend class SystemManager;
   std::unordered_map<EntityID, IEntity *> container;
   EntityID currentID = 0;
   ComponentManager *componentManager;
@@ -38,8 +39,8 @@ class EntityManager {
       container.erase(id);
   }
 
-  IEntity *Get(EntityID id) const {
-      return container.at(id);
+  IEntity *Get(EntityID id) {
+      return container[id];
   }
 };
 }

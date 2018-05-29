@@ -25,6 +25,12 @@ class IEntity {
       return this->componentManager->GetComponent<TComponent>(entityID);
   }
 
+  template<class TComponent>
+  const bool HasComponent() const {
+      auto component = this->componentManager->GetComponent<TComponent>(entityID);
+      return component!=nullptr;
+  }
+
   template<class TComponent, class ...TParam>
   TComponent *AddComponent(TParam &&... params) {
       return this->componentManager->AddComponent<TComponent>(entityID, std::forward<TParam>(params)...);

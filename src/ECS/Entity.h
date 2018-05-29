@@ -6,12 +6,12 @@
 #define ROGUELIKE_ENTITY_H
 
 #include "IEntity.h"
-#include "ComponentManager.h"
 #include "FamilyTypeID.h"
 namespace ECS {
 
 template<class TEntity>
 class Entity : public IEntity {
+  friend class SystemManager;
   static const EntityTypeID STATIC_ENTITY_TYPE_ID;
  public:
   const EntityTypeID GetTypeID() const override {
