@@ -4,8 +4,7 @@ mkdir_build:
 	[ -d ./build ] | mkdir -p build
 
 build: mkdir_build
-	cd build; cmake ..
-	make -TComponent build
+	cd build; cmake ..;make roguelike
 
 exec: build
 	./build/roguelike

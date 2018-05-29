@@ -5,34 +5,41 @@
 #ifndef ROGUELIKE_ENTITYMANAGER_H
 #define ROGUELIKE_ENTITYMANAGER_H
 
+#include <unordered_map>
 #include "Platform.h"
 #include "IEntity.h"
 namespace ECS {
 class EntityManager {
+  std::unordered_map<EntityID, IEntity *> container;
   EntityID currentID = 0;
+  ComponentManager *componentManager;
  public:
+  explicit EntityManager(ComponentManager *componentManager) : componentManager(componentManager) {
+      std::cout << "Initialize EntityManager" << std::endl;
+  }
+
   template<class TEntity, class... TParam>
   EntityID Create(TParam &&... params) {
-      //TODO: allocation new Entity with ID, Save the pointer to it, return this ID
       auto entity = CreateAndGet<TEntity>(std::forward<TParam>(params)...);
       return entity->GetID();
   }
 
   template<class TEntity, class... TParam>
   TEntity *CreateAndGet(TParam &&... params) {
-      //TODO: allocation new Entity with ID, Save the pointer to it, return this ID
       auto entity = new TEntity(std::forward<TParam>(params)...);
       entity->entityID = currentID++;
+      entity->componentManager = this->componentManager;
+      container[entity->entityID] = entity;
+      entity->OnCreated();
       return entity;
   }
 
   void Destroy(EntityID id) {
-      //TODO: find entity by id and destroy it
+      container.erase(id);
   }
 
-  inline IEntity *Get(EntityID id) {
-      // TODO: find entity by id and return pointer
-      return nullptr;
+  IEntity *Get(EntityID id) {
+      return container.at(id);
   }
 };
 }

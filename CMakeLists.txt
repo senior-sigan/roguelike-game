@@ -11,5 +11,5 @@ include_directories(${CURSES_INCLUDE_DIR})
 
 file(GLOB SOURCES "src/*.h" "src/*.cpp" "src/**/*.h" "src/**/*.cpp")
 
-add_executable(${TARGET} ${SOURCES} src/ECS/EntityManager.h)
+add_executable(${TARGET} ${SOURCES})
 target_link_libraries(${TARGET} ${CURSES_LIBRARY} ${ADDITIONAL_LIBRARIES})

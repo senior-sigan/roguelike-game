@@ -9,12 +9,23 @@
 namespace ECS {
 
 class IComponent {
+  friend class ComponentManager;
+
+  ComponentID componentID{};
+  EntityID ownerID{};
+
  public:
   virtual const ComponentTypeID GetTypeID() const = 0;
 
-  virtual const ComponentID GetID() const = 0;
+  const ComponentID GetID() const {
+      return this->componentID;
+  };
 
-  virtual const EntityID GetEntity() const = 0;
+  const EntityID GetEntity() const {
+      return this->ownerID;
+  };
+
+  virtual void OnCreated() {};
 };
 }
 

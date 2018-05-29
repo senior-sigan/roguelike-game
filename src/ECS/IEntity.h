@@ -17,23 +17,25 @@ class IEntity {
   virtual const EntityTypeID GetTypeID() const = 0;
 
   const EntityID GetID() const {
-      return this->entityID;
+      return entityID;
   }
 
   template<class TComponent>
   TComponent *GetComponent() {
-      return this->componentManager->GetComponent<TComponent>();
+      return this->componentManager->GetComponent<TComponent>(entityID);
   }
 
   template<class TComponent, class ...TParam>
   TComponent *AddComponent(TParam &&... params) {
-      return this->componentManager->AddComponent<TComponent>(this->entityID, std::forward<TParam>(params)...);
+      return this->componentManager->AddComponent<TComponent>(entityID, std::forward<TParam>(params)...);
   }
 
   template<class TComponent>
   void RemoveComponent() {
-      this->componentManager->RemoveComponent<TComponent>();
+      this->componentManager->RemoveComponent<TComponent>(entityID);
   }
+
+  virtual void OnCreated() {};
 };
 }
 
