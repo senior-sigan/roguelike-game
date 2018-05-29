@@ -8,15 +8,26 @@
 #include <map>
 #include "Platform.h"
 #include "ISystem.h"
+#include "EventHandler.h"
 namespace ECS {
 class SystemManager {
   friend class Engine;
 
   std::map<SystemTypeID, ISystem *> container;
-  EntityManager *entityManager;
+  EntityManager *entityManager{};
+  Event::EventHandler *eventHandler{};
 
   void Update(float delta) {
-      auto i = 0;
+      // TODO: iterate over systems with some order which is set by priority property.
+
+      for (auto entity : entityManager->container) {
+          for (std::pair<SystemTypeID, ISystem *> system: container) {
+              if (system.second->FamilyFilter(entity.second)) {
+                  system.second->PreUpdate(entity.second, delta);
+              }
+          }
+      }
+
       for (auto entity : entityManager->container) {
           for (std::pair<SystemTypeID, ISystem *> system: container) {
               if (system.second->FamilyFilter(entity.second)) {
@@ -24,10 +35,19 @@ class SystemManager {
               }
           }
       }
+
+      for (auto entity : entityManager->container) {
+          for (std::pair<SystemTypeID, ISystem *> system: container) {
+              if (system.second->FamilyFilter(entity.second)) {
+                  system.second->PostUpdate(entity.second, delta);
+              }
+          }
+      }
   };
 
  public:
-  SystemManager(EntityManager *entityManager) : entityManager(entityManager) {}
+  explicit SystemManager(EntityManager *entityManager, Event::EventHandler *eventHandler) :
+      entityManager(entityManager), eventHandler(eventHandler) {}
   virtual ~SystemManager() {
       container.clear();
   }
@@ -40,6 +60,7 @@ class SystemManager {
   template<class TSystem, class... TParam>
   TSystem *CreateAndGet(TParam &&... params) {
       auto system = new TSystem(std::forward<TParam>(params)...);
+      system->eventHandler = eventHandler;
       container[TSystem::STATIC_TYPE_ID] = system;
       system->OnCreated();
       return system;
