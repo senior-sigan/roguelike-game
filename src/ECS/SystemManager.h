@@ -7,7 +7,10 @@
 
 namespace ECS {
 class SystemManager {
+ public:
+  void Update(float delta) {
 
+  };
 };
 }
 

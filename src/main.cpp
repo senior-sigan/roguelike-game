@@ -3,6 +3,7 @@
 #include "ECS/Entity.h"
 #include "ECS/EntityManager.h"
 #include "ECS/Component.h"
+#include "ECS/Engine.h"
 
 class TransformComponent : public ECS::Component<TransformComponent> {
  public:
@@ -22,10 +23,11 @@ class AnotherObject : public ECS::Entity<AnotherObject> {
 };
 
 int main() {
-    auto em = ECS::EntityManager(new ECS::ComponentManager());
-    auto e1 = em.CreateAndGet<GameObject>();
-    auto e2 = em.CreateAndGet<AnotherObject>();
-    auto e3 = em.CreateAndGet<GameObject>();
+    auto engine = new ECS::Engine();
+    auto em = engine->GetEntityManager();
+    auto e1 = em->CreateAndGet<GameObject>();
+    auto e2 = em->CreateAndGet<AnotherObject>();
+    auto e3 = em->CreateAndGet<GameObject>();
     std::cout << "GameObject 1= " << e1->GetID() << " " << e1->GetTypeID() << std::endl;
     std::cout << "GameObject 1 # TransformComponent.ownerID= "
               << e1->GetComponent<TransformComponent>()->GetEntity() << std::endl;
