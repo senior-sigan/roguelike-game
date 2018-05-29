@@ -9,8 +9,9 @@
 #include "ComponentManager.h"
 namespace ECS {
 class IEntity {
+  friend class EntityManager;
+
   ComponentManager *componentManager{}; // TODO: should be filled in the EntityManager
- protected:
   EntityID entityID{}; // TODO: should bew filled in the EntityManager
  public:
   virtual const EntityTypeID GetTypeID() const = 0;
