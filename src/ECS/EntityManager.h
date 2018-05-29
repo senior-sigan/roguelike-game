@@ -38,7 +38,7 @@ class EntityManager {
       container.erase(id);
   }
 
-  IEntity *Get(EntityID id) {
+  IEntity *Get(EntityID id) const {
       return container.at(id);
   }
 };

@@ -21,7 +21,7 @@ class IEntity {
   }
 
   template<class TComponent>
-  TComponent *GetComponent() {
+  TComponent *GetComponent() const {
       return this->componentManager->GetComponent<TComponent>(entityID);
   }
 
