@@ -8,14 +8,14 @@
 #include <map>
 #include "Platform.h"
 #include "ISystem.h"
-#include "EventHandler.h"
+#include "Event/EventDispatcher.h"
 namespace ECS {
 class SystemManager {
   friend class Engine;
 
   std::map<SystemTypeID, ISystem *> container;
   EntityManager *entityManager{};
-  Event::EventHandler *eventHandler{};
+  Event::EventDispatcher *eventDispatcher{};
 
   void Update(float delta) {
       // TODO: iterate over systems with some order which is set by priority property.
@@ -46,8 +46,8 @@ class SystemManager {
   };
 
  public:
-  explicit SystemManager(EntityManager *entityManager, Event::EventHandler *eventHandler) :
-      entityManager(entityManager), eventHandler(eventHandler) {}
+  explicit SystemManager(EntityManager *entityManager, Event::EventDispatcher *eventDispatcher) :
+      entityManager(entityManager), eventDispatcher(eventDispatcher) {}
   virtual ~SystemManager() {
       container.clear();
   }
@@ -60,7 +60,7 @@ class SystemManager {
   template<class TSystem, class... TParam>
   TSystem *CreateAndGet(TParam &&... params) {
       auto system = new TSystem(std::forward<TParam>(params)...);
-      system->eventHandler = eventHandler;
+      system->eventDispatcher = eventDispatcher;
       container[TSystem::STATIC_TYPE_ID] = system;
       system->OnCreated();
       return system;

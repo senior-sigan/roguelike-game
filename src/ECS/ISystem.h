@@ -7,13 +7,13 @@
 
 #include <vector>
 #include "Platform.h"
-#include "EventHandler.h"
+#include "Event/EventDispatcher.h"
 namespace ECS {
 
 class ISystem {
   friend class SystemManager;
  protected:
-  Event::EventHandler *eventHandler{};
+  Event::EventDispatcher *eventDispatcher{};
  public:
   virtual const SystemPriority GetSystemPriority() const {
       return 0;

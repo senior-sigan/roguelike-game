@@ -8,16 +8,16 @@
 #include "EntityManager.h"
 #include "SystemManager.h"
 #include "ComponentManager.h"
-#include "EventHandler.h"
+#include "Event/EventDispatcher.h"
 namespace ECS {
 class Engine {
   EntityManager *entityManager;
   ComponentManager *componentManager;
   SystemManager *systemManager;
-  Event::EventHandler *eventHandler;
+  Event::EventDispatcher *eventHandler;
  public:
   Engine() {
-      eventHandler = new Event::EventHandler();
+      eventHandler = new Event::EventDispatcher();
       componentManager = new ComponentManager();
       entityManager = new EntityManager(componentManager);
       systemManager = new SystemManager(entityManager, eventHandler);
@@ -55,7 +55,7 @@ class Engine {
   SystemManager *GetSystemManager() const {
       return systemManager;
   }
-  Event::EventHandler *GetEventHandler() const {
+  Event::EventDispatcher *GetEventHandler() const {
       return eventHandler;
   }
 };

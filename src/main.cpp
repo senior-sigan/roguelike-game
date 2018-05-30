@@ -32,7 +32,7 @@ class MovementSystem : public ECS::System<MovementSystem> {
  public:
   void OnCreated() override {
       //TODO: test how events are working
-//      eventHandler->Send<SuperEvent>("CREATED");
+//      eventDispatcher->Send<SuperEvent>("CREATED");
   }
   void Update(ECS::IEntity *entity, float dt) override {
       auto component = entity->GetComponent<TransformComponent>();
