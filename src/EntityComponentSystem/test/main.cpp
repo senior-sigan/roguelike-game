@@ -45,7 +45,7 @@ class MovementSystem : public ECS::System<MovementSystem> {
       component->x += 1;
       component->y += 1;
       std::stringstream ss;
-      ss << entity->GetTypeID()<< " MovementSystem: " << component->x << " " << component->y << std::endl;
+      ss << entity->GetTypeID() << " MovementSystem: " << component->x << " " << component->y << std::endl;
       eventSender->Send<MovementEvent>(ss.str());
   }
 
