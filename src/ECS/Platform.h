@@ -14,6 +14,11 @@ namespace ECS {
 using ObjectID = size_t;
 using TypeID = size_t;
 
+using EventTypeID = TypeID;
+
+using EventDelegateID = ObjectID;
+using EventDelegateTypeID = TypeID;
+
 using ComponentTypeID = TypeID;
 using ComponentID = ObjectID;
 
