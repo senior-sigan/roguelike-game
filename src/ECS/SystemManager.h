@@ -14,8 +14,8 @@ class SystemManager {
   friend class Engine;
 
   std::map<SystemTypeID, ISystem *> container;
-  EntityManager *entityManager{};
-  Event::EventDispatcher *eventDispatcher{};
+  EntityManager *entityManager;
+  Event::EventDispatcher *eventDispatcher;
 
   void Update(float delta) {
       // TODO: iterate over systems with some order which is set by priority property.
@@ -60,7 +60,8 @@ class SystemManager {
   template<class TSystem, class... TParam>
   TSystem *CreateAndGet(TParam &&... params) {
       auto system = new TSystem(std::forward<TParam>(params)...);
-      system->eventDispatcher = eventDispatcher;
+      system->eventSender = eventDispatcher->eventSender;
+      system->eventListener = eventDispatcher->eventListener;
       container[TSystem::STATIC_TYPE_ID] = system;
       system->OnCreated();
       return system;

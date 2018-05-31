@@ -9,7 +9,7 @@ set(TARGET roguelike)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
-file(GLOB SOURCES "src/*.h" "src/*.cpp" "src/**/*.h" "src/**/*.cpp")
+file(GLOB SOURCES "src/*.h" "src/*.cpp" "src/**/*.h" "src/**/*.cpp" "src/**/**/*.h" "src/**/**/*.cpp")
 
-add_executable(${TARGET} ${SOURCES})
+add_executable(${TARGET} ${SOURCES} src/ECS/Event/Event.h)
 target_link_libraries(${TARGET} ${CURSES_LIBRARY} ${ADDITIONAL_LIBRARIES})

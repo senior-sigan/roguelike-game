@@ -13,6 +13,9 @@ template<class T>
 class System : public ISystem {
   friend class SystemManager;
   static const SystemTypeID STATIC_TYPE_ID;
+ protected:
+  Event::EventSender* eventSender{};
+  Event::EventListener* eventListener{};
  public:
   const SystemTypeID GetTypeID() const override {
       return STATIC_TYPE_ID;

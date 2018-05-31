@@ -1,3 +1,4 @@
+#include <utility>
 
 #include <iostream>
 #include "ECS/Entity.h"
@@ -5,7 +6,9 @@
 #include "ECS/Component.h"
 #include "ECS/Engine.h"
 #include "ECS/System.h"
+#include "ECS/Event/Event.h"
 #include <thread>
+#include <sstream>
 
 class TransformComponent : public ECS::Component<TransformComponent> {
  public:
@@ -28,21 +31,36 @@ class AnotherObject : public ECS::Entity<AnotherObject> {
   }
 };
 
+class MovementEvent : public ECS::Event::Event<MovementEvent> {
+ public:
+  const std::string msg;
+  explicit MovementEvent(std::string msg) : msg(std::move(msg)) {}
+};
+
 class MovementSystem : public ECS::System<MovementSystem> {
  public:
-  void OnCreated() override {
-      //TODO: test how events are working
-//      eventDispatcher->Send<SuperEvent>("CREATED");
-  }
+  void OnCreated() override {}
   void Update(ECS::IEntity *entity, float dt) override {
       auto component = entity->GetComponent<TransformComponent>();
-      std::cout << "MovementSystem: " << component->x << " " << component->y << std::endl;
       component->x += 1;
       component->y += 1;
+      std::stringstream ss;
+      ss << entity->GetTypeID()<< " MovementSystem: " << component->x << " " << component->y << std::endl;
+      eventSender->Send<MovementEvent>(ss.str());
   }
 
   const bool FamilyFilter(ECS::IEntity *entity) const override {
       return entity->HasComponent<TransformComponent>();
+  }
+};
+class ListenerSystem : public ECS::System<ListenerSystem> {
+ public:
+  void OnCreated() override {
+      eventListener->RegisterListener<ListenerSystem, MovementEvent>(this, &ListenerSystem::OnMovementEvent);
+  }
+
+  void OnMovementEvent(const MovementEvent const *event) {
+      std::cout << event->msg << std::endl;
   }
 };
 
@@ -52,6 +70,7 @@ int main() {
     auto sm = engine->GetSystemManager();
 
     sm->CreateAndGet<MovementSystem>();
+    sm->CreateAndGet<ListenerSystem>();
     auto e1 = em->CreateAndGet<GameObject>();
     auto e2 = em->CreateAndGet<AnotherObject>();
 

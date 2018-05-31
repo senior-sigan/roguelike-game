@@ -10,6 +10,10 @@ class IEntity;
 class IComponent;
 class ISystem;
 
+namespace Event {
+class IEvent;
+}
+
 namespace Internal {
 
 template<>
@@ -18,6 +22,8 @@ template<>
 TypeID FamilyTypeID<IComponent>::count = INITIAL_TYPE_ID;
 template<>
 TypeID FamilyTypeID<ISystem>::count = INITIAL_TYPE_ID;
+template<>
+TypeID FamilyTypeID<Event::IEvent>::count = INITIAL_TYPE_ID;
 
 template
 class ECS::Internal::FamilyTypeID<IEntity>;
@@ -27,5 +33,8 @@ class ECS::Internal::FamilyTypeID<IComponent>;
 
 template
 class ECS::Internal::FamilyTypeID<ISystem>;
+
+template
+class ECS::Internal::FamilyTypeID<Event::IEvent>;
 }
 }

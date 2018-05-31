@@ -12,8 +12,6 @@ namespace ECS {
 
 class ISystem {
   friend class SystemManager;
- protected:
-  Event::EventDispatcher *eventDispatcher{};
  public:
   virtual const SystemPriority GetSystemPriority() const {
       return 0;

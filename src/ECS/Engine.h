@@ -14,13 +14,17 @@ class Engine {
   EntityManager *entityManager;
   ComponentManager *componentManager;
   SystemManager *systemManager;
-  Event::EventDispatcher *eventHandler;
+  Event::EventDispatcher *eventDispatcher;
+  Event::EventListener *eventListener;
+  Event::EventSender *eventSender;
  public:
   Engine() {
-      eventHandler = new Event::EventDispatcher();
+      eventListener = new Event::EventListener();
+      eventSender = new Event::EventSender();
+      eventDispatcher = new Event::EventDispatcher(eventSender, eventListener);
       componentManager = new ComponentManager();
       entityManager = new EntityManager(componentManager);
-      systemManager = new SystemManager(entityManager, eventHandler);
+      systemManager = new SystemManager(entityManager, eventDispatcher);
   }
 
   virtual ~Engine() {
@@ -33,8 +37,8 @@ class Engine {
       delete componentManager;
       componentManager = nullptr;
 
-      delete eventHandler;
-      eventHandler = nullptr;
+      delete eventDispatcher;
+      eventDispatcher = nullptr;
   }
 
   void Update() {
@@ -42,7 +46,7 @@ class Engine {
       // TODO: calculate game delta time
       // TODO: may be instead of delta time we'll have step number? So ticker class should be abstract so we can support delta time and delta step.
       systemManager->Update(deltaTime);
-      eventHandler->DispatchEvents();
+      eventDispatcher->DispatchEvents();
       // TODO: May be call manual entities destruction and resend events again.
   }
 
@@ -56,7 +60,7 @@ class Engine {
       return systemManager;
   }
   Event::EventDispatcher *GetEventHandler() const {
-      return eventHandler;
+      return eventDispatcher;
   }
 };
 }
