@@ -14,7 +14,7 @@ class SystemManager {
   friend class Engine;
 
   std::map<SystemTypeID, ISystem *> container;
-  EntityManager *entityManager;
+  EntityManager *entityManager{};
   Event::EventDispatcher *eventDispatcher;
 
   void Update(float delta) {

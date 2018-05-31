@@ -53,6 +53,7 @@ class MovementSystem : public ECS::System<MovementSystem> {
       return entity->HasComponent<TransformComponent>();
   }
 };
+
 class ListenerSystem : public ECS::System<ListenerSystem> {
  public:
   void OnCreated() override {

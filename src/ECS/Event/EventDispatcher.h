@@ -19,6 +19,7 @@ class EventDispatcher {
 
   // Invoke all the events from the incoming queue
   void DispatchEvents() {
+      //TODO: it fast enough? maybe use map?
       for (auto event: eventSender->events) {
           for (auto callback: eventListener->delegates) {
               if (callback->GetEventTypeId()==event->GetTypeId()) {
