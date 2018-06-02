@@ -1,0 +1,6 @@
+set(TEST_PROJECT_NAME GAME_TEST)
+file(GLOB_RECURSE TEST_SOURCE *.cpp)
+
+project(${TEST_PROJECT_NAME})
+
+add_executable(${TEST_PROJECT_NAME} ${TEST_SOURCE})

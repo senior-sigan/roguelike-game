@@ -64,7 +64,7 @@ void start() {
     endwin();
 }
 
-int main() {
-    start();
-    return 0;
-}
+//int main() {
+//    start();
+//    return 0;
+//}

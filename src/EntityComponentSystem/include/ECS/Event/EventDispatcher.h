@@ -30,7 +30,7 @@ class EventDispatcher {
           }
       }
 
-      eventSender->events.remove_if([&](const IEvent const *event) -> bool {
+      eventSender->events.remove_if([&](const IEvent *event) -> bool {
         return event->isToDelete();
       });
   }
