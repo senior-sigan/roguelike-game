@@ -63,3 +63,8 @@ void start() {
     gameLoop(10, 10);
     endwin();
 }
+
+int main() {
+    start();
+    return 0;
+}
