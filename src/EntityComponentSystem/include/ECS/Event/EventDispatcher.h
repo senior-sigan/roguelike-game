@@ -18,7 +18,7 @@ class EventDispatcher {
       : eventSender(eventSender), eventListener(eventListener) {}
 
   // Invoke all the events from the incoming queue
-  void DispatchEvents(float deltaTime) {
+  void DispatchEvents(double deltaTime) {
       //TODO: is it fast enough? maybe use map?
       for (auto event: eventSender->events) {
           event->update(deltaTime);

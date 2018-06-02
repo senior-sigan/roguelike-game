@@ -42,7 +42,7 @@ class RepeatedEvent : public ECS::Event::Event<RepeatedEvent> {};
 class MovementSystem : public ECS::System<MovementSystem> {
  public:
   void OnCreated() override {}
-  void Update(ECS::IEntity *entity, float dt) override {
+  void Update(ECS::IEntity *entity, double dt) override {
       auto component = entity->GetComponent<TransformComponent>();
       component->x += 1;
       component->y += 1;
@@ -74,6 +74,18 @@ class ListenerSystem : public ECS::System<ListenerSystem> {
   }
 };
 
+class ExitSystem : public ECS::System<ExitSystem> {
+  long rounds = 0;
+  const long maxRounds = 10;
+ public:
+  void SysUpdate(double dt) override {
+      // Just emulate some work;
+      rounds += 1;
+      if (rounds > maxRounds) engineControl->Stop();
+      std::this_thread::sleep_for(std::chrono::milliseconds(500));
+  }
+};
+
 int main() {
     auto engine = new ECS::Engine();
     auto em = engine->GetEntityManager();
@@ -81,6 +93,7 @@ int main() {
 
     sm->CreateAndGet<MovementSystem>();
     sm->CreateAndGet<ListenerSystem>();
+    sm->CreateAndGet<ExitSystem>();
     auto e1 = em->CreateAndGet<GameObject>();
     auto e2 = em->CreateAndGet<AnotherObject>();
 
@@ -95,10 +108,5 @@ int main() {
     std::cout << "AnotherObject 1= " << e2->GetID() << " " << e2->GetTypeID() << std::endl;
 
     std::cout << "GameLoop" << std::endl;
-    int i = 0;
-    while (i < 10) {
-        engine->Update();
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        i++;
-    }
+    engine->Loop();
 }

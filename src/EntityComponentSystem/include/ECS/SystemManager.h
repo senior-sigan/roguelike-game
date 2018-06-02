@@ -16,9 +16,14 @@ class SystemManager {
   std::map<SystemTypeID, ISystem *> container;
   EntityManager *entityManager{};
   Event::EventDispatcher *eventDispatcher;
+  IEngineControl* engineControl;
 
-  void Update(float delta) {
+  void Update(double delta) {
       // TODO: iterate over systems with some order which is set by priority property.
+
+      for (std::pair<SystemTypeID, ISystem *> system: container) {
+          system.second->SysUpdate(delta);
+      }
 
       for (auto entity : entityManager->container) {
           for (std::pair<SystemTypeID, ISystem *> system: container) {
@@ -46,8 +51,8 @@ class SystemManager {
   };
 
  public:
-  explicit SystemManager(EntityManager *entityManager, Event::EventDispatcher *eventDispatcher) :
-      entityManager(entityManager), eventDispatcher(eventDispatcher) {}
+  explicit SystemManager(EntityManager *entityManager, Event::EventDispatcher *eventDispatcher, IEngineControl* engineControl1) :
+      entityManager(entityManager), eventDispatcher(eventDispatcher), engineControl(engineControl1) {}
   virtual ~SystemManager() {
       container.clear();
   }
@@ -62,6 +67,7 @@ class SystemManager {
       auto system = new TSystem(std::forward<TParam>(params)...);
       system->eventSender = eventDispatcher->eventSender;
       system->eventListener = eventDispatcher->eventListener;
+      system->engineControl = engineControl;
       container[TSystem::STATIC_TYPE_ID] = system;
       system->OnCreated();
       return system;

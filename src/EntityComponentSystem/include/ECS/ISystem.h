@@ -8,6 +8,7 @@
 #include <vector>
 #include "Platform.h"
 #include "Event/EventDispatcher.h"
+#include "IEngineControl.h"
 namespace ECS {
 
 class ISystem {
@@ -18,9 +19,10 @@ class ISystem {
   };
   virtual const SystemTypeID GetTypeID() const = 0;
 
-  virtual void PreUpdate(IEntity *entity, float dt) {};
-  virtual void Update(IEntity *entity, float dt) {};
-  virtual void PostUpdate(IEntity *entity, float dt) {};
+  virtual void SysUpdate(double dt) {};
+  virtual void PreUpdate(IEntity *entity, double dt) {};
+  virtual void Update(IEntity *entity, double dt) {};
+  virtual void PostUpdate(IEntity *entity, double dt) {};
 
   /**
    * Filter and pass only IEntities that satisfy the predicate.

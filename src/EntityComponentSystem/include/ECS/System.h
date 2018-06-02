@@ -14,11 +14,16 @@ class System : public ISystem {
   friend class SystemManager;
   static const SystemTypeID STATIC_TYPE_ID;
  protected:
-  Event::EventSender* eventSender{};
-  Event::EventListener* eventListener{};
+  Event::EventSender *eventSender{};
+  Event::EventListener *eventListener{};
+  IEngineControl *engineControl{};
  public:
   const SystemTypeID GetTypeID() const override {
       return STATIC_TYPE_ID;
+  }
+
+  const IEngineControl *GetEngineControl() const {
+      return engineControl;
   }
 };
 

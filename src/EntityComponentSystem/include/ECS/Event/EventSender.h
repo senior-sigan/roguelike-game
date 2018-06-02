@@ -35,7 +35,7 @@ class EventSender {
    * @param eventArgs event constructor arguments
    */
   template<class TEvent, class... ARGS>
-  void SendDelayed(float after, ARGS &&... eventArgs) {
+  void SendDelayed(double after, ARGS &&... eventArgs) {
       IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
       if (after < 0) after = 0;
       event->after = after;
@@ -57,7 +57,7 @@ class EventSender {
    * @param eventArgs event constructor arguments
    */
   template<class TEvent, class... ARGS>
-  void SendInterval(float after, float interval, int repeats, ARGS &&... eventArgs) {
+  void SendInterval(double after, double interval, long repeats, ARGS &&... eventArgs) {
       IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
       if (after < 0) after = 0;
       if (interval < 0) interval = 0;

@@ -10,13 +10,13 @@ class IEvent {
   friend class EventSender;
   friend class EventDispatcher;
 
-  int repeats = 0; // constant
-  float after = 0; // constant
-  float interval = 0; // constant
+  long repeats = 0; // constant
+  double after = 0; // constant
+  double interval = 0; // constant
 
   bool wasCalled = false;
-  float currentTime = 0;
-  float calls = 0;
+  double currentTime = 0;
+  long calls = 0;
   bool shouldUpdate = true;
 
   /**
@@ -24,7 +24,7 @@ class IEvent {
    * when it's ready for delivery when [after] and [interval] is used.
    * @param deltaTime in seconds
    */
-  void update(float deltaTime) {
+  void update(double deltaTime) {
       currentTime += deltaTime;
       shouldUpdate = true;
   }
