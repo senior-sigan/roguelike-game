@@ -7,6 +7,55 @@
 
 namespace ECS::Event {
 class IEvent {
+  friend class EventSender;
+  friend class EventDispatcher;
+
+  int repeats = 0; // constant
+  float after = 0; // constant
+  float interval = 0; // constant
+
+  bool wasCalled = false;
+  float currentTime = 0;
+  float calls = 0;
+  bool shouldUpdate = true;
+
+  /**
+   * Event tracks time inside to notify dispatcher
+   * when it's ready for delivery when [after] and [interval] is used.
+   * @param deltaTime in seconds
+   */
+  void update(float deltaTime) {
+      currentTime += deltaTime;
+      shouldUpdate = true;
+  }
+
+  void registerCall() {
+      if (shouldUpdate) {
+          wasCalled = true;
+          currentTime = 0;
+          calls += 1;
+          shouldUpdate = false;
+      }
+  }
+
+  bool isToDelete() const {
+      if (repeats==-1) return false;
+      return calls > repeats;
+  }
+
+  bool isInvokableNow() const {
+      return isFitInDelay() && isFitInRepeats();
+  }
+
+  bool isFitInDelay() const {
+      if (wasCalled) return interval <= currentTime;
+      return after <= currentTime;
+  }
+
+  bool isFitInRepeats() const {
+      if (repeats==-1) return true;
+      return calls - repeats <= 0;
+  }
  public:
   virtual const EventTypeID GetTypeId() const = 0;
 };

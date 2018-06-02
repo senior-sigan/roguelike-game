@@ -37,6 +37,8 @@ class MovementEvent : public ECS::Event::Event<MovementEvent> {
   explicit MovementEvent(std::string msg) : msg(std::move(msg)) {}
 };
 
+class RepeatedEvent : public ECS::Event::Event<RepeatedEvent> {};
+
 class MovementSystem : public ECS::System<MovementSystem> {
  public:
   void OnCreated() override {}
@@ -45,7 +47,7 @@ class MovementSystem : public ECS::System<MovementSystem> {
       component->x += 1;
       component->y += 1;
       std::stringstream ss;
-      ss << entity->GetTypeID() << " MovementSystem: " << component->x << " " << component->y << std::endl;
+      ss << entity->GetTypeID() << " MovementSystem: " << component->x << " " << component->y;
       eventSender->Send<MovementEvent>(ss.str());
   }
 
@@ -58,10 +60,17 @@ class ListenerSystem : public ECS::System<ListenerSystem> {
  public:
   void OnCreated() override {
       eventListener->RegisterListener<ListenerSystem, MovementEvent>(this, &ListenerSystem::OnMovementEvent);
+      eventListener->RegisterListener<ListenerSystem, RepeatedEvent>(this, &ListenerSystem::OnRepeatedEvent);
+
+      eventSender->SendInterval<RepeatedEvent>(0, 0, 3);
   }
 
   void OnMovementEvent(const MovementEvent const *event) {
-      std::cout << event->msg << std::endl;
+      std::cout << "MovementEvent(" << event->GetTypeId() << "): " << event->msg << std::endl;
+  }
+
+  void OnRepeatedEvent(const RepeatedEvent const *event) {
+      std::cout << "RepeatedEvent(" << event->GetTypeId() << "): " << std::endl;
   }
 };
 

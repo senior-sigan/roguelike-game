@@ -46,8 +46,8 @@ class Engine {
       // TODO: calculate game delta time
       // TODO: may be instead of delta time we'll have step number? So ticker class should be abstract so we can support delta time and delta step.
       systemManager->Update(deltaTime);
-      eventDispatcher->DispatchEvents();
-      // TODO: May be call manual entities destruction and resend events again.
+      eventDispatcher->DispatchEvents(deltaTime);
+      // TODO: May be registerCall manual entities destruction and resend events again.
   }
 
   EntityManager *GetEntityManager() const {
