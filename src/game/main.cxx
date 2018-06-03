@@ -2,7 +2,7 @@
  * Created by Илья Сиганов on 02.06.2018.
  */
 
-#include "Game.h"
+#include "game/Game.h"
 
 int main() {
     LOG_CONFIGURE();

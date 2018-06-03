@@ -20,5 +20,7 @@ FILE(GLOB_RECURSE HEADERS ${PROJECT_HEADERS_DIR}/*.h)
 FILE(GLOB_RECURSE SOURCES ${PROJECT_SOURCES_DIR}/*.cpp)
 FILE(GLOB_RECURSE TESTS ${PROJECT_TESTS_DIR}/*.cpp)
 
+include_directories(${PROJECT_HEADERS_DIR})
+
 add_subdirectory(src)
 #add_subdirectory(test)

@@ -1,11 +1,11 @@
 #include <utility>
 
 #include <iostream>
-#include "../../src/ECS/Entity.h"
-#include "../../src/ECS/EntityManager.h"
-#include "../../src/ECS/Component.h"
-#include "../../src/ECS/Engine.h"
-#include "../../src/ECS/System.h"
+#include "../../include/roguelike/ECS/Entity.h"
+#include "../../include/roguelike/ECS/EntityManager.h"
+#include "../../include/roguelike/ECS/Component.h"
+#include "../../include/roguelike/ECS/Engine.h"
+#include "../../include/roguelike/ECS/System.h"
 #include "../../src/ECS/Event/Event.h"
 #include <thread>
 

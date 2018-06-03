@@ -2,7 +2,7 @@
  * Created by Илья Сиганов on 02.06.2018.
  */
 
-#include "GameLoop.h"
+#include "../../include/roguelike/ECS/GameLoop.h"
 #include <chrono>
 
 namespace ECS {

@@ -3,7 +3,7 @@
  */
 
 #include <ncurses.h>
-#include "Game.h"
+#include "game/Game.h"
 
 void Game::SetupGraphics() {
     initscr();
