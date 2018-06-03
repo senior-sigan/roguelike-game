@@ -14,26 +14,10 @@ class EventDispatcher {
   EventSender *eventSender;
   EventListener *eventListener;
 
-  EventDispatcher(EventSender *eventSender, EventListener *eventListener)
-      : eventSender(eventSender), eventListener(eventListener) {}
+  EventDispatcher(EventSender *eventSender, EventListener *eventListener);
 
   // Invoke all the events from the incoming queue
-  void DispatchEvents(double deltaTime) {
-      //TODO: is it fast enough? maybe use map?
-      for (auto event: eventSender->events) {
-          event->update(deltaTime);
-          for (auto callback: eventListener->delegates) {
-              if (callback->GetEventTypeId()==event->GetTypeId() && event->isInvokableNow()) {
-                  callback->invoke(event);
-                  event->registerCall();
-              }
-          }
-      }
-
-      eventSender->events.remove_if([&](const IEvent *event) -> bool {
-        return event->isToDelete();
-      });
-  }
+  void DispatchEvents(double deltaTime);
 };
 }
 

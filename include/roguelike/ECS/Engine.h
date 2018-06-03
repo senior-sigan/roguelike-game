@@ -20,35 +20,11 @@ class Engine : public IEngineControl, public GameLoop {
   Event::EventListener *eventListener;
   Event::EventSender *eventSender;
 
-  void Update(double deltaTime) override {
-      // TODO: may be instead of delta time we'll have step number? So ticker class should be abstract so we can support delta time and delta step.
-      systemManager->Update(deltaTime);
-      eventDispatcher->DispatchEvents(deltaTime);
-      // TODO: destroy entities, components, resend destruction events.
-  }
+  void Update(double deltaTime) override;
  public:
-  Engine() {
-      eventListener = new Event::EventListener();
-      eventSender = new Event::EventSender();
-      eventDispatcher = new Event::EventDispatcher(eventSender, eventListener);
-      componentManager = new ComponentManager();
-      entityManager = new EntityManager(componentManager);
-      systemManager = new SystemManager(entityManager, eventDispatcher, this);
-  }
+  Engine();
 
-  virtual ~Engine() {
-      delete systemManager;
-      systemManager = nullptr;
-
-      delete entityManager;
-      entityManager = nullptr;
-
-      delete componentManager;
-      componentManager = nullptr;
-
-      delete eventDispatcher;
-      eventDispatcher = nullptr;
-  }
+  virtual ~Engine();
 
   EntityManager *GetEntityManager() const override {
       return entityManager;
@@ -63,9 +39,7 @@ class Engine : public IEngineControl, public GameLoop {
       return eventDispatcher;
   }
 
-  void Stop() override {
-      ((GameLoop *) this)->Stop();
-  }
+  void Stop() override;
 };
 }
 #endif //ROGUELIKE_ENGINE_H

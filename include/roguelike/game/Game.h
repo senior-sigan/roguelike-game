@@ -5,7 +5,7 @@
 #ifndef ROGUELIKE_GAME_H
 #define ROGUELIKE_GAME_H
 
-#include "../ECS/Engine.h"
+#include "ECS/Engine.h"
 /**
  * Main initializer of the game.
  */

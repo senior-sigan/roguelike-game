@@ -5,7 +5,6 @@
 #ifndef ROGUELIKE_COMPONENTMANAGER_H
 #define ROGUELIKE_COMPONENTMANAGER_H
 
-#include "ECS.h"
 #include <iostream>
 #include <unordered_map>
 #include "Platform.h"

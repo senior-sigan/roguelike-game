@@ -5,6 +5,8 @@
 #ifndef ROGUELIKE_IEVEMT_H
 #define ROGUELIKE_IEVEMT_H
 
+#include "ECS/Platform.h"
+
 namespace ECS::Event {
 class IEvent {
   friend class EventSender;
@@ -24,40 +26,19 @@ class IEvent {
    * when it's ready for delivery when [after] and [interval] is used.
    * @param deltaTime in seconds
    */
-  void update(double deltaTime) {
-      currentTime += deltaTime;
-      shouldUpdate = true;
-  }
+  void update(double deltaTime);
 
-  void registerCall() {
-      if (shouldUpdate) {
-          wasCalled = true;
-          currentTime = 0;
-          calls += 1;
-          shouldUpdate = false;
-      }
-  }
+  void registerCall();
 
-  bool isToDelete() const {
-      if (repeats==-1) return false;
-      return calls > repeats;
-  }
+  bool isToDelete() const;
 
-  bool isInvokableNow() const {
-      return isFitInDelay() && isFitInRepeats();
-  }
+  bool isInvokableNow() const;
 
-  bool isFitInDelay() const {
-      if (wasCalled) return interval <= currentTime;
-      return after <= currentTime;
-  }
+  bool isFitInDelay() const;
 
-  bool isFitInRepeats() const {
-      if (repeats==-1) return true;
-      return calls - repeats <= 0;
-  }
+  bool isFitInRepeats() const;
  public:
-  virtual const EventTypeID GetTypeId() const = 0;
+  virtual const ECS::EventTypeID GetTypeId() const = 0;
 };
 }
 
