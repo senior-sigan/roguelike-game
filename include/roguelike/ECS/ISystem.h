@@ -9,6 +9,7 @@
 #include "Platform.h"
 #include "Event/EventDispatcher.h"
 #include "IEngineControl.h"
+#include "IEntity.h"
 namespace ECS {
 
 class ISystem {

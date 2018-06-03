@@ -11,6 +11,7 @@
 #include "Event/EventDispatcher.h"
 namespace ECS {
 class SystemManager {
+  LOG_INIT("SystemManager");
   friend class Engine;
 
   std::map<SystemTypeID, ISystem *> container;
@@ -39,6 +40,7 @@ class SystemManager {
       system->engineControl = engineControl;
       container[TSystem::STATIC_TYPE_ID] = system;
       system->OnCreated();
+      LOG_INFO("System was created: " << typeid(TSystem).name());
       return system;
   };
 

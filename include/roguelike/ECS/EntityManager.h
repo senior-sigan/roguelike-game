@@ -17,7 +17,7 @@ class EntityManager {
   ComponentManager *componentManager;
  public:
   explicit EntityManager(ComponentManager *componentManager) : componentManager(componentManager) {
-      LOG_INFO("Initialize EntityManager");
+      LOG_INFO("EntityManager was initialized");
   }
 
   template<class TEntity, class... TParam>
@@ -33,6 +33,7 @@ class EntityManager {
       entity->componentManager = this->componentManager;
       container[entity->entityID] = entity;
       entity->OnCreated();
+      LOG_INFO("Entity was created: " << typeid(TEntity).name());
       return entity;
   }
 

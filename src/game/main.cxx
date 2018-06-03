@@ -9,4 +9,3 @@ int main() {
     auto game = new Game();
     game->Start();
 }
-

@@ -9,7 +9,9 @@ namespace ECS {
 SystemManager::SystemManager(EntityManager *entityManager,
                              Event::EventDispatcher *eventDispatcher,
                              IEngineControl *engineControl1) :
-    entityManager(entityManager), eventDispatcher(eventDispatcher), engineControl(engineControl1) {}
+    entityManager(entityManager), eventDispatcher(eventDispatcher), engineControl(engineControl1) {
+    LOG_INFO("SystemManager was initialized");
+}
 
 SystemManager::~SystemManager() {
     container.clear();

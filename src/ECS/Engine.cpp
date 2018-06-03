@@ -18,6 +18,7 @@ Engine::Engine() {
     componentManager = new ComponentManager();
     entityManager = new EntityManager(componentManager);
     systemManager = new SystemManager(entityManager, eventDispatcher, this);
+    LOG_INFO("Engine was initialized");
 }
 Engine::~Engine() {
     delete systemManager;

@@ -31,7 +31,7 @@ class ComponentManager {
   ComponentID currentID = 0;
  public:
   ComponentManager() {
-      LOG_INFO("Initialize ComponentManager");
+      LOG_INFO("ComponentManager was initialized");
   }
 
   template<class TComponent, class ...TParam>

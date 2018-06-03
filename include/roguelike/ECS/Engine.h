@@ -13,6 +13,7 @@
 #include "IEngineControl.h"
 namespace ECS {
 class Engine : public IEngineControl, public GameLoop {
+  LOG_INIT("Engine");
   EntityManager *entityManager;
   ComponentManager *componentManager;
   SystemManager *systemManager;

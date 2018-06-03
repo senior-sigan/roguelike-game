@@ -9,7 +9,7 @@
 #include "log4cxx/basicconfigurator.h"
 #include "log4cxx/propertyconfigurator.h"
 
-#define LOG_INIT(LOGGER_NAME) log4cxx::LoggerPtr logger = log4cxx::Logger::getLogger("EntityManager")
+#define LOG_INIT(LOGGER_NAME) log4cxx::LoggerPtr logger = log4cxx::Logger::getLogger(LOGGER_NAME)
 
 #define LOG_CONFIGURE() log4cxx::BasicConfigurator::configure(syslogAppender())
 #define LOG_PROP_CONFIGURE(PATH) log4cxx::PropertyConfigurator::configure(PATH)
