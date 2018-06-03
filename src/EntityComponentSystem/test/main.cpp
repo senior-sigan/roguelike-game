@@ -8,7 +8,8 @@
 #include "ECS/System.h"
 #include "ECS/Event/Event.h"
 #include <thread>
-#include <sstream>
+
+LOG_INIT("Test");
 
 class TransformComponent : public ECS::Component<TransformComponent> {
  public:
@@ -66,11 +67,11 @@ class ListenerSystem : public ECS::System<ListenerSystem> {
   }
 
   void OnMovementEvent(const MovementEvent const *event) {
-      std::cout << "MovementEvent(" << event->GetTypeId() << "): " << event->msg << std::endl;
+      LOG_INFO("MovementEvent(" << event->GetTypeId() << "): " << event->msg);
   }
 
   void OnRepeatedEvent(const RepeatedEvent const *event) {
-      std::cout << "RepeatedEvent(" << event->GetTypeId() << "): " << std::endl;
+      LOG_INFO("RepeatedEvent(" << event->GetTypeId() << "): ");
   }
 };
 
@@ -87,6 +88,7 @@ class ExitSystem : public ECS::System<ExitSystem> {
 };
 
 int main() {
+    LOG_CONFIGURE();
     auto engine = new ECS::Engine();
     auto em = engine->GetEntityManager();
     auto sm = engine->GetSystemManager();

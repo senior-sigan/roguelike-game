@@ -13,4 +13,5 @@ clean:
 	rm -rf cmake-build-debug
 
 osx_dep:
-	brew install cmake ncurses cppcheck clang-format
+	brew install cmake cppcheck clang-format
+	brew install ncurses spdlog

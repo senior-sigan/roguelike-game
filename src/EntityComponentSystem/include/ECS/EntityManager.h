@@ -16,7 +16,7 @@ class EntityManager {
   ComponentManager *componentManager;
  public:
   explicit EntityManager(ComponentManager *componentManager) : componentManager(componentManager) {
-      std::cout << "Initialize EntityManager" << std::endl;
+      LOG_INFO("Initialize EntityManager");
   }
 
   template<class TEntity, class... TParam>

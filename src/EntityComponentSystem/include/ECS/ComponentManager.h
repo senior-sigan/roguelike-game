@@ -5,13 +5,13 @@
 #ifndef ROGUELIKE_COMPONENTMANAGER_H
 #define ROGUELIKE_COMPONENTMANAGER_H
 
+#include "ECS.h"
 #include <iostream>
 #include <unordered_map>
 #include "Platform.h"
 #include "IComponent.h"
 
 namespace ECS {
-
 /**
  * C++ default hash function doesn't support pair. This is our implementation.
  * https://stackoverflow.com/questions/20590656/error-for-hash-function-of-pair-of-ints?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -30,7 +30,7 @@ class ComponentManager {
   ComponentID currentID = 0;
  public:
   ComponentManager() {
-      std::cout << "Initialize ComponentManager" << std::endl;
+      LOG_INFO("Initialize ComponentManager");
   }
 
   template<class TComponent, class ...TParam>

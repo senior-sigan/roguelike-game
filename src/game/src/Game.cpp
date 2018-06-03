@@ -2,17 +2,17 @@
  * Created by Илья Сиганов on 02.06.2018.
  */
 
-#include <ncurses.h>
+//#include <ncurses.h>
 #include <Game.h>
 
 void Game::SetupGraphics() {
-    initscr();
-    raw();
-    clear();
-    noecho();
-    cbreak();
-    keypad(stdscr, TRUE);
-    curs_set(0);
+//    initscr();
+//    raw();
+//    clear();
+//    noecho();
+//    cbreak();
+//    keypad(stdscr, TRUE);
+//    curs_set(0);
 }
 void Game::SetupECS() {
     engine = new ECS::Engine();
@@ -23,7 +23,7 @@ void Game::Loop() {
     engine->Loop();
 }
 void Game::Teardown() {
-    endwin();
+//    endwin();
 }
 void Game::Start() {
     SetupGraphics();

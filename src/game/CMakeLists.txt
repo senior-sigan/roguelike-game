@@ -24,6 +24,6 @@ target_include_directories(
     $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARY} ECS)
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARY} log4cxx ECS)
 
 add_subdirectory(test)

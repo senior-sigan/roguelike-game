@@ -2,11 +2,12 @@
  * Created by Илья Сиганов on 02.06.2018.
  */
 
-#include <ECS/Engine.h>
-#include "../include/game/Game.h"
+#include <Game.h>
+#include <iostream>
 
 int main() {
-    auto game = new Game();
-    game->Start();
+//    auto game = new Game();
+//    game->Start();
+    std::cout << "LOL";
 }
 

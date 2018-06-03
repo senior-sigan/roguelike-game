@@ -10,7 +10,7 @@
  * Main initializer of the game.
  */
 class Game {
-  ECS::Engine *engine = nullptr;
+  ECS::Engine *engine;
 
   void SetupGraphics();
   void SetupECS();

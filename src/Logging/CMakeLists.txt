@@ -1,28 +1,23 @@
-set(PROJECT_NAME EntityComponentSystem)
-set(LIBRARY_NAME ECS)
-
+set(LIBRARY_NAME Log)
 set(LIBRARY_HEADERS_DIR include/${LIBRARY_NAME})
-set(LIBRARY_SOURCE_DIR src)
 
 file(GLOB_RECURSE LIBRARY_HEADERS ${LIBRARY_HEADERS_DIR} *.h)
-file(GLOB_RECURSE LIBRARY_SOURCE ${LIBRARY_SOURCE_DIR} *.cpp)
 
+project(${LIBRARY_NAME} LANGUAGES CXX)
 
-project(${PROJECT_NAME})
+find_package(log4cxx REQUIRED)
+include_directories(${LOG4CXX_INCLUDE_DIR})
 
-add_library(${LIBRARY_NAME} STATIC ${LIBRARY_HEADERS} ${LIBRARY_SOURCE})
+add_library(${LIBRARY_NAME} INTERFACE)
+
 target_include_directories(
-    ${LIBRARY_NAME} PRIVATE
+    ${LIBRARY_NAME} INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${LIBRARY_NAME}>
     $<INSTALL_INTERFACE:include/${LIBRARY_NAME}>
 )
 
 target_include_directories(
-    ${LIBRARY_NAME} PUBLIC
+    ${LIBRARY_NAME} INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
-
-target_link_libraries(${LIBRARY_NAME} Log)
-
-add_subdirectory(test)
