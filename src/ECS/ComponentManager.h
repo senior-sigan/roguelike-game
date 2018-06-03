@@ -10,6 +10,7 @@
 #include <unordered_map>
 #include "Platform.h"
 #include "IComponent.h"
+#include "../Log/logging.h"
 
 namespace ECS {
 /**
@@ -26,6 +27,7 @@ struct pairhash {
 };
 
 class ComponentManager {
+  LOG_INIT("ComponentManager");
   std::unordered_map<std::pair<EntityID, ComponentTypeID>, IComponent *, pairhash> container;
   ComponentID currentID = 0;
  public:

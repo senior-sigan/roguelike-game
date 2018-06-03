@@ -1,15 +1,13 @@
 #include <utility>
 
 #include <iostream>
-#include "ECS/Entity.h"
-#include "ECS/EntityManager.h"
-#include "ECS/Component.h"
-#include "ECS/Engine.h"
-#include "ECS/System.h"
-#include "ECS/Event/Event.h"
+#include "../../src/ECS/Entity.h"
+#include "../../src/ECS/EntityManager.h"
+#include "../../src/ECS/Component.h"
+#include "../../src/ECS/Engine.h"
+#include "../../src/ECS/System.h"
+#include "../../src/ECS/Event/Event.h"
 #include <thread>
-
-LOG_INIT("Test");
 
 class TransformComponent : public ECS::Component<TransformComponent> {
  public:
@@ -58,6 +56,7 @@ class MovementSystem : public ECS::System<MovementSystem> {
 };
 
 class ListenerSystem : public ECS::System<ListenerSystem> {
+  LOG_INIT("ListenerSystem");
  public:
   void OnCreated() override {
       eventListener->RegisterListener<ListenerSystem, MovementEvent>(this, &ListenerSystem::OnMovementEvent);
@@ -87,8 +86,9 @@ class ExitSystem : public ECS::System<ExitSystem> {
   }
 };
 
-int main() {
+int ECS_test_main() {
     LOG_CONFIGURE();
+    LOG_INIT("ECS_test_main");
     auto engine = new ECS::Engine();
     auto em = engine->GetEntityManager();
     auto sm = engine->GetSystemManager();
@@ -99,16 +99,16 @@ int main() {
     auto e1 = em->CreateAndGet<GameObject>();
     auto e2 = em->CreateAndGet<AnotherObject>();
 
-    std::cout << "GameObject 1= " << e1->GetID() << " " << e1->GetTypeID() << std::endl;
-    std::cout << "GameObject 1 # TransformComponent.ownerID= "
-              << e1->GetComponent<TransformComponent>()->GetEntity() << std::endl;
-    std::cout << "GameObject 1 # TransformComponent.id= "
-              << e1->GetComponent<TransformComponent>()->GetID() << std::endl;
-    std::cout << "GameObject 1 # TransformComponent.typeID= "
-              << e1->GetComponent<TransformComponent>()->GetTypeID() << std::endl;
+    LOG_INFO("GameObject 1= " << e1->GetID() << " " << e1->GetTypeID());
+    LOG_INFO("GameObject 1 # TransformComponent.ownerID= "
+                 << e1->GetComponent<TransformComponent>()->GetEntity());
+    LOG_INFO("GameObject 1 # TransformComponent.id= "
+                 << e1->GetComponent<TransformComponent>()->GetID());
+    LOG_INFO("GameObject 1 # TransformComponent.typeID= "
+                 << e1->GetComponent<TransformComponent>()->GetTypeID());
 
-    std::cout << "AnotherObject 1= " << e2->GetID() << " " << e2->GetTypeID() << std::endl;
+    LOG_INFO("AnotherObject 1= " << e2->GetID() << " " << e2->GetTypeID());
 
-    std::cout << "GameLoop" << std::endl;
+    LOG_INFO("GameLoop");
     engine->Loop();
 }

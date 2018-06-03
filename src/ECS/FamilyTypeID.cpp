@@ -2,8 +2,8 @@
  * Created by Илья Сиганов on 26.05.2018.
  */
 
-#include "ECS/Platform.h"
-#include "ECS/FamilyTypeID.h"
+#include "Platform.h"
+#include "FamilyTypeID.h"
 
 namespace ECS {
 

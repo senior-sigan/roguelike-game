@@ -11,6 +11,7 @@
 namespace ECS {
 class EntityManager {
   friend class SystemManager;
+  LOG_INIT("EntityManager");
   std::unordered_map<EntityID, IEntity *> container;
   EntityID currentID = 0;
   ComponentManager *componentManager;

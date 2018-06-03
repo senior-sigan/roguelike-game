@@ -52,7 +52,7 @@ void gameLoop(int row, int col) {
     }
 }
 
-void start() {
+void game_test_main() {
     initscr();
     raw();
     clear();
