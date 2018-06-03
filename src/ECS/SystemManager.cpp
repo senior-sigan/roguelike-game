@@ -20,6 +20,8 @@ SystemManager::~SystemManager() {
 void SystemManager::Update(double delta) {
     // TODO: iterate over systems with some order which is set by priority property.
 
+
+    // TODO: instead of iterating over entities, systems should be able to filter entities on their side. This might be implemented using some kind of FamilyFilter.
     for (std::pair<SystemTypeID, ISystem *> system: container) {
         system.second->SysUpdate(delta);
     }
