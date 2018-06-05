@@ -1,0 +1,8 @@
+/**
+ * Created by Илья Сиганов on 04.06.2018.
+ */
+
+#ifndef ROGUELIKE_INTERVALSYSTEM_H
+#define ROGUELIKE_INTERVALSYSTEM_H
+
+#endif //ROGUELIKE_INTERVALSYSTEM_H

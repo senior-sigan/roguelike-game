@@ -1,4 +1,4 @@
-all: assemble
+all: assemble exec
 
 mkdir_build:
 	[ -d ./cmake-build-debug ] | mkdir -p cmake-build-debug

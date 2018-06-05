@@ -5,7 +5,7 @@
 #include "../../include/roguelike/ECS/EntityManager.h"
 #include "../../include/roguelike/ECS/Component.h"
 #include "../../include/roguelike/ECS/Engine.h"
-#include "../../include/roguelike/ECS/System.h"
+#include "ECS/system/System.h"
 #include "../../src/ECS/Event/Event.h"
 #include <thread>
 

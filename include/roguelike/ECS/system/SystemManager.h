@@ -6,9 +6,9 @@
 #define ROGUELIKE_SYSTEMMANAGER_H
 
 #include <map>
-#include "Platform.h"
+#include "ECS/Platform.h"
 #include "ISystem.h"
-#include "Event/EventDispatcher.h"
+#include "ECS/Event/EventDispatcher.h"
 namespace ECS {
 class SystemManager {
   LOG_INIT("SystemManager");
@@ -38,8 +38,9 @@ class SystemManager {
       system->eventSender = eventDispatcher->eventSender;
       system->eventListener = eventDispatcher->eventListener;
       system->engineControl = engineControl;
-      container[TSystem::STATIC_TYPE_ID] = system;
+      system->entityManager = entityManager;
       system->OnCreated();
+      container[TSystem::STATIC_TYPE_ID] = system;
       LOG_INFO("System was created: " << typeid(TSystem).name());
       return system;
   };

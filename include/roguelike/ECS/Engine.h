@@ -6,7 +6,7 @@
 #define ROGUELIKE_ENGINE_H
 
 #include "EntityManager.h"
-#include "SystemManager.h"
+#include "ECS/system/SystemManager.h"
 #include "ComponentManager.h"
 #include "Event/EventDispatcher.h"
 #include "GameLoop.h"

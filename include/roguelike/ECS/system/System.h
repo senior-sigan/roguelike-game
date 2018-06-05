@@ -5,25 +5,23 @@
 #ifndef ROGUELIKE_SYSTEM_H
 #define ROGUELIKE_SYSTEM_H
 
-#include "FamilyTypeID.h"
+#include "ECS/FamilyTypeID.h"
 #include "ISystem.h"
 namespace ECS {
 
+/**
+ * General System. Update commands will be called on every world update.
+ * If you need iterates over Entities, use IteratingSystem.
+ *
+ * @tparam T
+ */
 template<class T>
 class System : public ISystem {
   friend class SystemManager;
   static const SystemTypeID STATIC_TYPE_ID;
- protected:
-  Event::EventSender *eventSender{};
-  Event::EventListener *eventListener{};
-  IEngineControl *engineControl{};
  public:
   const SystemTypeID GetTypeID() const override {
       return STATIC_TYPE_ID;
-  }
-
-  const IEngineControl *GetEngineControl() const {
-      return engineControl;
   }
 };
 
