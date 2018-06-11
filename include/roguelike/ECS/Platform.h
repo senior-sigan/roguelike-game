@@ -28,7 +28,7 @@ using EntityID = ObjectID;
 using SystemTypeID = TypeID;
 using SystemID = ObjectID;
 
-using SystemPriority = u_int16_t;
+using SystemPriority = uint16_t;
 
 static const TypeID INITIAL_TYPE_ID = 0;
 static const ObjectID INITIAL_OBJECT_ID = 0;
