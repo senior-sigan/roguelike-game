@@ -6,6 +6,7 @@
 #include <game/RenderingSystem.h>
 #include <game/PlayerEntity.h>
 #include <game/InputSystem.h>
+#include <game/ControlSystem.h>
 #include "game/Game.h"
 
 void Game::SetupGraphics() {
@@ -23,6 +24,7 @@ void Game::SetupECS() {
     engine = new ECS::Engine();
     engine->GetSystemManager()->CreateAndGet<InputSystem>();
     engine->GetSystemManager()->CreateAndGet<RenderingSystem>();
+    engine->GetSystemManager()->CreateAndGet<ControlSystem>();
 
     engine->GetEntityManager()->CreateAndGet<PlayerEntity>();
     // TODO: add all systems, components, entities

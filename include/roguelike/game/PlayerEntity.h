@@ -8,11 +8,13 @@
 #include <ECS/Entity.h>
 #include "TransformComponent.h"
 #include "RenderComponent.h"
+#include "ControlComponent.h"
 class PlayerEntity : public ECS::Entity<PlayerEntity> {
  public:
   void OnCreated() override {
       AddComponent<TransformComponent>(Vector2(1, 1));
       AddComponent<RenderComponent>(Texture1D('@'));
+      AddComponent<ControlComponent>();
   }
 };
 

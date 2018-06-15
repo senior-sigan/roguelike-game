@@ -6,12 +6,14 @@
 #include <game/RenderComponent.h>
 #include <game/TransformComponent.h>
 #include <ncurses.h>
+#include <game/Consts.h>
 #include "game/RenderingSystem.h"
 
 void RenderingSystem::PostUpdateInterval(double dt) {
     for (int w = 0; w < width; w++) {
         for (int h = 0; h < height; h++) {
             mvaddch(h, w, this->screen[w][h]);
+            this->screen[w][h] = ' ';
         }
     }
     refresh();
@@ -30,7 +32,7 @@ const bool RenderingSystem::FamilyFilter(ECS::IEntity *entity) const {
 RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {
     for (int w = 0; w < width; w++) {
         for (int h = 0; h < height; h++) {
-            this->screen[w][h] = '.';
+            this->screen[w][h] = ' ';
         }
     }
 }

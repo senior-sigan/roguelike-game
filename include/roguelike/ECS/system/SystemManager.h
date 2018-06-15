@@ -29,7 +29,7 @@ class SystemManager {
 
   template<class TSystem>
   TSystem *Get() {
-      return container[TSystem::STATIC_TYPE_ID];
+      return (TSystem *)container[TSystem::STATIC_TYPE_ID];
   };
 
   template<class TSystem, class... TParam>

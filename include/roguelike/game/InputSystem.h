@@ -7,14 +7,14 @@
 
 #include <ncurses.h>
 #include <ECS/system/IntervalSystem.h>
+#include "Consts.h"
 
 class InputSystem : public ECS::IntervalSystem<InputSystem> {
-  const double FPS = 1.0/25.0; // it means 25 FPS
-  static const int KEYS_SIZE = 255;
+  static const unsigned int KEYS_SIZE = 255;
   bool currentKeys[KEYS_SIZE]{};
   LOG_INIT("InputSystem");
  public:
-  explicit InputSystem() : IntervalSystem(FPS) {
+  explicit InputSystem() : IntervalSystem(IPS) {
       Clear();
   }
   void PreUpdate(double dt) override {
@@ -23,12 +23,30 @@ class InputSystem : public ECS::IntervalSystem<InputSystem> {
   };
 
   void PostUpdateInterval(double dt) override {
+      // TODO: We may send events to subscribers.
+      for (int i = 0; i < KEYS_SIZE; i++) {
+          if (currentKeys[i]) {
+              LOG_INFO(i);
+          }
+      }
       Clear();
   }
 
   void Clear() {
       for (bool &currentKey : currentKeys) {
           currentKey = false;
+      }
+  }
+
+  // === Keyboard getters ===
+  // TODO: may be move to a singleton?
+
+  bool GetButtonDown(unsigned int key) {
+      if (key < KEYS_SIZE) {
+          return currentKeys[key];
+      } else {
+          LOG_WARN("Button key must be between [0..255], but got " << key);
+          return false;
       }
   }
 };

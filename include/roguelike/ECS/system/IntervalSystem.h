@@ -22,6 +22,8 @@ class IntervalSystem : public ISystem {
   const double interval{};
   double currentTime{};
 
+  LOG_INIT("IntervalSystem");
+
   void _PreUpdate(double dt) override {
       PreUpdate(dt);
       currentTime += dt; // Every PRE update increment timer
