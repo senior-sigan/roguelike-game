@@ -19,7 +19,7 @@ class SystemManager {
   Event::EventDispatcher *eventDispatcher;
   IEngineControl *engineControl;
 
-  void Update(double delta);;
+  void Update(double delta);
 
  public:
   explicit SystemManager(EntityManager *entityManager,

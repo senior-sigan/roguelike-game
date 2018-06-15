@@ -7,6 +7,7 @@
 
 #include "ECS/FamilyTypeID.h"
 #include "ISystem.h"
+#include "IUpdate.h"
 namespace ECS {
 
 /**
@@ -23,6 +24,16 @@ class System : public ISystem {
   const SystemTypeID GetTypeID() const override {
       return STATIC_TYPE_ID;
   }
+
+ private:
+  void _PreUpdate(double dt) override { PreUpdate(dt); };
+  void _Update(double dt) override { Update(dt); };
+  void _PostUpdate(double dt) override { PostUpdate(dt); };
+ public:
+
+  virtual void PreUpdate(double dt) {};
+  virtual void Update(double dt) {};
+  virtual void PostUpdate(double dt) {};
 };
 
 template<class T>

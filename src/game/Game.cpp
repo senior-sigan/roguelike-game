@@ -5,6 +5,7 @@
 #include <ncurses.h>
 #include <game/RenderingSystem.h>
 #include <game/PlayerEntity.h>
+#include <game/InputSystem.h>
 #include "game/Game.h"
 
 void Game::SetupGraphics() {
@@ -13,11 +14,14 @@ void Game::SetupGraphics() {
     clear();
     noecho();
     cbreak();
+//    halfdelay(1);
+    nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     curs_set(0);
 }
 void Game::SetupECS() {
     engine = new ECS::Engine();
+    engine->GetSystemManager()->CreateAndGet<InputSystem>();
     engine->GetSystemManager()->CreateAndGet<RenderingSystem>();
 
     engine->GetEntityManager()->CreateAndGet<PlayerEntity>();

@@ -22,52 +22,71 @@ class IntervalIteratingSystem : public ISystem {
   const double interval{};
   double currentTime{};
 
-  template<class T>
-  void PreUpdate(double dt) {
-      currentTime += dt; // Every PRE update increment timer
-      if (currentTime >= interval) {
-          PreUpdateInterval(currentTime);
-      }
-  }
-  template<class T>
-  void Update(double dt) {
-      if (currentTime >= interval) {
-          UpdateInterval(currentTime);
-      }
-  }
-  template<class T>
-  void PostUpdate(double dt) {
-      if (currentTime >= interval) {
-          PostUpdateInterval(currentTime);
-          currentTime -= interval;  // Every POST update decrement timer
-      }
-  }
-
-  void PreUpdateInterval(double dt) {
+  void _PreUpdate(double dt) override {
+      PreUpdate(dt);
       for (auto entity : GetEntityManager()->container) {
           if (FamilyFilter(entity.second)) {
               PreProcessEntity(entity.second, dt);
           }
       }
+      currentTime += dt; // Every PRE update increment timer
+      if (currentTime >= interval) {
+          _PreUpdateInterval(currentTime);
+      }
   }
-  void UpdateInterval(double dt) {
+
+  void _Update(double dt) override {
+      Update(dt);
       for (auto entity : GetEntityManager()->container) {
           if (FamilyFilter(entity.second)) {
               ProcessEntity(entity.second, dt);
           }
       }
+      if (currentTime >= interval) {
+          _UpdateInterval(currentTime);
+      }
   }
-  void PostUpdateInterval(double dt) {
+
+  void _PostUpdate(double dt) override {
       for (auto entity : GetEntityManager()->container) {
           if (FamilyFilter(entity.second)) {
               PostProcessEntity(entity.second, dt);
           }
       }
+      PostUpdate(dt);
+      if (currentTime >= interval) {
+          _PostUpdateInterval(currentTime);
+          currentTime -= interval;  // Every POST update decrement timer
+      }
+  }
+
+  void _PreUpdateInterval(double dt) {
+      PreUpdateInterval(dt);
+      for (auto entity : GetEntityManager()->container) {
+          if (FamilyFilter(entity.second)) {
+              PreProcessEntityInterval(entity.second, dt);
+          }
+      }
+  }
+  void _UpdateInterval(double dt) {
+      UpdateInterval(dt);
+      for (auto entity : GetEntityManager()->container) {
+          if (FamilyFilter(entity.second)) {
+              ProcessEntityInterval(entity.second, dt);
+          }
+      }
+  }
+  void _PostUpdateInterval(double dt) {
+      for (auto entity : GetEntityManager()->container) {
+          if (FamilyFilter(entity.second)) {
+              PostProcessEntityInterval(entity.second, dt);
+          }
+      }
+      PostUpdateInterval(dt);
   }
 
  public:
-  template<class T>
-  explicit IntervalIteratingSystem(const double interval):interval(interval) {
+  explicit IntervalIteratingSystem(const double interval) : interval(interval) {
       currentTime = 0;
   }
 
@@ -75,9 +94,21 @@ class IntervalIteratingSystem : public ISystem {
       return STATIC_TYPE_ID;
   }
 
+  virtual void PreUpdate(double dt) {};
+  virtual void Update(double dt) {};
+  virtual void PostUpdate(double dt) {};
+
   virtual void PreProcessEntity(IEntity *entity, double dt) {};
   virtual void ProcessEntity(IEntity *entity, double dt) {};
   virtual void PostProcessEntity(IEntity *entity, double dt) {};
+
+  virtual void PreUpdateInterval(double dt) {};
+  virtual void UpdateInterval(double dt) {};
+  virtual void PostUpdateInterval(double dt) {};
+
+  virtual void PreProcessEntityInterval(IEntity *entity, double dt) {};
+  virtual void ProcessEntityInterval(IEntity *entity, double dt) {};
+  virtual void PostProcessEntityInterval(IEntity *entity, double dt) {};
 
   /**
    * Filter and pass only IEntities that satisfy the predicate.

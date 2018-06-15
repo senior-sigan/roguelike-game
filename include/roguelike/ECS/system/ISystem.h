@@ -10,9 +10,10 @@
 #include "ECS/Event/EventDispatcher.h"
 #include "ECS/IEngineControl.h"
 #include "ECS/IEntity.h"
+#include "IUpdate.h"
 namespace ECS {
 
-class ISystem {
+class ISystem: public IUpdate {
   friend class SystemManager;
   EntityManager *entityManager{};
   IEngineControl *engineControl{};
@@ -31,11 +32,6 @@ class ISystem {
       return 0;
   };
   virtual const SystemTypeID GetTypeID() const = 0;
-
-  virtual void PreUpdate(double dt) {};
-  virtual void Update(double dt) {};
-  virtual void PostUpdate(double dt) {};
-
   virtual void OnCreated() {};
 };
 }

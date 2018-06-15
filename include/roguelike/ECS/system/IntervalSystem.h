@@ -22,21 +22,23 @@ class IntervalSystem : public ISystem {
   const double interval{};
   double currentTime{};
 
-  template<class T>
-  void PreUpdate(double dt) {
+  void _PreUpdate(double dt) override {
+      PreUpdate(dt);
       currentTime += dt; // Every PRE update increment timer
       if (currentTime >= interval) {
           PreUpdateInterval(currentTime);
       }
   }
-  template<class T>
-  void Update(double dt) {
+
+  void _Update(double dt) override {
+      Update(dt);
       if (currentTime >= interval) {
           UpdateInterval(currentTime);
       }
   }
-  template<class T>
-  void PostUpdate(double dt) {
+
+  void _PostUpdate(double dt) override {
+      PostUpdate(dt);
       if (currentTime >= interval) {
           PostUpdateInterval(currentTime);
           currentTime -= interval;  // Every POST update decrement timer
@@ -44,7 +46,6 @@ class IntervalSystem : public ISystem {
   }
 
  public:
-  template<class T>
   explicit IntervalSystem(const double interval):interval(interval) {
       currentTime = 0;
   }
@@ -52,6 +53,10 @@ class IntervalSystem : public ISystem {
   const SystemTypeID GetTypeID() const override {
       return STATIC_TYPE_ID;
   }
+
+  virtual void PreUpdate(double dt) {};
+  virtual void Update(double dt) {};
+  virtual void PostUpdate(double dt) {};
 
   virtual void PreUpdateInterval(double dt) {};
   virtual void UpdateInterval(double dt) {};

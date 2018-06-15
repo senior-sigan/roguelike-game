@@ -13,32 +13,40 @@ template<class T>
 class IteratingSystem : public ISystem {
   friend class SystemManager;
   static const SystemTypeID STATIC_TYPE_ID;
- public:
-  const SystemTypeID GetTypeID() const override {
-      return STATIC_TYPE_ID;
-  }
 
-  void PreUpdate(double dt) override {
+  void _PreUpdate(double dt) override {
+      PreUpdate(dt);
       for (auto entity : GetEntityManager()->container) {
           if (FamilyFilter(entity.second)) {
               PreProcessEntity(entity.second, dt);
           }
       }
   }
-  void Update(double dt) override {
+  void _Update(double dt) override {
+      Update(dt);
       for (auto entity : GetEntityManager()->container) {
           if (FamilyFilter(entity.second)) {
               ProcessEntity(entity.second, dt);
           }
       }
   }
-  void PostUpdate(double dt) override {
+  void _PostUpdate(double dt) override {
       for (auto entity : GetEntityManager()->container) {
           if (FamilyFilter(entity.second)) {
               PostProcessEntity(entity.second, dt);
           }
       }
+      PostUpdate(dt);
   }
+
+ public:
+  const SystemTypeID GetTypeID() const override {
+      return STATIC_TYPE_ID;
+  }
+
+  virtual void PreUpdate(double dt) {};
+  virtual void Update(double dt) {};
+  virtual void PostUpdate(double dt) {};
 
   virtual void PreProcessEntity(IEntity *entity, double dt) {};
   virtual void ProcessEntity(IEntity *entity, double dt) {};

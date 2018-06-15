@@ -8,7 +8,7 @@
 #include <ncurses.h>
 #include "game/RenderingSystem.h"
 
-void RenderingSystem::PostUpdate(double dt) {
+void RenderingSystem::PostUpdateInterval(double dt) {
     for (int w = 0; w < width; w++) {
         for (int h = 0; h < height; h++) {
             mvaddch(h, w, this->screen[w][h]);
@@ -17,16 +17,17 @@ void RenderingSystem::PostUpdate(double dt) {
     refresh();
 }
 
-void RenderingSystem::ProcessEntity(ECS::IEntity *entity, double dt) {
+void RenderingSystem::ProcessEntityInterval(ECS::IEntity *entity, double dt) {
     auto rc = entity->GetComponent<RenderComponent>();
     auto tc = entity->GetComponent<TransformComponent>();
 
     this->screen[tc->position.x][tc->position.y] = rc->texture.symbol;
 }
+
 const bool RenderingSystem::FamilyFilter(ECS::IEntity *entity) const {
     return entity->HasComponent<RenderComponent>() && entity->HasComponent<TransformComponent>();
 }
-RenderingSystem::RenderingSystem() {
+RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {
     for (int w = 0; w < width; w++) {
         for (int h = 0; h < height; h++) {
             this->screen[w][h] = '.';
