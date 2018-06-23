@@ -17,38 +17,17 @@ class InputSystem : public ECS::IntervalSystem<InputSystem> {
   explicit InputSystem() : IntervalSystem(IPS) {
       Clear();
   }
-  void PreUpdate(double dt) override {
-      int key = getch();
-      currentKeys[key] = true;
-  };
 
-  void PostUpdateInterval(double dt) override {
-      // TODO: We may send events to subscribers.
-      for (int i = 0; i < KEYS_SIZE; i++) {
-          if (currentKeys[i]) {
-              LOG_INFO(i);
-          }
-      }
-      Clear();
-  }
+  void PreUpdate(double dt) override;;
 
-  void Clear() {
-      for (bool &currentKey : currentKeys) {
-          currentKey = false;
-      }
-  }
+  void PostUpdateInterval(double dt) override;
+
+  void Clear();
 
   // === Keyboard getters ===
   // TODO: may be move to a singleton?
 
-  bool GetButtonDown(unsigned int key) {
-      if (key < KEYS_SIZE) {
-          return currentKeys[key];
-      } else {
-          LOG_WARN("Button key must be between [0..255], but got " << key);
-          return false;
-      }
-  }
+  bool GetButtonDown(unsigned int key);
 };
 
 #endif //ROGUELIKE_INPUTSYSTEM_H

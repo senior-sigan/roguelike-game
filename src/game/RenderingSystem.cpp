@@ -23,7 +23,9 @@ void RenderingSystem::ProcessEntityInterval(ECS::IEntity *entity, double dt) {
     auto rc = entity->GetComponent<RenderComponent>();
     auto tc = entity->GetComponent<TransformComponent>();
 
-    this->screen[tc->position.x][tc->position.y] = rc->texture.symbol;
+    if (tc->position.x >= 0 && tc->position.y >= 0 && tc->position.x < width && tc->position.y < height) {
+        this->screen[tc->position.x][tc->position.y] = rc->texture.symbol;
+    }
 }
 
 const bool RenderingSystem::FamilyFilter(ECS::IEntity *entity) const {
