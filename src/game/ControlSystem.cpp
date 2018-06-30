@@ -2,7 +2,7 @@
  * Created by Илья Сиганов on 23.06.2018.
  */
 
-#include <game/ControlSystem.h>
+#include <game/systems/ControlSystem.h>
 
 void ControlSystem::ProcessEntityInterval(ECS::IEntity *entity, double dt) {
     auto tc = entity->GetComponent<TransformComponent>();

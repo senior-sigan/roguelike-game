@@ -7,7 +7,7 @@
 
 #include <ncurses.h>
 #include <ECS/system/IntervalSystem.h>
-#include "Consts.h"
+#include "game/Consts.h"
 
 class InputSystem : public ECS::IntervalSystem<InputSystem> {
   static const unsigned int KEYS_SIZE = 255;

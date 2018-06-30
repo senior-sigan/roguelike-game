@@ -6,10 +6,12 @@
 #define ROGUELIKE_PLAYERENTITY_H
 
 #include <ECS/Entity.h>
-#include "TransformComponent.h"
-#include "RenderComponent.h"
-#include "ControlComponent.h"
-#include "BoxColliderComponent.h"
+#include "game/components/TransformComponent.h"
+#include "game/components/RenderComponent.h"
+#include "game/components/ControlComponent.h"
+#include "game/components/BoxColliderComponent.h"
+
+using namespace Core;
 class PlayerEntity : public ECS::Entity<PlayerEntity> {
  public:
   void OnCreated() override {

@@ -3,13 +3,13 @@
  */
 
 #include <ncurses.h>
-#include <game/RenderingSystem.h>
-#include <game/PlayerEntity.h>
-#include <game/InputSystem.h>
-#include <game/ControlSystem.h>
-#include <game/WallEntity.h>
+#include <game/systems/RenderingSystem.h>
+#include <game/entities/PlayerEntity.h>
+#include <game/systems/InputSystem.h>
+#include <game/systems/ControlSystem.h>
+#include <game/entities/WallEntity.h>
 #include <game/Game.h>
-#include <game/CollisionSystem.h>
+#include <game/systems/CollisionSystem.h>
 
 void Game::SetupGraphics() {
     initscr();

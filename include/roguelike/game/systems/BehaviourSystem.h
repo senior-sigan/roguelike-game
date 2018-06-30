@@ -6,7 +6,7 @@
 #define ROGUELIKE_BEHAVIOURSYSTEM_H
 
 #include <ECS/system/IteratingSystem.h>
-#include "BehaviourComponent.h"
+#include "game/components/BehaviourComponent.h"
 
 /**
  * A system that responsible fot controlling behaviour components.

@@ -3,11 +3,11 @@
  */
 
 #include <ECS/IEntity.h>
-#include <game/RenderComponent.h>
-#include <game/TransformComponent.h>
+#include <game/components/RenderComponent.h>
+#include <game/components/TransformComponent.h>
 #include <ncurses.h>
 #include <game/Consts.h>
-#include "game/RenderingSystem.h"
+#include "game/systems/RenderingSystem.h"
 
 void RenderingSystem::PostUpdateInterval(double dt) {
     for (int w = 0; w < width; w++) {

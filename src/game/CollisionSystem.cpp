@@ -2,7 +2,9 @@
  * Created by Илья Сиганов on 30.06.2018.
  */
 
-#include <game/CollisionSystem.h>
+#include <game/systems/CollisionSystem.h>
+
+using namespace Core;
 
 std::pair<Vector2, Vector2> CollisionSystem::coordinates(const ECS::IEntity *entity) {
     auto bcc = entity->GetComponent<BoxColliderComponent>();

@@ -6,10 +6,10 @@
 #define ROGUELIKE_WALLENTITY_H
 
 #include <ECS/Entity.h>
-#include "TransformComponent.h"
-#include "RenderComponent.h"
-#include "ControlComponent.h"
-#include "BoxColliderComponent.h"
+#include "game/components/TransformComponent.h"
+#include "game/components/RenderComponent.h"
+#include "game/components/ControlComponent.h"
+#include "game/components/BoxColliderComponent.h"
 class WallEntity : public ECS::Entity<WallEntity> {
  public:
   void OnCreated() override {

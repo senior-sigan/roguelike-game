@@ -7,6 +7,7 @@
 
 #include <math.h>
 
+namespace Core {
 struct Vector2f {
   const float eps = 0.00000001;
   float x;
@@ -20,5 +21,5 @@ struct Vector2f {
       return !(other==*this);
   }
 };
-
+}
 #endif //ROGUELIKE_VECTOR2F_H

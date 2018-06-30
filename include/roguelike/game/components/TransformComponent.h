@@ -10,8 +10,8 @@
 
 class TransformComponent : public ECS::Component<TransformComponent> {
  public:
-  explicit TransformComponent(const Vector2 position) : position(position) {}
-  Vector2 position;
+  explicit TransformComponent(const Core::Vector2 position) : position(position) {}
+  Core::Vector2 position;
 };
 
 #endif //ROGUELIKE_TRANSFORMCOMPONENT_H

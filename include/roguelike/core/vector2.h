@@ -5,6 +5,7 @@
 #ifndef ROGUELIKE_VECTOR_H
 #define ROGUELIKE_VECTOR_H
 
+namespace Core {
 struct Vector2 {
   int x;
   int y;
@@ -24,5 +25,6 @@ struct Vector2 {
   static Vector2 ZERO;
   static Vector2 ONE;
 };
+}
 
 #endif //ROGUELIKE_VECTOR_H

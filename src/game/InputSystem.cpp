@@ -2,7 +2,7 @@
  * Created by Илья Сиганов on 23.06.2018.
  */
 
-#include <game/InputSystem.h>
+#include <game/systems/InputSystem.h>
 
 void InputSystem::PreUpdate(double dt) {
     int key = getch();

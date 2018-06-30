@@ -6,8 +6,8 @@
 #define ROGUELIKE_CONTROLSYSTEM_H
 
 #include <ECS/system/IntervalIteratingSystem.h>
-#include "ControlComponent.h"
-#include "TransformComponent.h"
+#include "game/components/ControlComponent.h"
+#include "game/components/TransformComponent.h"
 #include "InputSystem.h"
 #include "ECS/system/SystemManager.h"
 class ControlSystem : public ECS::IntervalIteratingSystem<ControlSystem> {
