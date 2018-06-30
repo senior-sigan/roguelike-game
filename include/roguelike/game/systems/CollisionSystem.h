@@ -24,7 +24,7 @@ class CollisionSystem : public ECS::IteratingSystem<CollisionSystem> {
 
   void ProcessEntity(ECS::IEntity *entity, double dt) override;
 
-  const bool FamilyFilter(ECS::IEntity *entity) const override;
+  const bool FamilyFilter(ECS::IEntity const *entity) const override;
 };
 
 #endif //ROGUELIKE_COLLISIONSYSTEM_H

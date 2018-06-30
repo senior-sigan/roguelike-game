@@ -3,31 +3,33 @@
  */
 
 #include <game/systems/ControlSystem.h>
+#include <game/components/MovementComponent.h>
 
 void ControlSystem::ProcessEntityInterval(ECS::IEntity *entity, double dt) {
-    auto tc = entity->GetComponent<TransformComponent>();
     auto cc = entity->GetComponent<ControlComponent>();
-
-    // TODO: it should be in a component
-    int horizontalSpeed = 1;
-    int verticalSpeed = 1;
+    auto mc = entity->GetComponent<MovementComponent>();
 
     if (inputSystem->GetButtonDown(cc->up)) {
-        tc->position.y -= horizontalSpeed;
+        mc->force.y += mc->speed.y;
+        mc->direction = Core::Vector2::UP;
     }
     if (inputSystem->GetButtonDown(cc->down)) {
-        tc->position.y += horizontalSpeed;
+        mc->force.y += mc->speed.y;
+        mc->direction = Core::Vector2::DOWN;
     }
     if (inputSystem->GetButtonDown(cc->right)) {
-        tc->position.x += horizontalSpeed;
+        mc->force.x += mc->speed.x;
+        mc->direction = Core::Vector2::RIGHT;
     }
     if (inputSystem->GetButtonDown(cc->left)) {
-        tc->position.x -= horizontalSpeed;
+        mc->force.x += mc->speed.x;
+        mc->direction = Core::Vector2::LEFT;
     }
 }
 
 const bool ControlSystem::FamilyFilter(ECS::IEntity *entity) const {
-    return entity->HasComponent<ControlComponent>() && entity->HasComponent<TransformComponent>();
+    return entity->HasComponent<ControlComponent>() &&
+        entity->HasComponent<MovementComponent>();
 }
 
 void ControlSystem::OnCreated() {

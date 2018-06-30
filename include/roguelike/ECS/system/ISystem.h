@@ -13,7 +13,7 @@
 #include "IUpdate.h"
 namespace ECS {
 
-class ISystem: public IUpdate {
+class ISystem : public IUpdate {
   friend class SystemManager;
   EntityManager *entityManager{};
   IEngineControl *engineControl{};
@@ -24,7 +24,7 @@ class ISystem: public IUpdate {
   const IEngineControl *GetEngineControl() const {
       return engineControl;
   }
-  const EntityManager* GetEntityManager() const {
+  const EntityManager *GetEntityManager() const {
       return entityManager;
   }
 
@@ -33,6 +33,19 @@ class ISystem: public IUpdate {
   };
   virtual const SystemTypeID GetTypeID() const = 0;
   virtual void OnCreated() {};
+
+  bool operator<(const ISystem &rhs) const {
+      return GetSystemPriority() < rhs.GetSystemPriority();
+  }
+  bool operator>(const ISystem &rhs) const {
+      return rhs < *this;
+  }
+  bool operator<=(const ISystem &rhs) const {
+      return !(rhs < *this);
+  }
+  bool operator>=(const ISystem &rhs) const {
+      return !(*this < rhs);
+  }
 };
 }
 

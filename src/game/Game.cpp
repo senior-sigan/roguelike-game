@@ -10,6 +10,7 @@
 #include <game/entities/WallEntity.h>
 #include <game/Game.h>
 #include <game/systems/CollisionSystem.h>
+#include <game/systems/MovementSystem.h>
 
 void Game::SetupGraphics() {
     initscr();
@@ -28,6 +29,7 @@ void Game::SetupECS() {
     engine->GetSystemManager()->CreateAndGet<RenderingSystem>();
     engine->GetSystemManager()->CreateAndGet<ControlSystem>();
     engine->GetSystemManager()->CreateAndGet<CollisionSystem>();
+    engine->GetSystemManager()->CreateAndGet<MovementSystem>();
 
     engine->GetEntityManager()->CreateAndGet<PlayerEntity>();
     engine->GetEntityManager()->CreateAndGet<WallEntity>();

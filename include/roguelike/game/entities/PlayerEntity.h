@@ -6,6 +6,7 @@
 #define ROGUELIKE_PLAYERENTITY_H
 
 #include <ECS/Entity.h>
+#include <game/components/MovementComponent.h>
 #include "game/components/TransformComponent.h"
 #include "game/components/RenderComponent.h"
 #include "game/components/ControlComponent.h"
@@ -18,6 +19,7 @@ class PlayerEntity : public ECS::Entity<PlayerEntity> {
       AddComponent<TransformComponent>(Vector2(1, 1));
       AddComponent<RenderComponent>(Texture1D('@'));
       AddComponent<ControlComponent>();
+      AddComponent<MovementComponent>(Vector2::ONE, Vector2::ONE);
       AddComponent<BoxColliderComponent>(Vector2::ONE, Vector2::ZERO);
   }
 };

@@ -43,7 +43,7 @@ void CollisionSystem::ProcessEntity(ECS::IEntity *entity, double dt) {
         }
     }
 }
-const bool CollisionSystem::FamilyFilter(ECS::IEntity *entity) const {
+const bool CollisionSystem::FamilyFilter(ECS::IEntity const *entity) const {
     // TODO: actually it should be a collider of any type, but our components storage cannot do look up with parents, only by ids.
     return entity->HasComponent<BoxColliderComponent>() && entity->HasComponent<TransformComponent>();
 }

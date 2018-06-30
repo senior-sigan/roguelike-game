@@ -23,7 +23,7 @@ class BehaviourSystem : public ECS::IteratingSystem<BehaviourSystem> {
   void PostProcessEntity(ECS::IEntity *entity, double dt) override {
       entity->GetComponent<BehaviourComponent>()->behaviour->PostUpdate(dt);
   }
-  const bool FamilyFilter(ECS::IEntity *entity) const override {
+  const bool FamilyFilter(ECS::IEntity const *entity) const override {
       return entity->HasComponent<BehaviourComponent>();
   }
 };

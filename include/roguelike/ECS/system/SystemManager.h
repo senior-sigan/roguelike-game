@@ -6,6 +6,7 @@
 #define ROGUELIKE_SYSTEMMANAGER_H
 
 #include <map>
+#include <set>
 #include "ECS/Platform.h"
 #include "ISystem.h"
 #include "ECS/Event/EventDispatcher.h"
@@ -14,13 +15,19 @@ class SystemManager {
   LOG_INIT("SystemManager");
   friend class Engine;
 
-  std::map<SystemTypeID, ISystem *> container;
+  std::map<SystemTypeID, ISystem *> container; //special storage for fast lookup
+  std::set<ISystem *> containerList;//special storage for fast update
+
   EntityManager *entityManager{};
   Event::EventDispatcher *eventDispatcher;
   IEngineControl *engineControl;
 
   void Update(double delta);
 
+  void Store(SystemTypeID id, ISystem *system) {
+      container[id] = system;
+      containerList.emplace(system);
+  }
  public:
   explicit SystemManager(EntityManager *entityManager,
                          Event::EventDispatcher *eventDispatcher,
@@ -29,7 +36,7 @@ class SystemManager {
 
   template<class TSystem>
   TSystem *Get() {
-      return (TSystem *)container[TSystem::STATIC_TYPE_ID];
+      return (TSystem *) container[TSystem::STATIC_TYPE_ID];
   };
 
   template<class TSystem, class... TParam>
@@ -40,13 +47,14 @@ class SystemManager {
       system->engineControl = engineControl;
       system->entityManager = entityManager;
       system->OnCreated();
-      container[TSystem::STATIC_TYPE_ID] = system;
+      Store(TSystem::STATIC_TYPE_ID, system);
       LOG_INFO("System was created: " << typeid(TSystem).name());
       return system;
   };
 
   template<class TSystem>
   void Destroy() {
+      containerList.erase(container[TSystem::STATIC_TYPE_ID]);
       container.erase(TSystem::STATIC_TYPE_ID);
   }
 };

@@ -56,7 +56,7 @@ class IteratingSystem : public ISystem {
    * Filter and pass only IEntities that satisfy the predicate.
    * @return true if satisfy and false otherwise.
    */
-  virtual const bool FamilyFilter(IEntity *entity) const {
+  virtual const bool FamilyFilter(IEntity const *entity) const {
       return false;
   };
 };
