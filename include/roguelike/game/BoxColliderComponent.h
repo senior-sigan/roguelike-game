@@ -6,21 +6,35 @@
 #define ROGUELIKE_BOXCOLLIDERCOMPONENT_H
 
 #include <ECS/Component.h>
-#include "vector.h"
+#include <set>
+#include "core/vector2.h"
 
 /**
  * It's a collider component that enables collision detection.
  * Could be trigger to only fire an event about collision
  * or could be physical "wall".
  */
-class BoxColliderComponent: public ECS::Component<BoxColliderComponent> {
+class BoxColliderComponent : public ECS::Component<BoxColliderComponent> {
+  std::set<const ECS::IEntity *> collisions{};
  public:
-  BoxColliderComponent(const Vector2 &size, const Vector2 &offset, bool isTrigger)
+  explicit BoxColliderComponent(const Vector2 size, const Vector2 offset, bool isTrigger = false)
       : size(size), offset(offset), isTrigger(isTrigger) {}
 
   Vector2 size;
   Vector2 offset;
   bool isTrigger;
+
+  const std::set<const ECS::IEntity *> GetCollisions() const {
+      return collisions;
+  }
+
+  void Collide(const ECS::IEntity *entity) {
+      collisions.emplace(entity);
+  }
+
+  void Clear() {
+      collisions.clear();
+  }
 };
 
 #endif //ROGUELIKE_BOXCOLLIDERCOMPONENT_H

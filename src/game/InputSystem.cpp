@@ -9,10 +9,10 @@ void InputSystem::PreUpdate(double dt) {
     currentKeys[key] = true;
 }
 void InputSystem::PostUpdateInterval(double dt) {
-    // TODO: We may send events to subscribers.
     for (int i = 0; i < KEYS_SIZE; i++) {
         if (currentKeys[i]) {
-            LOG_INFO(i);
+            // TODO: We may send events to subscribers.
+//            LOG_DEBUG(i);
         }
     }
     Clear();

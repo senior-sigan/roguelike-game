@@ -7,7 +7,9 @@
 #include <game/PlayerEntity.h>
 #include <game/InputSystem.h>
 #include <game/ControlSystem.h>
-#include "game/Game.h"
+#include <game/WallEntity.h>
+#include <game/Game.h>
+#include <game/CollisionSystem.h>
 
 void Game::SetupGraphics() {
     initscr();
@@ -25,8 +27,10 @@ void Game::SetupECS() {
     engine->GetSystemManager()->CreateAndGet<InputSystem>();
     engine->GetSystemManager()->CreateAndGet<RenderingSystem>();
     engine->GetSystemManager()->CreateAndGet<ControlSystem>();
+    engine->GetSystemManager()->CreateAndGet<CollisionSystem>();
 
     engine->GetEntityManager()->CreateAndGet<PlayerEntity>();
+    engine->GetEntityManager()->CreateAndGet<WallEntity>();
     // TODO: add all systems, components, entities
     // By the way, we can load them from config files!
 }

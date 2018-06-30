@@ -42,6 +42,13 @@ class IEntity {
   }
 
   virtual void OnCreated() {};
+
+  bool operator==(const IEntity &rhs) const {
+      return entityID==rhs.entityID;
+  }
+  bool operator!=(const IEntity &rhs) const {
+      return entityID!=rhs.entityID;
+  }
 };
 }
 

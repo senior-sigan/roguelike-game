@@ -9,12 +9,14 @@
 #include "TransformComponent.h"
 #include "RenderComponent.h"
 #include "ControlComponent.h"
+#include "BoxColliderComponent.h"
 class PlayerEntity : public ECS::Entity<PlayerEntity> {
  public:
   void OnCreated() override {
       AddComponent<TransformComponent>(Vector2(1, 1));
       AddComponent<RenderComponent>(Texture1D('@'));
       AddComponent<ControlComponent>();
+      AddComponent<BoxColliderComponent>(Vector2::ONE, Vector2::ZERO);
   }
 };
 

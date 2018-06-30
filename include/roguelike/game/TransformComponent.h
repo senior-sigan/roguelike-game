@@ -6,11 +6,11 @@
 #define ROGUELIKE_TRANSFORMCOMPONENT_H
 
 #include <ECS/Component.h>
-#include <game/vector.h>
+#include <core/vector2.h>
 
 class TransformComponent : public ECS::Component<TransformComponent> {
  public:
-  explicit TransformComponent(const Vector2 &position) : position(position) {}
+  explicit TransformComponent(const Vector2 position) : position(position) {}
   Vector2 position;
 };
 

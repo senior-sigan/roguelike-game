@@ -16,20 +16,13 @@ struct Vector2 {
   bool operator!=(const Vector2 &other) const {
       return !(other==*this);
   }
-};
 
-struct Vector2f {
-  const float eps = 0.00000001;
-  float x;
-  float y;
-  Vector2f(float x, float y) : x(x), y(y) {}
-
-  bool operator==(const Vector2f &other) const {
-      return abs(x - other.x) < eps && abs(y - other.y) < eps;
-  }
-  bool operator!=(const Vector2f &other) const {
-      return !(other==*this);
-  }
+  static Vector2 UP;
+  static Vector2 DOWN;
+  static Vector2 RIGHT;
+  static Vector2 LEFT;
+  static Vector2 ZERO;
+  static Vector2 ONE;
 };
 
 #endif //ROGUELIKE_VECTOR_H
