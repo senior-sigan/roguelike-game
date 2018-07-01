@@ -4,13 +4,8 @@
 
 #include <ncurses.h>
 #include <game/systems/RenderingSystem.h>
-#include <game/entities/PlayerEntity.h>
-#include <game/systems/InputSystem.h>
-#include <game/systems/ControlSystem.h>
-#include <game/entities/WallEntity.h>
 #include <game/Game.h>
-#include <game/systems/CollisionSystem.h>
-#include <game/systems/MovementSystem.h>
+#include <game/stages/Stage_1.h>
 
 void Game::SetupGraphics() {
     initscr();
@@ -24,17 +19,8 @@ void Game::SetupGraphics() {
     curs_set(0);
 }
 void Game::SetupECS() {
-    engine = new ECS::Engine();
-    engine->GetSystemManager()->CreateAndGet<InputSystem>();
-    engine->GetSystemManager()->CreateAndGet<RenderingSystem>();
-    engine->GetSystemManager()->CreateAndGet<ControlSystem>();
-    engine->GetSystemManager()->CreateAndGet<CollisionSystem>();
-    engine->GetSystemManager()->CreateAndGet<MovementSystem>();
-
-    engine->GetEntityManager()->CreateAndGet<PlayerEntity>();
-    engine->GetEntityManager()->CreateAndGet<WallEntity>();
-    // TODO: add all systems, components, entities
-    // By the way, we can load them from config files!
+    auto stage = new Stage_1();
+    engine = stage->load();
 }
 void Game::Loop() {
     engine->Loop();
