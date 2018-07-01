@@ -6,7 +6,6 @@
 #define ROGUELIKE_COLLISIONSYSTEM_H
 
 #include <ECS/system/IteratingSystem.h>
-#include <core/Rectangle.h>
 #include "game/components/BoxColliderComponent.h"
 #include "game/components/TransformComponent.h"
 
@@ -15,8 +14,6 @@
  */
 class CollisionSystem : public ECS::IteratingSystem<CollisionSystem> {
   LOG_INIT("CollisionSystem");
-
-  Core::Rectangle rectangle(const ECS::IEntity *entity);
 
  public:
   void PreProcessEntity(ECS::IEntity *entity, double dt) override;

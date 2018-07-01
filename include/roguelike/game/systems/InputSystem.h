@@ -5,7 +5,6 @@
 #ifndef ROGUELIKE_INPUTSYSTEM_H
 #define ROGUELIKE_INPUTSYSTEM_H
 
-#include <ncurses.h>
 #include <ECS/system/IntervalSystem.h>
 #include "game/Consts.h"
 
@@ -13,6 +12,7 @@ class InputSystem : public ECS::IntervalSystem<InputSystem> {
   static const unsigned int KEYS_SIZE = 255;
   bool currentKeys[KEYS_SIZE]{};
   LOG_INIT("InputSystem");
+  void Clear();
  public:
   explicit InputSystem() : IntervalSystem(IPS) {
       Clear();
@@ -21,8 +21,6 @@ class InputSystem : public ECS::IntervalSystem<InputSystem> {
   void PreUpdate(double dt) override;;
 
   void PostUpdateInterval(double dt) override;
-
-  void Clear();
 
   // === Keyboard getters ===
   // TODO: may be move to a singleton?

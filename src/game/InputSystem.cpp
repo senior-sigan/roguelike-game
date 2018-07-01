@@ -3,6 +3,7 @@
  */
 
 #include <game/systems/InputSystem.h>
+#include <ncurses.h>
 
 void InputSystem::PreUpdate(double dt) {
     int key = getch();

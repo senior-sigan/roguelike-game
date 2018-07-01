@@ -7,7 +7,9 @@
 
 using namespace Core;
 
-Rectangle CollisionSystem::rectangle(const ECS::IEntity *entity) {
+namespace _CollisionSystem {
+
+Rectangle rectangle(const ECS::IEntity *entity) {
     auto bcc = entity->GetComponent<BoxColliderComponent>();
     auto tc = entity->GetComponent<TransformComponent>();
 
@@ -17,6 +19,8 @@ Rectangle CollisionSystem::rectangle(const ECS::IEntity *entity) {
     return Rectangle(Vector2(xLeft, yUpper), bcc->size);
 }
 
+}
+
 void CollisionSystem::PreProcessEntity(ECS::IEntity *entity, double dt) {
     // Before each collision system iteration
     // we clear registered collisions on the previous step.
@@ -24,13 +28,13 @@ void CollisionSystem::PreProcessEntity(ECS::IEntity *entity, double dt) {
 }
 void CollisionSystem::ProcessEntity(ECS::IEntity *entity, double dt) {
     auto bc1 = entity->GetComponent<BoxColliderComponent>();
-    auto box1 = rectangle(entity);
+    auto box1 = _CollisionSystem::rectangle(entity);
 
     for (auto other: GetEntityManager()->container) {
         auto entity2 = other.second;
         if (entity2==entity) continue;
         auto bc2 = entity2->GetComponent<BoxColliderComponent>();
-        auto box2 = rectangle(entity2);
+        auto box2 = _CollisionSystem::rectangle(entity2);
         if (Intersect(box1, box2)) {
             bc1->Collide(entity2);
             bc2->Collide(entity);
