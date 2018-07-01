@@ -27,7 +27,11 @@ class Stage_1 : public IStage {
       engine->GetSystemManager()->CreateAndGet<MovementSystem>();
 
       engine->GetEntityManager()->CreateAndGet<PlayerEntity>();
-      engine->GetEntityManager()->CreateAndGet<WallEntity>();
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 2));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 3));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 4));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 6));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 7));
 
       return engine;
   }

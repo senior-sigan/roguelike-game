@@ -16,6 +16,7 @@ Rectangle CollisionSystem::rectangle(const ECS::IEntity *entity) {
 
     return Rectangle(Vector2(xLeft, yUpper), bcc->size);
 }
+
 void CollisionSystem::PreProcessEntity(ECS::IEntity *entity, double dt) {
     // Before each collision system iteration
     // we clear registered collisions on the previous step.

@@ -6,6 +6,7 @@
 #define ROGUELIKE_GEOMETRY_H
 
 #include <core/Rectangle.h>
+#include "Line.h"
 
 namespace Core {
 /**
@@ -18,13 +19,21 @@ namespace Core {
 bool Intersect(Rectangle r1, Rectangle r2);
 
 /**
+ * Checks if rectangle and line intersect
+ * @param rectangle
+ * @param line
+ * @return true if intersect and false otherwise
+ */
+bool Intersect(Rectangle rectangle, Line line);
+
+/**
 * Checks if the first rectangle contains the second.
 *
 * @param r1 first Rectangle
 * @param r2 second Rectangle
 * @return true if r1 contains r2
 */
-bool Contains(const Rectangle r1, const Rectangle r2);
+bool Contains(Rectangle r1, Rectangle r2);
 
 }
 
