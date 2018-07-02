@@ -7,17 +7,19 @@
 
 #include <ECS/system/IteratingSystem.h>
 #include <game/components/ItemComponent.h>
+#include <game/components/WorthComponent.h>
 
 class ItemGatheringSystem : public ECS::IteratingSystem<ItemGatheringSystem> {
   LOG_INIT("ItemGatheringSystem");
  public:
   void ProcessEntity(ECS::IEntity *entity, double dt) override {
       auto bcc = entity->GetComponent<BoxColliderComponent>();
+      auto wc = entity->GetComponent<WorthComponent>();
       for (auto collider: bcc->GetCollisions()) {
-//          if (collider is player) {
-//              LOG_INFO("Collide Player");
-//              TODO: remove entity and add coins to player
-//          }
+          if (collider->HasComponent<GathererComponent>()) {
+            collider->GetComponent<GathererComponent>()->SaveCache(wc->GetValue());
+            GetEntityManager()->Destroy(entity->GetID());
+          }
       }
   }
 

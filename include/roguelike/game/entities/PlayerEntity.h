@@ -7,6 +7,7 @@
 
 #include <ECS/Entity.h>
 #include <game/components/MovementComponent.h>
+#include <game/components/GathererComponent.h>
 #include "game/components/TransformComponent.h"
 #include "game/components/RenderComponent.h"
 #include "game/components/ControlComponent.h"
@@ -23,6 +24,7 @@ class PlayerEntity : public ECS::Entity<PlayerEntity> {
       AddComponent<ControlComponent>();
       AddComponent<MovementComponent>(Core::Vector2::ONE, Core::Vector2::ONE);
       AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO);
+      AddComponent<GathererComponent>();
   }
 };
 

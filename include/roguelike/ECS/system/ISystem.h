@@ -24,7 +24,7 @@ class ISystem : public IUpdate {
   const IEngineControl *GetEngineControl() const {
       return engineControl;
   }
-  const EntityManager *GetEntityManager() const {
+  EntityManager *GetEntityManager() const {
       return entityManager;
   }
 
