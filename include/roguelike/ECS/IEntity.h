@@ -15,6 +15,7 @@ class IEntity {
   EntityID entityID{}; // TODO: should bew filled in the EntityManager
  public:
   virtual const EntityTypeID GetTypeID() const = 0;
+  virtual const char *GetTypeName() const = 0;
 
   const EntityID GetID() const {
       return entityID;

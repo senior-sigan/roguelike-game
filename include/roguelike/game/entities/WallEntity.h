@@ -11,14 +11,14 @@
 #include "game/components/ControlComponent.h"
 #include "game/components/BoxColliderComponent.h"
 class WallEntity : public ECS::Entity<WallEntity> {
-  Vector2 pos;
+  Core::Vector2 pos;
  public:
-  explicit WallEntity(const Vector2 &pos) : pos(pos) {}
+  explicit WallEntity(const Core::Vector2 &pos) : pos(pos) {}
 
   void OnCreated() override {
       AddComponent<TransformComponent>(pos);
       AddComponent<RenderComponent>(Texture1D('#'));
-      AddComponent<BoxColliderComponent>(Vector2::ONE, Vector2::ZERO);
+      AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false);
   }
 };
 

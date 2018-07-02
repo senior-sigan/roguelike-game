@@ -12,15 +12,17 @@
 #include "game/components/ControlComponent.h"
 #include "game/components/BoxColliderComponent.h"
 
-using namespace Core;
 class PlayerEntity : public ECS::Entity<PlayerEntity> {
+  Core::Vector2 pos;
  public:
+  explicit PlayerEntity(const Core::Vector2 &pos) : pos(pos) {}
+
   void OnCreated() override {
-      AddComponent<TransformComponent>(Vector2(1, 1));
+      AddComponent<TransformComponent>(pos);
       AddComponent<RenderComponent>(Texture1D('@'));
       AddComponent<ControlComponent>();
-      AddComponent<MovementComponent>(Vector2::ONE, Vector2::ONE);
-      AddComponent<BoxColliderComponent>(Vector2::ONE, Vector2::ZERO);
+      AddComponent<MovementComponent>(Core::Vector2::ONE, Core::Vector2::ONE);
+      AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO);
   }
 };
 

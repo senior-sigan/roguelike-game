@@ -13,6 +13,8 @@
 #include <game/systems/MovementSystem.h>
 #include <game/entities/PlayerEntity.h>
 #include <game/entities/WallEntity.h>
+#include <game/systems/ItemGatheringSystem.h>
+#include <game/entities/CoinEntity.h>
 #include "IStage.h"
 class Stage_1 : public IStage {
  public:
@@ -25,13 +27,19 @@ class Stage_1 : public IStage {
       engine->GetSystemManager()->CreateAndGet<ControlSystem>();
       engine->GetSystemManager()->CreateAndGet<CollisionSystem>();
       engine->GetSystemManager()->CreateAndGet<MovementSystem>();
+      engine->GetSystemManager()->CreateAndGet<ItemGatheringSystem>();
 
-      engine->GetEntityManager()->CreateAndGet<PlayerEntity>();
-      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 2));
-      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 3));
-      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 4));
-      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 6));
-      engine->GetEntityManager()->CreateAndGet<WallEntity>(Vector2(5, 7));
+      engine->GetEntityManager()->CreateAndGet<PlayerEntity>(Core::Vector2(1, 1));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Core::Vector2(5, 2));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Core::Vector2(5, 3));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Core::Vector2(5, 4));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Core::Vector2(5, 6));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Core::Vector2(5, 7));
+
+      engine->GetEntityManager()->CreateAndGet<CoinEntity>(Core::Vector2(3,3), 1);
+      engine->GetEntityManager()->CreateAndGet<CoinEntity>(Core::Vector2(6,3), 1);
+      engine->GetEntityManager()->CreateAndGet<CoinEntity>(Core::Vector2(1,8), 1);
+      engine->GetEntityManager()->CreateAndGet<CoinEntity>(Core::Vector2(4,1), 1);
 
       return engine;
   }

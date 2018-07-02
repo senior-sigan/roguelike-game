@@ -11,7 +11,7 @@
 
 using namespace Core;
 
-namespace _MovementSystem {
+namespace {
 Rectangle futureRectangle(const ECS::IEntity *entity) {
     auto bcc = entity->GetComponent<BoxColliderComponent>();
     auto tc = entity->GetComponent<TransformComponent>();
@@ -66,6 +66,7 @@ bool canApplyForce(const ECS::IEntity *const entity, const ECS::ISystem *const s
     for (auto other: system->GetEntityManager()->container) {
         auto entity2 = other.second;
         if (entity2==entity) continue;
+        if (entity2->GetComponent<BoxColliderComponent>()->isTrigger) continue;
         auto box2 = rectangle(entity2);
         if (Intersect(box1, box2)) {
             return false;
@@ -84,10 +85,10 @@ void MovementSystem::ProcessEntity(ECS::IEntity *entity, double dt) {
     auto tc = entity->GetComponent<TransformComponent>();
     auto mc = entity->GetComponent<MovementComponent>();
 
-    if (_MovementSystem::canApplyForce(entity, this)) {
-        _MovementSystem::applyForce(tc, mc);
+    if (canApplyForce(entity, this)) {
+        applyForce(tc, mc);
     } else {
-        _MovementSystem::stopMovement(mc);
+        stopMovement(mc);
     }
 }
 
