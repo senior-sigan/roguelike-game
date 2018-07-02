@@ -4,6 +4,12 @@ project(roguelike LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -Wno-register -fPIC -march=native")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
+# флаги добавления дебажных символов.
+# TODO: унести это в отдельный target, чтобы делать релизные сборки без флагов
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
+
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMake")
 
 find_package(log4cxx REQUIRED)
