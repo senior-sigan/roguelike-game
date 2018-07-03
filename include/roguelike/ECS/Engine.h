@@ -41,6 +41,8 @@ class Engine : public IEngineControl, public GameLoop {
   }
 
   void Stop() override;
+
+  void OnDestroy();
 };
 }
 #endif //ROGUELIKE_ENGINE_H

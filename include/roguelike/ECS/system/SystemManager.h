@@ -54,8 +54,18 @@ class SystemManager {
 
   template<class TSystem>
   void Destroy() {
+      auto system = container[TSystem::STATIC_TYPE_ID];
+      system->OnDestroy();
       containerList.erase(container[TSystem::STATIC_TYPE_ID]);
       container.erase(TSystem::STATIC_TYPE_ID);
+  }
+
+  void DestroyAllSystems() {
+      for (auto system: containerList) {
+          system->OnDestroy();
+      }
+      containerList.clear();
+      container.clear();
   }
 };
 }

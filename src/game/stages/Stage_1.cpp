@@ -12,6 +12,7 @@
 #include <game/entities/WallEntity.h>
 #include <game/systems/ItemGatheringSystem.h>
 #include <game/entities/CoinEntity.h>
+#include <game/systems/ExitSystem.h>
 #include "game/stages/lvl1.h"
 
 namespace {
@@ -41,6 +42,7 @@ ECS::Engine *const Stage_1::load() {
     engine->GetSystemManager()->CreateAndGet<CollisionSystem>();
     engine->GetSystemManager()->CreateAndGet<MovementSystem>();
     engine->GetSystemManager()->CreateAndGet<ItemGatheringSystem>();
+    engine->GetSystemManager()->CreateAndGet<ExitSystem>();
 
     engine->GetEntityManager()->CreateAndGet<PlayerEntity>(Core::Vector2(1, 1));
 

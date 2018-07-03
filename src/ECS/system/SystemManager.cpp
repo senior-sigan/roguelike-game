@@ -20,15 +20,15 @@ SystemManager::~SystemManager() {
 void SystemManager::Update(double delta) {
     // TODO: iterate over systems with some order which is set by priority property.
 
-    for (std::pair<SystemTypeID, ISystem *> system: container) {
+    for (auto system: container) {
         system.second->_PreUpdate(delta);
     }
 
-    for (std::pair<SystemTypeID, ISystem *> system: container) {
+    for (auto system: container) {
         system.second->_Update(delta);
     }
 
-    for (std::pair<SystemTypeID, ISystem *> system: container) {
+    for (auto system: container) {
         system.second->_PostUpdate(delta);
     }
 

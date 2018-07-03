@@ -2,7 +2,7 @@
  * Created by Илья Сиганов on 03.06.2018.
  */
 
-#include "ECS/Engine.h"
+#include <ECS/Engine.h>
 
 namespace ECS {
 void Engine::Update(double deltaTime) {
@@ -35,5 +35,8 @@ Engine::~Engine() {
 }
 void Engine::Stop() {
     ((GameLoop *) this)->Stop();
+}
+void Engine::OnDestroy() {
+    systemManager->DestroyAllSystems();
 }
 }

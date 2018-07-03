@@ -19,6 +19,8 @@ class RenderingSystem: public ECS::IntervalIteratingSystem<RenderingSystem> {
   void ProcessEntityInterval(ECS::IEntity *entity, double dt) override;
 
   const bool FamilyFilter(ECS::IEntity *entity) const override;
+  void OnCreated() override;
+  void OnDestroy() override;
 };
 
 #endif //ROGUELIKE_RENDERINGSYSTEM_H

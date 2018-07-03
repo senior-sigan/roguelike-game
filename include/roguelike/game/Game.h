@@ -12,7 +12,6 @@
 class Game {
   ECS::Engine *engine;
 
-  void SetupGraphics();
   void SetupECS();
   void Loop();
   void Teardown();

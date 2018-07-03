@@ -21,10 +21,10 @@ class ISystem : public IUpdate {
   Event::EventSender *eventSender{};
   Event::EventListener *eventListener{};
  public:
-  const IEngineControl *GetEngineControl() const {
+  IEngineControl *const GetEngineControl() const {
       return engineControl;
   }
-  EntityManager *GetEntityManager() const {
+  EntityManager *const GetEntityManager() const {
       return entityManager;
   }
 
@@ -33,6 +33,7 @@ class ISystem : public IUpdate {
   };
   virtual const SystemTypeID GetTypeID() const = 0;
   virtual void OnCreated() {};
+  virtual void OnDestroy() {};
 
   bool operator<(const ISystem &rhs) const {
       return GetSystemPriority() < rhs.GetSystemPriority();

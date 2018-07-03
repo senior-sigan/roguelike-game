@@ -38,3 +38,16 @@ RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {
         }
     }
 }
+void RenderingSystem::OnCreated() {
+    initscr();
+    raw();
+    clear();
+    noecho();
+    cbreak();
+    nodelay(stdscr, TRUE);
+    keypad(stdscr, TRUE);
+    curs_set(0);
+}
+void RenderingSystem::OnDestroy() {
+    endwin();
+}
