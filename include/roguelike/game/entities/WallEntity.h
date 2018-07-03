@@ -18,7 +18,7 @@ class WallEntity : public ECS::Entity<WallEntity> {
   void OnCreated() override {
       AddComponent<TransformComponent>(pos);
       AddComponent<RenderComponent>(Texture1D('#'));
-      AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false);
+      AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false, false);
   }
 };
 

@@ -28,6 +28,10 @@ void CollisionSystem::PreProcessEntity(ECS::IEntity *entity, double dt) {
 }
 void CollisionSystem::ProcessEntity(ECS::IEntity *entity, double dt) {
     auto bc1 = entity->GetComponent<BoxColliderComponent>();
+    if (!bc1->isMovable) {
+        // We do not need to check whether non-movable objects collide or not.
+        return;
+    }
     auto box1 = rectangle(entity);
 
     for (auto other: GetEntityManager()->container) {

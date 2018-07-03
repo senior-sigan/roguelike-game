@@ -17,12 +17,13 @@
 class BoxColliderComponent : public ECS::Component<BoxColliderComponent> {
   std::set<const ECS::IEntity *> collisions{};
  public:
-  explicit BoxColliderComponent(const Core::Vector2 size, const Core::Vector2 offset, bool isTrigger = false)
-      : size(size), offset(offset), isTrigger(isTrigger) {}
+  explicit BoxColliderComponent(const Core::Vector2 size, const Core::Vector2 offset, bool isTrigger = false, bool isMovable = true)
+      : size(size), offset(offset), isTrigger(isTrigger), isMovable(isMovable) {}
 
   Core::Vector2 size;
   Core::Vector2 offset;
   bool isTrigger;
+  bool isMovable;
 
   const std::set<const ECS::IEntity *> GetCollisions() const {
       return collisions;

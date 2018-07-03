@@ -23,7 +23,7 @@ class PlayerEntity : public ECS::Entity<PlayerEntity> {
       AddComponent<RenderComponent>(Texture1D('@'));
       AddComponent<ControlComponent>();
       AddComponent<MovementComponent>(Core::Vector2::ONE, Core::Vector2::ONE);
-      AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO);
+      AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false, true);
       AddComponent<GathererComponent>();
   }
 };
