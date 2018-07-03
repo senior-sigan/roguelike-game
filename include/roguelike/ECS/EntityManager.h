@@ -5,7 +5,7 @@
 #ifndef ROGUELIKE_ENTITYMANAGER_H
 #define ROGUELIKE_ENTITYMANAGER_H
 
-#include <unordered_map>
+#include <set>
 #include "Platform.h"
 #include "IEntity.h"
 namespace ECS {
@@ -16,6 +16,8 @@ class EntityManager {
   ComponentManager *componentManager;
  public:
   std::unordered_map<EntityID, IEntity *> container;
+  std::set<EntityID> toDelete;
+
   explicit EntityManager(ComponentManager *componentManager) : componentManager(componentManager) {
       LOG_INFO("EntityManager was initialized");
   }
@@ -37,8 +39,25 @@ class EntityManager {
       return entity;
   }
 
+  /**
+   * Method mark the entity to be deleted later, when engine is able to remove objects.
+   * @param id is entity id.
+   */
   void Destroy(EntityID id) {
-      container.erase(id);
+      toDelete.emplace(id);
+  }
+
+  /**
+   * Completely removes all marked to delete entities with associated components.
+   */
+  void SweepDeleted() {
+      for (auto key: toDelete) {
+          auto entity = container[key];
+          if (!entity) continue;
+          entity->RemoveAllComponents();
+          container.erase(key);
+      }
+      toDelete.clear();
   }
 
   IEntity *Get(EntityID id) {

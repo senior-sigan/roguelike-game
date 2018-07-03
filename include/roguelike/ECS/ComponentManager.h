@@ -54,6 +54,10 @@ class ComponentManager {
       auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
       container.erase(key);
   }
+
+  void RemoveAllComponents(EntityID entityID) {
+      // TODO: get from the container all components and remove them
+  }
 };
 }
 

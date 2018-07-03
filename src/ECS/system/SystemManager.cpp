@@ -31,5 +31,7 @@ void SystemManager::Update(double delta) {
     for (std::pair<SystemTypeID, ISystem *> system: container) {
         system.second->_PostUpdate(delta);
     }
+
+    entityManager->SweepDeleted();
 }
 }

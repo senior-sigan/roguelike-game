@@ -42,6 +42,10 @@ class IEntity {
       this->componentManager->RemoveComponent<TComponent>(entityID);
   }
 
+  void RemoveAllComponents() {
+      this->componentManager->RemoveAllComponents(entityID);
+  }
+
   virtual void OnCreated() {};
 
   bool operator==(const IEntity &rhs) const {
