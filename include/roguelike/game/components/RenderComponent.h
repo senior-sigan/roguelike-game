@@ -9,7 +9,8 @@
 
 struct Texture1D {
   const char symbol;
-  explicit Texture1D(char symbol) : symbol(symbol) {};
+  const int color;
+  explicit Texture1D(const char symbol, const int color = 0) : symbol(symbol), color(color) {}
 };
 
 class RenderComponent : public ECS::Component<RenderComponent> {

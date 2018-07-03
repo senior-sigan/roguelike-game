@@ -20,7 +20,7 @@ class PlayerEntity : public ECS::Entity<PlayerEntity> {
 
   void OnCreated() override {
       AddComponent<TransformComponent>(pos);
-      AddComponent<RenderComponent>(Texture1D('@'));
+      AddComponent<RenderComponent>(Texture1D('@', 2));
       AddComponent<ControlComponent>();
       AddComponent<MovementComponent>(Core::Vector2::ONE, Core::Vector2::ONE);
       AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false, true);

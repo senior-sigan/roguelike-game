@@ -12,8 +12,11 @@
 void RenderingSystem::PostUpdateInterval(double dt) {
     for (int w = 0; w < width; w++) {
         for (int h = 0; h < height; h++) {
-            mvaddch(h, w, this->screen[w][h]);
-            this->screen[w][h] = ' ';
+            auto tile = this->screen[w][h];
+            attron(COLOR_PAIR(tile.color));
+            mvaddch(h, w, tile.symbol);
+            attroff(COLOR_PAIR(tile.color));
+            this->screen[w][h].Clear();
         }
     }
     refresh();
@@ -24,7 +27,7 @@ void RenderingSystem::ProcessEntityInterval(ECS::IEntity *entity, double dt) {
     auto tc = entity->GetComponent<TransformComponent>();
 
     if (tc->position.x >= 0 && tc->position.y >= 0 && tc->position.x < width && tc->position.y < height) {
-        this->screen[tc->position.x][tc->position.y] = rc->texture.symbol;
+        this->screen[tc->position.x][tc->position.y] = Tile(rc->texture.symbol, rc->texture.color);
     }
 }
 
@@ -34,7 +37,7 @@ const bool RenderingSystem::FamilyFilter(ECS::IEntity *entity) const {
 RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {
     for (int w = 0; w < width; w++) {
         for (int h = 0; h < height; h++) {
-            this->screen[w][h] = ' ';
+            this->screen[w][h] = Tile();
         }
     }
 }
@@ -47,6 +50,12 @@ void RenderingSystem::OnCreated() {
     nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     curs_set(0);
+    start_color();
+
+    // TODO: this should be done based on colors we have in the components
+    init_pair(0, COLOR_WHITE, COLOR_BLACK);
+    init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
 }
 void RenderingSystem::OnDestroy() {
     endwin();
