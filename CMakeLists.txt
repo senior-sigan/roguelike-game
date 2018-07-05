@@ -30,3 +30,6 @@ include_directories(${PROJECT_HEADERS_DIR})
 
 add_subdirectory(src)
 #add_subdirectory(test)
+
+include( CppLint )
+ADD_STYLE_CHECK_TARGET(lint ${PROJECT_HEADERS_DIR} ${PROJECT_SOURCES_DIR})

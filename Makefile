@@ -3,8 +3,11 @@ all: assemble exec
 mkdir_build:
 	[ -d ./cmake-build-debug ] | mkdir -p cmake-build-debug
 
-build: mkdir_build
-	cd cmake-build-debug;cmake ..;make roguelike
+build: reload lint
+	cd cmake-build-debug;make roguelike
+
+reload: mkdir_build
+	cd cmake-build-debug;cmake ..
 
 exec:
 	./cmake-build-debug/src/roguelike
@@ -27,4 +30,4 @@ osx_dep:
 	brew install ncurses spdlog
 
 lint:
-	cpplint.py --linelength=120 $$( find . -name *.h -or -name *.c -or -name *.cpp -or -name *.cxx )
+	cd cmake-build-debug;make lint
