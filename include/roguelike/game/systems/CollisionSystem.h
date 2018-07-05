@@ -6,8 +6,8 @@
 #define ROGUELIKE_COLLISIONSYSTEM_H
 
 #include <ECS/system/IteratingSystem.h>
-#include "game/components/BoxColliderComponent.h"
-#include "game/components/TransformComponent.h"
+#include <game/components/BoxColliderComponent.h>
+#include <game/components/TransformComponent.h>
 
 /**
  * Respond to calculate collisions of the all ColliderComponents
@@ -20,7 +20,7 @@ class CollisionSystem : public ECS::IteratingSystem<CollisionSystem> {
 
   void ProcessEntity(ECS::IEntity *entity, double dt) override;
 
-  const bool FamilyFilter(ECS::IEntity const *entity) const override;
+  bool FamilyFilter(ECS::IEntity const *entity) const override;
 };
 
-#endif //ROGUELIKE_COLLISIONSYSTEM_H
+#endif  // ROGUELIKE_COLLISIONSYSTEM_H

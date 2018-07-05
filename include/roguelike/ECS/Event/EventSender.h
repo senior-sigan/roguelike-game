@@ -5,12 +5,13 @@
 #ifndef ROGUELIKE_EVENTSENDER_H
 #define ROGUELIKE_EVENTSENDER_H
 
-#include "list"
-#include "IEvent.h"
+#include <ECS/Event/IEvent.h>
+#include <list>
 namespace ECS::Event {
 class EventSender {
   friend class EventDispatcher;
   std::list<IEvent *> events;
+
  public:
   /**
    * Send Event.
@@ -20,11 +21,11 @@ class EventSender {
    */
   template<class TEvent, class... ARGS>
   void Send(ARGS &&... eventArgs) {
-      IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
-      event->after = 0;
-      event->interval = 0;
-      event->repeats = 0;
-      events.push_back(event);
+    IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
+    event->after = 0;
+    event->interval = 0;
+    event->repeats = 0;
+    events.push_back(event);
   }
 
   /**
@@ -36,12 +37,12 @@ class EventSender {
    */
   template<class TEvent, class... ARGS>
   void SendDelayed(double after, ARGS &&... eventArgs) {
-      IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
-      if (after < 0) after = 0;
-      event->after = after;
-      event->interval = 0;
-      event->repeats = 0;
-      events.push_back(event);
+    IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
+    if (after < 0) after = 0;
+    event->after = after;
+    event->interval = 0;
+    event->repeats = 0;
+    events.push_back(event);
   }
 
   /**
@@ -57,17 +58,17 @@ class EventSender {
    * @param eventArgs event constructor arguments
    */
   template<class TEvent, class... ARGS>
-  void SendInterval(double after, double interval, long repeats, ARGS &&... eventArgs) {
-      IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
-      if (after < 0) after = 0;
-      if (interval < 0) interval = 0;
-      if (repeats < 0) repeats = -1;
-      event->after = after;
-      event->interval = interval;
-      event->repeats = repeats;
-      events.push_back(event);
+  void SendInterval(double after, double interval, int64_t repeats, ARGS &&... eventArgs) {
+    IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
+    if (after < 0) after = 0;
+    if (interval < 0) interval = 0;
+    if (repeats < 0) repeats = -1;
+    event->after = after;
+    event->interval = interval;
+    event->repeats = repeats;
+    events.push_back(event);
   }
 };
 }
 
-#endif //ROGUELIKE_EVENTSENDER_H
+#endif  // ROGUELIKE_EVENTSENDER_H

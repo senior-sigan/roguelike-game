@@ -10,7 +10,7 @@ class MovementSystem : public ECS::IteratingSystem<MovementSystem> {
  public:
   void ProcessEntity(ECS::IEntity *entity, double dt) override;
 
-  const bool FamilyFilter(ECS::IEntity const *entity) const override;
+  bool FamilyFilter(ECS::IEntity const *entity) const override;
 };
 
-#endif //ROGUELIKE_MOVEMENTSYSTEM_H
+#endif  // ROGUELIKE_MOVEMENTSYSTEM_H

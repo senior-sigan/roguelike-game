@@ -5,26 +5,27 @@
 #ifndef ROGUELIKE_ENTITY_H
 #define ROGUELIKE_ENTITY_H
 
-#include "IEntity.h"
-#include "FamilyTypeID.h"
+#include "ECS/FamilyTypeID.h"
+#include "ECS/IEntity.h"
 namespace ECS {
 
 template<class TEntity>
 class Entity : public IEntity {
   friend class SystemManager;
   static const EntityTypeID STATIC_ENTITY_TYPE_ID;
+
  public:
-  const EntityTypeID GetTypeID() const override {
-      return STATIC_ENTITY_TYPE_ID;
+  EntityTypeID GetTypeID() const override {
+    return STATIC_ENTITY_TYPE_ID;
   }
   const char *GetTypeName() const override {
-      return typeid(TEntity).name();
+    return typeid(TEntity).name();
   }
 };
 
 template<class TEntity>
-const ECS::EntityTypeID
-    ECS::Entity<TEntity>::STATIC_ENTITY_TYPE_ID = ECS::Internal::FamilyTypeID<ECS::IEntity>::Get<TEntity>();
+const ECS::EntityTypeID ECS::Entity<TEntity>::STATIC_ENTITY_TYPE_ID =
+    ECS::Internal::FamilyTypeID<ECS::IEntity>::Get<TEntity>();
 }
 
-#endif //ROGUELIKE_ENTITY_H
+#endif  // ROGUELIKE_ENTITY_H

@@ -5,8 +5,8 @@
 #ifndef ROGUELIKE_LOGGING_H
 #define ROGUELIKE_LOGGING_H
 
-#include "log4cxx/logger.h"
 #include "log4cxx/basicconfigurator.h"
+#include "log4cxx/logger.h"
 #include "log4cxx/propertyconfigurator.h"
 
 #define LOG_INIT(LOGGER_NAME) log4cxx::LoggerPtr logger = log4cxx::Logger::getLogger(LOGGER_NAME)
@@ -25,4 +25,4 @@
 
 log4cxx::AppenderPtr syslogAppender();
 
-#endif //ROGUELIKE_LOGGING_H
+#endif  // ROGUELIKE_LOGGING_H

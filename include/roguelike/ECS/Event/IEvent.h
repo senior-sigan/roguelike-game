@@ -5,20 +5,20 @@
 #ifndef ROGUELIKE_IEVEMT_H
 #define ROGUELIKE_IEVEMT_H
 
-#include "ECS/Platform.h"
+#include <ECS/Platform.h>
 
 namespace ECS::Event {
 class IEvent {
   friend class EventSender;
   friend class EventDispatcher;
 
-  long repeats = 0; // constant
-  double after = 0; // constant
-  double interval = 0; // constant
+  int64_t repeats = 0;  // constant
+  double after = 0;     // constant
+  double interval = 0;  // constant
 
   bool wasCalled = false;
   double currentTime = 0;
-  long calls = 0;
+  int64_t calls = 0;
   bool shouldUpdate = true;
 
   /**
@@ -37,9 +37,10 @@ class IEvent {
   bool isFitInDelay() const;
 
   bool isFitInRepeats() const;
+
  public:
-  virtual const ECS::EventTypeID GetTypeId() const = 0;
+  virtual ECS::EventTypeID GetTypeId() const = 0;
 };
 }
 
-#endif //ROGUELIKE_IEVEMT_H
+#endif  // ROGUELIKE_IEVEMT_H

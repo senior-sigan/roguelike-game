@@ -6,19 +6,20 @@
 #define ROGUELIKE_INPUTSYSTEM_H
 
 #include <ECS/system/IntervalSystem.h>
-#include "game/Consts.h"
+#include <game/Consts.h>
 
 class InputSystem : public ECS::IntervalSystem<InputSystem> {
-  static const unsigned int KEYS_SIZE = 255;
+  static const uint KEYS_SIZE = 255;
   bool currentKeys[KEYS_SIZE]{};
   LOG_INIT("InputSystem");
   void Clear();
+
  public:
   explicit InputSystem() : IntervalSystem(IPS) {
-      Clear();
+    Clear();
   }
 
-  void PreUpdate(double dt) override;;
+  void PreUpdate(double dt) override;
 
   void PostUpdateInterval(double dt) override;
 
@@ -28,4 +29,4 @@ class InputSystem : public ECS::IntervalSystem<InputSystem> {
   bool GetButtonDown(unsigned int key);
 };
 
-#endif //ROGUELIKE_INPUTSYSTEM_H
+#endif  // ROGUELIKE_INPUTSYSTEM_H

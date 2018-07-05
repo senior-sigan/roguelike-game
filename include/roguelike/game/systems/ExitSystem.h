@@ -6,22 +6,23 @@
 #define ROGUELIKE_EXITSYSTEM_H
 
 #include <ECS/system/IntervalSystem.h>
-#include "InputSystem.h"
+#include <game/systems/InputSystem.h>
 
 class ExitSystem : public ECS::IntervalSystem<ExitSystem> {
   InputSystem *inputSystem{};
+
  public:
   ExitSystem() : IntervalSystem(IPS) {}
 
   void PreUpdate(double dt) override {
-      if (inputSystem->GetButtonDown('q')) {
-          GetEngineControl()->Stop();
-      }
+    if (inputSystem->GetButtonDown('q')) {
+      GetEngineControl()->Stop();
+    }
   }
 
   void OnCreated() override {
-      inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
+    inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
   }
 };
 
-#endif //ROGUELIKE_EXITSYSTEM_H
+#endif  // ROGUELIKE_EXITSYSTEM_H

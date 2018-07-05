@@ -29,3 +29,7 @@ osx_dep:
 
 lint:
 	cd cmake-build-debug;make lint
+
+reformat:
+	clang-format -i -style=file include/**/*.h
+	clang-format -i -style=file src/**/*.cpp

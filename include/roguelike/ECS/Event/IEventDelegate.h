@@ -5,8 +5,8 @@
 #ifndef ROGUELIKE_IEVENTDELEGATE_H
 #define ROGUELIKE_IEVENTDELEGATE_H
 
-#include "../Platform.h"
-#include "IEvent.h"
+#include <ECS/Event/IEvent.h>
+#include <ECS/Platform.h>
 namespace ECS::Event {
 class IEventDelegate {
  public:
@@ -18,4 +18,4 @@ class IEventDelegate {
 };
 }
 
-#endif //ROGUELIKE_IEVENTDELEGATE_H
+#endif  // ROGUELIKE_IEVENTDELEGATE_H

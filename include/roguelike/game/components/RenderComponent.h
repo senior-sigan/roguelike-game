@@ -20,4 +20,4 @@ class RenderComponent : public ECS::Component<RenderComponent> {
   explicit RenderComponent(Texture1D texture) : texture(texture) {}
 };
 
-#endif //ROGUELIKE_RENDERCOMPONENT_H
+#endif  // ROGUELIKE_RENDERCOMPONENT_H

@@ -5,11 +5,11 @@
 #ifndef ROGUELIKE_COMPONENTMANAGER_H
 #define ROGUELIKE_COMPONENTMANAGER_H
 
-#include <iostream>
 #include <unordered_map>
-#include "Platform.h"
-#include "IComponent.h"
-#include "../Log/logging.h"
+#include <utility>
+#include "ECS/IComponent.h"
+#include "ECS/Platform.h"
+#include "Log/logging.h"
 
 namespace ECS {
 /**
@@ -19,9 +19,9 @@ namespace ECS {
 struct pairhash {
   template<typename T, typename U>
   size_t operator()(const std::pair<T, U> &p) const {
-      size_t h1 = std::hash<T>()(p.first);
-      size_t h2 = std::hash<U>()(p.second);
-      return h1 ^ (h2 << 1);
+    size_t h1 = std::hash<T>()(p.first);
+    size_t h2 = std::hash<U>()(p.second);
+    return h1 ^ (h2 << 1);
   }
 };
 
@@ -29,36 +29,37 @@ class ComponentManager {
   LOG_INIT("ComponentManager");
   std::unordered_map<std::pair<EntityID, ComponentTypeID>, IComponent *, pairhash> container;
   ComponentID currentID = 0;
+
  public:
   ComponentManager() {
-      LOG_INFO("ComponentManager was initialized");
+    LOG_INFO("ComponentManager was initialized");
   }
 
-  template<class TComponent, class ...TParam>
+  template<class TComponent, class... TParam>
   TComponent *AddComponent(const EntityID entityID, TParam &&... params) {
-      auto component = new TComponent(std::forward<TParam>(params)...);
-      auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
-      component->ownerID = entityID;
-      component->componentID = currentID++;
-      container[key] = component;
-      component->OnCreated();
-      return component;
+    auto component = new TComponent(std::forward<TParam>(params)...);
+    auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
+    component->ownerID = entityID;
+    component->componentID = currentID++;
+    container[key] = component;
+    component->OnCreated();
+    return component;
   }
   template<class TComponent>
   TComponent *GetComponent(EntityID entityID) {
-      auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
-      return (TComponent *) container[key];
+    auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
+    return static_cast<TComponent *>(container[key]);
   }
   template<class TComponent>
   void RemoveComponent(EntityID entityID) {
-      auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
-      container.erase(key);
+    auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
+    container.erase(key);
   }
 
   void RemoveAllComponents(EntityID entityID) {
-      // TODO: get from the container all components and remove them
+    // TODO: get from the container all components and remove them
   }
 };
 }
 
-#endif //ROGUELIKE_COMPONENTMANAGER_H
+#endif  // ROGUELIKE_COMPONENTMANAGER_H

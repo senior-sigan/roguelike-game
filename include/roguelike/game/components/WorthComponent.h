@@ -8,12 +8,13 @@
 #include <ECS/Component.h>
 class WorthComponent : public ECS::Component<WorthComponent> {
   int value;
+
  public:
   explicit WorthComponent(int value) : value(value) {}
 
   int GetValue() const {
-      return value;
+    return value;
   }
 };
 
-#endif //ROGUELIKE_WORTHCOMPONENT_H
+#endif  // ROGUELIKE_WORTHCOMPONENT_H

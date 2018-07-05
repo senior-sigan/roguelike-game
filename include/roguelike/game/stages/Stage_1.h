@@ -6,12 +6,13 @@
 #define ROGUELIKE_LEVEL_1_H
 
 #include <ECS/Engine.h>
-#include "IStage.h"
+#include <game/stages/IStage.h>
 
 class Stage_1 : public IStage {
   LOG_INIT("Stage_1");
+
  public:
-  ECS::Engine *const load() override;
+  ECS::Engine* load() override;
 };
 
-#endif //ROGUELIKE_LEVEL_1_H
+#endif  // ROGUELIKE_LEVEL_1_H

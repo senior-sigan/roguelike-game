@@ -9,10 +9,11 @@
 
 class ItemGatheringSystem : public ECS::IteratingSystem<ItemGatheringSystem> {
   LOG_INIT("ItemGatheringSystem");
+
  public:
   void ProcessEntity(ECS::IEntity *entity, double dt) override;
 
-  const bool FamilyFilter(const ECS::IEntity *entity) const override;
+  bool FamilyFilter(const ECS::IEntity *entity) const override;
 };
 
-#endif //ROGUELIKE_ITEMSYSTEM_H
+#endif  // ROGUELIKE_ITEMSYSTEM_H

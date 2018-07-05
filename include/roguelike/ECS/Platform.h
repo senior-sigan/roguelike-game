@@ -7,8 +7,10 @@
 #ifndef ROGUELIKE_PLATFORM_H
 #define ROGUELIKE_PLATFORM_H
 
-#include <cstdio>
 #include <gmpxx.h>
+#include <cstdio>
+#include <limits>
+
 namespace ECS {
 
 using ObjectID = size_t;
@@ -38,4 +40,4 @@ static const TypeID INVALID_TYPE_ID = std::numeric_limits<TypeID>::max();
 
 }
 
-#endif //ROGUELIKE_PLATFORM_H
+#endif  // ROGUELIKE_PLATFORM_H

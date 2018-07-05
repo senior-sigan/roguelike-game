@@ -5,12 +5,12 @@
 #ifndef ROGUELIKE_ENGINE_H
 #define ROGUELIKE_ENGINE_H
 
-#include "EntityManager.h"
+#include "ECS/ComponentManager.h"
+#include "ECS/EntityManager.h"
+#include "ECS/Event/EventDispatcher.h"
+#include "ECS/GameLoop.h"
+#include "ECS/IEngineControl.h"
 #include "ECS/system/SystemManager.h"
-#include "ComponentManager.h"
-#include "Event/EventDispatcher.h"
-#include "GameLoop.h"
-#include "IEngineControl.h"
 namespace ECS {
 class Engine : public IEngineControl, public GameLoop {
   LOG_INIT("Engine");
@@ -22,22 +22,23 @@ class Engine : public IEngineControl, public GameLoop {
   Event::EventSender *eventSender;
 
   void Update(double deltaTime) override;
+
  public:
   Engine();
 
   virtual ~Engine();
 
   EntityManager *GetEntityManager() const override {
-      return entityManager;
+    return entityManager;
   }
   ComponentManager *GetComponentManager() const override {
-      return componentManager;
+    return componentManager;
   }
   SystemManager *GetSystemManager() const override {
-      return systemManager;
+    return systemManager;
   }
   Event::EventDispatcher *GetEventHandler() const override {
-      return eventDispatcher;
+    return eventDispatcher;
   }
 
   void Stop() override;
@@ -45,4 +46,4 @@ class Engine : public IEngineControl, public GameLoop {
   void OnDestroy();
 };
 }
-#endif //ROGUELIKE_ENGINE_H
+#endif  // ROGUELIKE_ENGINE_H

@@ -14,4 +14,4 @@ class ControlComponent : public ECS::Component<ControlComponent> {
   unsigned int right = 100;
 };
 
-#endif //ROGUELIKE_CONTROLSCOMPONENT_H
+#endif  // ROGUELIKE_CONTROLSCOMPONENT_H

@@ -5,7 +5,7 @@
 #include "game/Game.h"
 
 int main() {
-    LOG_CONFIGURE();
-    auto game = new Game();
-    game->Start();
+  LOG_CONFIGURE();
+  auto game = new Game();
+  game->Start();
 }

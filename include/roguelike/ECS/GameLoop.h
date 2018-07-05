@@ -8,11 +8,13 @@
 namespace ECS {
 class GameLoop {
   bool running = true;
+
  protected:
   virtual void Update(double deltaTime) = 0;
+
  public:
   void Loop();
   void Stop();
 };
 }
-#endif //ROGUELIKE_GAMELOOP_H
+#endif  // ROGUELIKE_GAMELOOP_H

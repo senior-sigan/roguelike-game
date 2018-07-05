@@ -6,13 +6,14 @@
 #define ROGUELIKE_CONTROLSYSTEM_H
 
 #include <ECS/system/IntervalIteratingSystem.h>
-#include "game/components/ControlComponent.h"
-#include "game/components/TransformComponent.h"
-#include "InputSystem.h"
-#include "ECS/system/SystemManager.h"
+#include <ECS/system/SystemManager.h>
+#include <game/components/ControlComponent.h>
+#include <game/components/TransformComponent.h>
+#include <game/systems/InputSystem.h>
 class ControlSystem : public ECS::IntervalIteratingSystem<ControlSystem> {
   InputSystem *inputSystem{};
   LOG_INIT("ControlSystem");
+
  public:
   explicit ControlSystem() : IntervalIteratingSystem(IPS) {}
 
@@ -20,7 +21,7 @@ class ControlSystem : public ECS::IntervalIteratingSystem<ControlSystem> {
 
   void ProcessEntityInterval(ECS::IEntity *entity, double dt) override;
 
-  const bool FamilyFilter(ECS::IEntity *entity) const override;
+  bool FamilyFilter(ECS::IEntity *entity) const override;
 };
 
-#endif //ROGUELIKE_CONTROLSYSTEM_H
+#endif  // ROGUELIKE_CONTROLSYSTEM_H

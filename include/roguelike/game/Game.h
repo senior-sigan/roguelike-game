@@ -15,8 +15,9 @@ class Game {
   void SetupECS();
   void Loop();
   void Teardown();
+
  public:
   void Start();
 };
 
-#endif //ROGUELIKE_GAME_H
+#endif  // ROGUELIKE_GAME_H

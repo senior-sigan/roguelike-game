@@ -6,8 +6,6 @@
 #define ROGUELIKE_ITEMCOMPONENT_H
 
 #include <ECS/Component.h>
-class ItemComponent : public ECS::Component<ItemComponent> {
+class ItemComponent : public ECS::Component<ItemComponent> {};
 
-};
-
-#endif //ROGUELIKE_ITEMCOMPONENT_H
+#endif  // ROGUELIKE_ITEMCOMPONENT_H

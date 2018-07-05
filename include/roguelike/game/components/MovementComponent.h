@@ -24,4 +24,4 @@ class MovementComponent : public ECS::Component<MovementComponent> {
   Core::Vector2 force = Core::Vector2::ZERO;
 };
 
-#endif //ROGUELIKE_MOVEMENTCOMPONENT_H
+#endif  // ROGUELIKE_MOVEMENTCOMPONENT_H

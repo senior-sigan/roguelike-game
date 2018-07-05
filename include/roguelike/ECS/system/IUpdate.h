@@ -7,10 +7,11 @@
 
 class IUpdate {
   friend class SystemManager;
+
  protected:
   virtual void _PreUpdate(double dt) = 0;
   virtual void _Update(double dt) = 0;
   virtual void _PostUpdate(double dt) = 0;
 };
 
-#endif //ROGUELIKE_IUPDATEABLE_H
+#endif  // ROGUELIKE_IUPDATEABLE_H

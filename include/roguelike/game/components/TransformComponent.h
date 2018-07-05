@@ -14,4 +14,4 @@ class TransformComponent : public ECS::Component<TransformComponent> {
   Core::Vector2 position;
 };
 
-#endif //ROGUELIKE_TRANSFORMCOMPONENT_H
+#endif  // ROGUELIKE_TRANSFORMCOMPONENT_H

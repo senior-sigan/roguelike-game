@@ -5,7 +5,7 @@
 #ifndef ROGUELIKE_ICOMPONENT_H
 #define ROGUELIKE_ICOMPONENT_H
 
-#include "Platform.h"
+#include "ECS/Platform.h"
 namespace ECS {
 
 class IComponent {
@@ -15,18 +15,18 @@ class IComponent {
   EntityID ownerID{};
 
  public:
-  virtual const ComponentTypeID GetTypeID() const = 0;
+  virtual ComponentTypeID GetTypeID() const = 0;
 
-  const ComponentID GetID() const {
-      return this->componentID;
-  };
+  ComponentID GetID() const {
+    return this->componentID;
+  }
 
-  const EntityID GetEntity() const {
-      return this->ownerID;
-  };
+  EntityID GetEntity() const {
+    return this->ownerID;
+  }
 
-  virtual void OnCreated() {};
+  virtual void OnCreated() {}
 };
 }
 
-#endif //ROGUELIKE_ICOMPONENT_H
+#endif  // ROGUELIKE_ICOMPONENT_H

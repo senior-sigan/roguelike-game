@@ -6,8 +6,9 @@
 #define ROGUELIKE_BOXCOLLIDERCOMPONENT_H
 
 #include <ECS/Component.h>
+#include <ECS/IEntity.h>
+#include <core/vector2.h>
 #include <set>
-#include "core/vector2.h"
 
 /**
  * It's a collider component that enables collision detection.
@@ -16,10 +17,9 @@
  */
 class BoxColliderComponent : public ECS::Component<BoxColliderComponent> {
   std::set<const ECS::IEntity *> collisions{};
+
  public:
-  explicit BoxColliderComponent(const Core::Vector2 size,
-                                const Core::Vector2 offset,
-                                bool isTrigger = false,
+  explicit BoxColliderComponent(const Core::Vector2 size, const Core::Vector2 offset, bool isTrigger = false,
                                 bool isMovable = true)
       : size(size), offset(offset), isTrigger(isTrigger), isMovable(isMovable) {}
 
@@ -29,16 +29,16 @@ class BoxColliderComponent : public ECS::Component<BoxColliderComponent> {
   bool isMovable;
 
   const std::set<const ECS::IEntity *> GetCollisions() const {
-      return collisions;
+    return collisions;
   }
 
   void Collide(const ECS::IEntity *entity) {
-      collisions.emplace(entity);
+    collisions.emplace(entity);
   }
 
   void Clear() {
-      collisions.clear();
+    collisions.clear();
   }
 };
 
-#endif //ROGUELIKE_BOXCOLLIDERCOMPONENT_H
+#endif  // ROGUELIKE_BOXCOLLIDERCOMPONENT_H

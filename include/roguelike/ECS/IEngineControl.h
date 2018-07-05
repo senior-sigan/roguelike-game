@@ -23,4 +23,4 @@ class IEngineControl {
 };
 }
 
-#endif //ROGUELIKE_IENGINECONTROL_H
+#endif  // ROGUELIKE_IENGINECONTROL_H

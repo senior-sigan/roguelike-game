@@ -5,8 +5,8 @@
 #ifndef ROGUELIKE_INTERVALSYSTEM_H
 #define ROGUELIKE_INTERVALSYSTEM_H
 
-#include "ECS/FamilyTypeID.h"
-#include "ISystem.h"
+#include <ECS/FamilyTypeID.h>
+#include <ECS/system/ISystem.h>
 namespace ECS {
 
 /**
@@ -25,44 +25,44 @@ class IntervalSystem : public ISystem {
   LOG_INIT("IntervalSystem");
 
   void _PreUpdate(double dt) override {
-      PreUpdate(dt);
-      currentTime += dt; // Every PRE update increment timer
-      if (currentTime >= interval) {
-          PreUpdateInterval(currentTime);
-      }
+    PreUpdate(dt);
+    currentTime += dt;  // Every PRE update increment timer
+    if (currentTime >= interval) {
+      PreUpdateInterval(currentTime);
+    }
   }
 
   void _Update(double dt) override {
-      Update(dt);
-      if (currentTime >= interval) {
-          UpdateInterval(currentTime);
-      }
+    Update(dt);
+    if (currentTime >= interval) {
+      UpdateInterval(currentTime);
+    }
   }
 
   void _PostUpdate(double dt) override {
-      PostUpdate(dt);
-      if (currentTime >= interval) {
-          PostUpdateInterval(currentTime);
-          currentTime -= interval;  // Every POST update decrement timer
-      }
+    PostUpdate(dt);
+    if (currentTime >= interval) {
+      PostUpdateInterval(currentTime);
+      currentTime -= interval;  // Every POST update decrement timer
+    }
   }
 
  public:
   explicit IntervalSystem(const double interval) : interval(interval) {
-      currentTime = 0;
+    currentTime = 0;
   }
 
-  const SystemTypeID GetTypeID() const override {
-      return STATIC_TYPE_ID;
+  SystemTypeID GetTypeID() const override {
+    return STATIC_TYPE_ID;
   }
 
-  virtual void PreUpdate(double dt) {};
-  virtual void Update(double dt) {};
-  virtual void PostUpdate(double dt) {};
+  virtual void PreUpdate(double dt) {}
+  virtual void Update(double dt) {}
+  virtual void PostUpdate(double dt) {}
 
-  virtual void PreUpdateInterval(double dt) {};
-  virtual void UpdateInterval(double dt) {};
-  virtual void PostUpdateInterval(double dt) {};
+  virtual void PreUpdateInterval(double dt) {}
+  virtual void UpdateInterval(double dt) {}
+  virtual void PostUpdateInterval(double dt) {}
 };
 
 template<class T>
@@ -70,4 +70,4 @@ const ECS::SystemTypeID ECS::IntervalSystem<T>::STATIC_TYPE_ID = ECS::Internal::
 
 }
 
-#endif //ROGUELIKE_INTERVALSYSTEM_H
+#endif  // ROGUELIKE_INTERVALSYSTEM_H

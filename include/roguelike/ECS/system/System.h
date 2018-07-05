@@ -5,9 +5,9 @@
 #ifndef ROGUELIKE_SYSTEM_H
 #define ROGUELIKE_SYSTEM_H
 
-#include "ECS/FamilyTypeID.h"
-#include "ISystem.h"
-#include "IUpdate.h"
+#include <ECS/FamilyTypeID.h>
+#include <ECS/system/ISystem.h>
+#include <ECS/system/IUpdate.h>
 namespace ECS {
 
 /**
@@ -20,20 +20,27 @@ template<class T>
 class System : public ISystem {
   friend class SystemManager;
   static const SystemTypeID STATIC_TYPE_ID;
+
  public:
-  const SystemTypeID GetTypeID() const override {
-      return STATIC_TYPE_ID;
+  SystemTypeID GetTypeID() const override {
+    return STATIC_TYPE_ID;
   }
 
  private:
-  void _PreUpdate(double dt) override { PreUpdate(dt); };
-  void _Update(double dt) override { Update(dt); };
-  void _PostUpdate(double dt) override { PostUpdate(dt); };
- public:
+  void _PreUpdate(double dt) override {
+    PreUpdate(dt);
+  }
+  void _Update(double dt) override {
+    Update(dt);
+  }
+  void _PostUpdate(double dt) override {
+    PostUpdate(dt);
+  }
 
-  virtual void PreUpdate(double dt) {};
-  virtual void Update(double dt) {};
-  virtual void PostUpdate(double dt) {};
+ public:
+  virtual void PreUpdate(double dt) {}
+  virtual void Update(double dt) {}
+  virtual void PostUpdate(double dt) {}
 };
 
 template<class T>
@@ -41,4 +48,4 @@ const ECS::SystemTypeID ECS::System<T>::STATIC_TYPE_ID = ECS::Internal::FamilyTy
 
 }
 
-#endif //ROGUELIKE_SYSTEM_H
+#endif  // ROGUELIKE_SYSTEM_H

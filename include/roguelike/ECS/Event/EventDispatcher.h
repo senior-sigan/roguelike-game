@@ -5,8 +5,8 @@
 #ifndef ROGUELIKE_EVENTHANDLER_H
 #define ROGUELIKE_EVENTHANDLER_H
 
-#include "EventSender.h"
-#include "EventListener.h"
+#include <ECS/Event/EventListener.h>
+#include <ECS/Event/EventSender.h>
 namespace ECS::Event {
 
 class EventDispatcher {
@@ -21,4 +21,4 @@ class EventDispatcher {
 };
 }
 
-#endif //ROGUELIKE_EVENTHANDLER_H
+#endif  // ROGUELIKE_EVENTHANDLER_H
