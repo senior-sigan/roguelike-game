@@ -7,7 +7,7 @@
 #include <game/components/ItemComponent.h>
 #include <game/components/WorthComponent.h>
 
-void ItemGatheringSystem::ProcessEntity(ECS::IEntity* entity, double dt) {
+void ItemGatheringSystem::ProcessEntity(const ECS::IEntityPtr &entity, double dt) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto wc = entity->GetComponent<WorthComponent>();
   for (auto collider : bcc->GetCollisions()) {
@@ -17,6 +17,6 @@ void ItemGatheringSystem::ProcessEntity(ECS::IEntity* entity, double dt) {
     }
   }
 }
-bool ItemGatheringSystem::FamilyFilter(const ECS::IEntity* entity) const {
+bool ItemGatheringSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
   return entity->HasComponent<ItemComponent>() && entity->HasComponent<BoxColliderComponent>();
 }

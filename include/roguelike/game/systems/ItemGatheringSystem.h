@@ -11,9 +11,9 @@ class ItemGatheringSystem : public ECS::IteratingSystem<ItemGatheringSystem> {
   LOG_INIT("ItemGatheringSystem");
 
  public:
-  void ProcessEntity(ECS::IEntity *entity, double dt) override;
+  void ProcessEntity(const ECS::IEntityPtr &entity, double dt) override;
 
-  bool FamilyFilter(const ECS::IEntity *entity) const override;
+  bool FamilyFilter(const ECS::IEntityPtr &entity) const override;
 };
 
 #endif  // ROGUELIKE_ITEMSYSTEM_H

@@ -7,7 +7,7 @@
 
 namespace {
 
-Core::Rectangle rectangle(const ECS::IEntity* entity) {
+Core::Rectangle rectangle(const ECS::IEntityPtr &entity) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
 
@@ -19,12 +19,12 @@ Core::Rectangle rectangle(const ECS::IEntity* entity) {
 
 }
 
-void CollisionSystem::PreProcessEntity(ECS::IEntity* entity, double dt) {
+void CollisionSystem::PreProcessEntity(const ECS::IEntityPtr &entity, double dt) {
   // Before each collision system iteration
   // we clear registered collisions on the previous step.
   entity->GetComponent<BoxColliderComponent>()->Clear();
 }
-void CollisionSystem::ProcessEntity(ECS::IEntity* entity, double dt) {
+void CollisionSystem::ProcessEntity(const ECS::IEntityPtr &entity, double dt) {
   auto bc1 = entity->GetComponent<BoxColliderComponent>();
   if (!bc1->isMovable) {
     // We do not need to check whether non-movable objects collide or not.
@@ -43,7 +43,7 @@ void CollisionSystem::ProcessEntity(ECS::IEntity* entity, double dt) {
     }
   }
 }
-bool CollisionSystem::FamilyFilter(ECS::IEntity const* entity) const {
+bool CollisionSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
   // TODO: actually it should be a collider of any type, but our components storage cannot do look up with parents, only
   // by ids.
   return entity->HasComponent<BoxColliderComponent>() && entity->HasComponent<TransformComponent>();

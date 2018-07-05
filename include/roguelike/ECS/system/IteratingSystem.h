@@ -48,15 +48,15 @@ class IteratingSystem : public ISystem {
   virtual void Update(double dt) {}
   virtual void PostUpdate(double dt) {}
 
-  virtual void PreProcessEntity(IEntity *entity, double dt) {}
-  virtual void ProcessEntity(IEntity *entity, double dt) {}
-  virtual void PostProcessEntity(IEntity *entity, double dt) {}
+  virtual void PreProcessEntity(const IEntityPtr &entity, double dt) {}
+  virtual void ProcessEntity(const IEntityPtr &entity, double dt) {}
+  virtual void PostProcessEntity(const IEntityPtr &entity, double dt) {}
 
   /**
    * Filter and pass only IEntities that satisfy the predicate.
    * @return true if satisfy and false otherwise.
    */
-  virtual bool FamilyFilter(IEntity const *entity) const {
+  virtual bool FamilyFilter(const IEntityPtr &entity) const {
     return false;
   }
 };

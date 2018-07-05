@@ -23,7 +23,7 @@ void RenderingSystem::PostUpdateInterval(double dt) {
   refresh();
 }
 
-void RenderingSystem::ProcessEntityInterval(ECS::IEntity* entity, double dt) {
+void RenderingSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) {
   auto rc = entity->GetComponent<RenderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
 
@@ -33,7 +33,7 @@ void RenderingSystem::ProcessEntityInterval(ECS::IEntity* entity, double dt) {
   }
 }
 
-bool RenderingSystem::FamilyFilter(ECS::IEntity* entity) const {
+bool RenderingSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
   return entity->HasComponent<RenderComponent>() && entity->HasComponent<TransformComponent>();
 }
 RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {

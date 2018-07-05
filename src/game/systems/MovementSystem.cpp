@@ -10,7 +10,7 @@
 #include <game/systems/MovementSystem.h>
 
 namespace {
-Core::Rectangle futureRectangle(const ECS::IEntity* entity) {
+Core::Rectangle futureRectangle(const ECS::IEntityPtr &entity) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
   auto mc = entity->GetComponent<MovementComponent>();
@@ -21,7 +21,7 @@ Core::Rectangle futureRectangle(const ECS::IEntity* entity) {
   return Core::Rectangle(Core::Vector2(xLeftFuture, yUpperFuture), bcc->size);
 }
 
-Core::Rectangle rectangle(const ECS::IEntity* entity) {
+Core::Rectangle rectangle(const ECS::IEntityPtr &entity) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
 
@@ -55,7 +55,7 @@ void stopMovement(const MovementComponentPtr &mc) {
  *
  * @return true if no collisions otherwise false
  */
-bool canApplyForce(const ECS::IEntity* const entity, const ECS::ISystem* const system) {
+bool canApplyForce(const ECS::IEntityPtr &entity, const ECS::ISystem* const system) {
   if (!entity->HasComponent<BoxColliderComponent>()) return true;
 
   auto box1 = futureRectangle(entity);
@@ -74,7 +74,7 @@ bool canApplyForce(const ECS::IEntity* const entity, const ECS::ISystem* const s
 }
 }
 
-void MovementSystem::ProcessEntity(ECS::IEntity* entity, double dt) {
+void MovementSystem::ProcessEntity(const ECS::IEntityPtr &entity, double dt) {
   // TODO: apply movement only when it's allowed.
   // Movement could be blocked because of collision in the future.
   // Collision system checks collisions right now and here,
@@ -89,6 +89,6 @@ void MovementSystem::ProcessEntity(ECS::IEntity* entity, double dt) {
   }
 }
 
-bool MovementSystem::FamilyFilter(ECS::IEntity const* entity) const {
+bool MovementSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
   return entity->HasComponent<MovementComponent>() && entity->HasComponent<TransformComponent>();
 }

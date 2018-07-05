@@ -16,7 +16,7 @@ class EntityManager {
   ComponentManager *componentManager;
 
  public:
-  std::unordered_map<EntityID, IEntity *> container;
+  std::unordered_map<EntityID, std::shared_ptr<IEntity>> container;
   std::set<EntityID> toDelete;
 
   explicit EntityManager(ComponentManager *componentManager) : componentManager(componentManager) {
@@ -30,8 +30,8 @@ class EntityManager {
   }
 
   template<class TEntity, class... TParam>
-  TEntity *CreateAndGet(TParam &&... params) {
-    auto entity = new TEntity(std::forward<TParam>(params)...);
+  std::shared_ptr<TEntity> CreateAndGet(TParam &&... params) {
+    auto entity = std::make_shared<TEntity>(std::forward<TParam>(params)...);
     entity->entityID = currentID++;
     entity->componentManager = this->componentManager;
     container[entity->entityID] = entity;
@@ -66,7 +66,7 @@ class EntityManager {
     toDelete.clear();
   }
 
-  IEntity *Get(EntityID id) {
+  std::shared_ptr<IEntity> Get(EntityID id) {
     return container[id];
   }
 };

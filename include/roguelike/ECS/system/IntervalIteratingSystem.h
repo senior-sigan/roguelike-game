@@ -98,23 +98,23 @@ class IntervalIteratingSystem : public ISystem {
   virtual void Update(double dt) {}
   virtual void PostUpdate(double dt) {}
 
-  virtual void PreProcessEntity(IEntity *entity, double dt) {}
-  virtual void ProcessEntity(IEntity *entity, double dt) {}
-  virtual void PostProcessEntity(IEntity *entity, double dt) {}
+  virtual void PreProcessEntity(const IEntityPtr &entity, double dt) {}
+  virtual void ProcessEntity(const IEntityPtr &entity, double dt) {}
+  virtual void PostProcessEntity(const IEntityPtr &entity, double dt) {}
 
   virtual void PreUpdateInterval(double dt) {}
   virtual void UpdateInterval(double dt) {}
   virtual void PostUpdateInterval(double dt) {}
 
-  virtual void PreProcessEntityInterval(IEntity *entity, double dt) {}
-  virtual void ProcessEntityInterval(IEntity *entity, double dt) {}
-  virtual void PostProcessEntityInterval(IEntity *entity, double dt) {}
+  virtual void PreProcessEntityInterval(const IEntityPtr &entity, double dt) {}
+  virtual void ProcessEntityInterval(const IEntityPtr &entity, double dt) {}
+  virtual void PostProcessEntityInterval(const IEntityPtr &entity, double dt) {}
 
   /**
    * Filter and pass only IEntities that satisfy the predicate.
    * @return true if satisfy and false otherwise.
    */
-  virtual bool FamilyFilter(IEntity *entity) const {
+  virtual bool FamilyFilter(const IEntityPtr &entity) const {
     return false;
   }
 };

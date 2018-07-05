@@ -8,9 +8,9 @@
 #include <ECS/system/IteratingSystem.h>
 class MovementSystem : public ECS::IteratingSystem<MovementSystem> {
  public:
-  void ProcessEntity(ECS::IEntity *entity, double dt) override;
+  void ProcessEntity(const ECS::IEntityPtr &entity, double dt) override;
 
-  bool FamilyFilter(ECS::IEntity const *entity) const override;
+  bool FamilyFilter(const ECS::IEntityPtr &entity) const override;
 };
 
 #endif  // ROGUELIKE_MOVEMENTSYSTEM_H

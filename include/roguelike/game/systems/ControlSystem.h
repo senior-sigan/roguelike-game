@@ -19,9 +19,9 @@ class ControlSystem : public ECS::IntervalIteratingSystem<ControlSystem> {
 
   void OnCreated() override;
 
-  void ProcessEntityInterval(ECS::IEntity *entity, double dt) override;
+  void ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) override;
 
-  bool FamilyFilter(ECS::IEntity *entity) const override;
+  bool FamilyFilter(const ECS::IEntityPtr &entity) const override;
 };
 
 #endif  // ROGUELIKE_CONTROLSYSTEM_H

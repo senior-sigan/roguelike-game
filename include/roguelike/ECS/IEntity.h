@@ -56,6 +56,8 @@ class IEntity {
     return entityID != rhs.entityID;
   }
 };
+
+typedef std::shared_ptr<IEntity> IEntityPtr;
 }
 
 #endif  // ROGUELIKE_IENTITY_H

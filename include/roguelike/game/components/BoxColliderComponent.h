@@ -16,7 +16,7 @@
  * or could be physical "wall".
  */
 class BoxColliderComponent : public ECS::Component<BoxColliderComponent> {
-  std::set<const ECS::IEntity *> collisions{};
+  std::set<ECS::IEntityPtr> collisions{};
 
  public:
   explicit BoxColliderComponent(const Core::Vector2 size, const Core::Vector2 offset, bool isTrigger = false,
@@ -28,11 +28,11 @@ class BoxColliderComponent : public ECS::Component<BoxColliderComponent> {
   bool isTrigger;
   bool isMovable;
 
-  const std::set<const ECS::IEntity *> GetCollisions() const {
+  const std::set<ECS::IEntityPtr> GetCollisions() const {
     return collisions;
   }
 
-  void Collide(const ECS::IEntity *entity) {
+  void Collide(const ECS::IEntityPtr &entity) {
     collisions.emplace(entity);
   }
 
