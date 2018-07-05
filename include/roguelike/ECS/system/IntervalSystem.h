@@ -48,7 +48,7 @@ class IntervalSystem : public ISystem {
   }
 
  public:
-  explicit IntervalSystem(const double interval):interval(interval) {
+  explicit IntervalSystem(const double interval) : interval(interval) {
       currentTime = 0;
   }
 

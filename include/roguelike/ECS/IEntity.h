@@ -29,7 +29,7 @@ class IEntity {
   template<class TComponent>
   const bool HasComponent() const {
       auto component = this->componentManager->GetComponent<TComponent>(entityID);
-      return component!=nullptr;
+      return component != nullptr;
   }
 
   template<class TComponent, class ...TParam>
@@ -49,10 +49,10 @@ class IEntity {
   virtual void OnCreated() {};
 
   bool operator==(const IEntity &rhs) const {
-      return entityID==rhs.entityID;
+      return entityID == rhs.entityID;
   }
   bool operator!=(const IEntity &rhs) const {
-      return entityID!=rhs.entityID;
+      return entityID != rhs.entityID;
   }
 };
 }

@@ -18,7 +18,7 @@ struct Vector2f {
       return abs(x - other.x) < eps && abs(y - other.y) < eps;
   }
   bool operator!=(const Vector2f &other) const {
-      return !(other==*this);
+      return !(other == *this);
   }
 };
 }

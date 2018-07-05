@@ -22,7 +22,7 @@ class EventListener {
   template<class TReceiver, class TEvent>
   inline void UnregisterListener(void(TReceiver::*Callback)(const TEvent *const)) {
       for (auto delegate: delegates) {
-          if (delegate->GetDelegateId()==_GetDelegateId<TReceiver, TEvent>()) {
+          if (delegate->GetDelegateId() == _GetDelegateId<TReceiver, TEvent>()) {
               this->delegates.remove_if([&](const IEventDelegate *other) -> bool {
                 return other->operator==(delegate);
               });

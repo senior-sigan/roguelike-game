@@ -17,8 +17,8 @@ Rectangle futureRectangle(const ECS::IEntity *entity) {
     auto tc = entity->GetComponent<TransformComponent>();
     auto mc = entity->GetComponent<MovementComponent>();
 
-    int xLeftFuture = tc->position.x + bcc->offset.x + mc->force.x*mc->direction.x;
-    int yUpperFuture = tc->position.y - bcc->offset.y + mc->force.y*mc->direction.y;
+    int xLeftFuture = tc->position.x + bcc->offset.x + mc->force.x * mc->direction.x;
+    int yUpperFuture = tc->position.y - bcc->offset.y + mc->force.y * mc->direction.y;
 
     return Rectangle(Vector2(xLeftFuture, yUpperFuture), bcc->size);
 }
@@ -34,13 +34,13 @@ Rectangle rectangle(const ECS::IEntity *entity) {
 }
 
 void applyForce(TransformComponent *const tc, MovementComponent *const mc) {
-    tc->position.x += mc->force.x*mc->direction.x;
-    tc->position.y += mc->force.y*mc->direction.y;
+    tc->position.x += mc->force.x * mc->direction.x;
+    tc->position.y += mc->force.y * mc->direction.y;
 
-    if (mc->force.x!=0) {
+    if (mc->force.x != 0) {
         mc->force.x -= mc->slowDownSpeed.x;
     }
-    if (mc->force.y!=0) {
+    if (mc->force.y != 0) {
         mc->force.y -= mc->slowDownSpeed.y;
     }
 
@@ -65,7 +65,7 @@ bool canApplyForce(const ECS::IEntity *const entity, const ECS::ISystem *const s
 
     for (auto other: system->GetEntityManager()->container) {
         auto entity2 = other.second;
-        if (entity2==entity) continue;
+        if (entity2 == entity) continue;
         if (entity2->GetComponent<BoxColliderComponent>()->isTrigger) continue;
         auto box2 = rectangle(entity2);
         if (Intersect(box1, box2)) {

@@ -15,7 +15,7 @@ set(STYLE_FILTER)
 #set(STYLE_FILTER ${STYLE_FILTER}-whitespace/tab,)
 
 #set(STYLE_FILTER ${STYLE_FILTER}-build/include_order,)
-#set(STYLE_FILTER ${STYLE_FILTER}-build/namespaces,)
+set(STYLE_FILTER ${STYLE_FILTER}-build/namespaces,)
 #set(STYLE_FILTER ${STYLE_FILTER}-build/include_what_you_use,)
 
 #set(STYLE_FILTER ${STYLE_FILTER}-readability/streams,)
@@ -36,9 +36,9 @@ set(STYLE_FILTER ${STYLE_FILTER}-legal/copyright)
 # - SOURCES_LIST a complete list of source and include files to check
 function(add_style_check_target TARGET_NAME PROJECT_HEADERS_DIR PROJECT_SOURCES_DIR)
 
-    if(NOT PYTHONINTERP_FOUND)
+    if (NOT PYTHONINTERP_FOUND)
         return()
-    endif()
+    endif ()
 
     FILE(GLOB_RECURSE SOURCES_LIST ${PROJECT_HEADERS_DIR}/*.h ${PROJECT_SOURCES_DIR}/*.cpp)
 

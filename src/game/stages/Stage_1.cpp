@@ -48,7 +48,7 @@ ECS::Engine *const Stage_1::load() {
 
     for (int x = 0; x < lvl::width; x++) {
         for (int y = 0; y < lvl::height; y++) {
-            createEntity(engine, x, y, lvl::data[y*lvl::width + x]);
+            createEntity(engine, x, y, lvl::data[y * lvl::width + x]);
         }
     }
 

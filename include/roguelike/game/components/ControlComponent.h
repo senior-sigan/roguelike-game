@@ -6,7 +6,7 @@
 #define ROGUELIKE_CONTROLSCOMPONENT_H
 
 #include <ECS/Component.h>
-class ControlComponent: public ECS::Component<ControlComponent> {
+class ControlComponent : public ECS::Component<ControlComponent> {
  public:
   unsigned int up = 119;
   unsigned int down = 115;

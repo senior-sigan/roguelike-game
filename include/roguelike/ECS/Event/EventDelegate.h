@@ -46,12 +46,12 @@ class EventDelegate : public IEventDelegate {
   }
 
   bool operator==(const IEventDelegate *other) const override {
-      if (other==nullptr)
+      if (other == nullptr)
           return false;
-      if (this->GetDelegateId()!=other->GetDelegateId())
+      if (this->GetDelegateId() != other->GetDelegateId())
           return false;
       auto delegate = (EventDelegate *) other;
-      return ((this->callback==delegate->callback) && (this->receiver==delegate->receiver));
+      return ((this->callback == delegate->callback) && (this->receiver == delegate->receiver));
   }
 };
 }

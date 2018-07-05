@@ -17,7 +17,7 @@ class Entity : public IEntity {
   const EntityTypeID GetTypeID() const override {
       return STATIC_ENTITY_TYPE_ID;
   }
-  const char* GetTypeName() const override {
+  const char *GetTypeName() const override {
       return typeid(TEntity).name();
   }
 };

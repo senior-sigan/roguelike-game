@@ -1,9 +1,9 @@
-all: assemble exec
+all: clean reload lint build exec
 
 mkdir_build:
 	[ -d ./cmake-build-debug ] | mkdir -p cmake-build-debug
 
-build: reload lint
+build:
 	cd cmake-build-debug;make roguelike
 
 reload: mkdir_build
@@ -14,8 +14,6 @@ exec:
 
 clean:
 	rm -rf cmake-build-debug
-
-assemble: clean build
 
 fast_build:
 	cd cmake-build-debug;make roguelike

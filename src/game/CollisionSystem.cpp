@@ -36,7 +36,7 @@ void CollisionSystem::ProcessEntity(ECS::IEntity *entity, double dt) {
 
     for (auto other: GetEntityManager()->container) {
         auto entity2 = other.second;
-        if (entity2==entity) continue;
+        if (entity2 == entity) continue;
         auto bc2 = entity2->GetComponent<BoxColliderComponent>();
         auto box2 = rectangle(entity2);
         if (Intersect(box1, box2)) {

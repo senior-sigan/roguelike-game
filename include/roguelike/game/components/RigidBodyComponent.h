@@ -11,7 +11,7 @@
  * Physical body. Add kinematics and so on. Has mass.
  * Can set constrains on movements.
  */
-class RigidBodyComponent: public ECS::Component<RigidBodyComponent> {
+class RigidBodyComponent : public ECS::Component<RigidBodyComponent> {
 
 };
 

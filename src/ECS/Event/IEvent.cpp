@@ -18,7 +18,7 @@ void IEvent::registerCall() {
     }
 }
 bool IEvent::isToDelete() const {
-    if (repeats==-1) return false;
+    if (repeats == -1) return false;
     return calls > repeats;
 }
 bool IEvent::isInvokableNow() const {
@@ -29,7 +29,7 @@ bool IEvent::isFitInDelay() const {
     return after <= currentTime;
 }
 bool IEvent::isFitInRepeats() const {
-    if (repeats==-1) return true;
+    if (repeats == -1) return true;
     return calls - repeats <= 0;
 }
 }
