@@ -25,3 +25,6 @@ debug-server: fast_build
 osx_dep:
 	brew install cmake cppcheck clang-format
 	brew install ncurses spdlog
+
+lint:
+	cpplint.py --linelength=120 $$( find . -name *.h -or -name *.c -or -name *.cpp -or -name *.cxx )
