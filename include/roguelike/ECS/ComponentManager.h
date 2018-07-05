@@ -59,6 +59,10 @@ class ComponentManager {
   void RemoveAllComponents(EntityID entityID) {
     // TODO: get from the container all components and remove them
   }
+
+  void DestroyAllComponents() {
+    container.clear();
+  }
 };
 }
 

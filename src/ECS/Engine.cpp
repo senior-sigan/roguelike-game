@@ -39,5 +39,7 @@ void Engine::Stop() {
 }
 void Engine::OnDestroy() {
   systemManager->DestroyAllSystems();
+  entityManager->DestroyAllEntities();
+  componentManager->DestroyAllComponents();
 }
 }

@@ -5,18 +5,16 @@
 #include <core/Geometry.h>
 #include <game/systems/CollisionSystem.h>
 
-using namespace Core;
-
 namespace {
 
-Rectangle rectangle(const ECS::IEntity* entity) {
+Core::Rectangle rectangle(const ECS::IEntity* entity) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
 
   int xLeft = tc->position.x + bcc->offset.x;
   int yUpper = tc->position.y - bcc->offset.y;
 
-  return Rectangle(Vector2(xLeft, yUpper), bcc->size);
+  return Core::Rectangle(Core::Vector2(xLeft, yUpper), bcc->size);
 }
 
 }

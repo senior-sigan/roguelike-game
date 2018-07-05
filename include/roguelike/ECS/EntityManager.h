@@ -48,6 +48,11 @@ class EntityManager {
     toDelete.emplace(id);
   }
 
+  void DestroyAllEntities() {
+    toDelete.clear();
+    container.clear();
+  }
+
   /**
    * Completely removes all marked to delete entities with associated components.
    */
