@@ -7,18 +7,16 @@
 
 #include <ECS/Engine.h>
 class IStage {
-  ECS::Engine *const engine;
+  ECS::EnginePtr engine;
 
  public:
-  IStage() : engine(new ECS::Engine()) {}
-  virtual ~IStage() {
-    delete engine;
-  }
-  ECS::Engine *GetEngine() const {
+  IStage() : engine(std::make_shared<ECS::Engine>()) {}
+
+  ECS::EnginePtr GetEngine() const {
     return engine;
   }
 
-  virtual ECS::Engine *load() = 0;
+  virtual ECS::EnginePtr load() = 0;
 };
 
 #endif  // ROGUELIKE_ISTAGE_H

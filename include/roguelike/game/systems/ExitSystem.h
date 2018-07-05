@@ -9,19 +9,15 @@
 #include <game/systems/InputSystem.h>
 
 class ExitSystem : public ECS::IntervalSystem<ExitSystem> {
-  InputSystem *inputSystem{};
-
  public:
   ExitSystem() : IntervalSystem(IPS) {}
 
   void PreUpdate(double dt) override {
+    auto inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
+
     if (inputSystem->GetButtonDown('q')) {
       GetEngineControl()->Stop();
     }
-  }
-
-  void OnCreated() override {
-    inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
   }
 };
 

@@ -16,9 +16,9 @@ class EventDispatcher;
 class IEngineControl {
  public:
   virtual void Stop() = 0;
-  virtual EntityManager *GetEntityManager() const = 0;
-  virtual ComponentManager *GetComponentManager() const = 0;
-  virtual SystemManager *GetSystemManager() const = 0;
+  virtual std::shared_ptr<EntityManager> GetEntityManager() const = 0;
+  virtual std::shared_ptr<ComponentManager> GetComponentManager() const = 0;
+  virtual std::shared_ptr<SystemManager> GetSystemManager() const = 0;
   virtual Event::EventDispatcher *GetEventHandler() const = 0;
 };
 }

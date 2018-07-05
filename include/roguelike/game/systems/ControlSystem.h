@@ -11,13 +11,8 @@
 #include <game/components/TransformComponent.h>
 #include <game/systems/InputSystem.h>
 class ControlSystem : public ECS::IntervalIteratingSystem<ControlSystem> {
-  InputSystem *inputSystem{};
-  LOG_INIT("ControlSystem");
-
  public:
   explicit ControlSystem() : IntervalIteratingSystem(IPS) {}
-
-  void OnCreated() override;
 
   void ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) override;
 

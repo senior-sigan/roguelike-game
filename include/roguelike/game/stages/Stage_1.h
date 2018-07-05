@@ -9,10 +9,8 @@
 #include <game/stages/IStage.h>
 
 class Stage_1 : public IStage {
-  LOG_INIT("Stage_1");
-
  public:
-  ECS::Engine* load() override;
+  ECS::EnginePtr load() override;
 };
 
 #endif  // ROGUELIKE_LEVEL_1_H

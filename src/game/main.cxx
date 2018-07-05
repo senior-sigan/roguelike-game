@@ -6,6 +6,6 @@
 
 int main() {
   LOG_CONFIGURE();
-  auto game = new Game();
+  auto game = std::make_unique<Game>();
   game->Start();
 }

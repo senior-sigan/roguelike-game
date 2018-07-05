@@ -6,6 +6,7 @@
 #include <game/systems/ControlSystem.h>
 
 void ControlSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) {
+  auto inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
   auto cc = entity->GetComponent<ControlComponent>();
   auto mc = entity->GetComponent<MovementComponent>();
 
@@ -29,8 +30,4 @@ void ControlSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, double 
 
 bool ControlSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
   return entity->HasComponent<ControlComponent>() && entity->HasComponent<MovementComponent>();
-}
-
-void ControlSystem::OnCreated() {
-  inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
 }

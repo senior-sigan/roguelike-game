@@ -7,8 +7,8 @@
 #include <patternlayout.h>
 
 log4cxx::AppenderPtr syslogAppender() {
-  auto pattern = new log4cxx::PatternLayout("%d [%t] %-5p %c - %m%n");
-  auto appender = new log4cxx::FileAppender(pattern, "/tmp/game.log");
+  log4cxx::PatternLayoutPtr pattern = new log4cxx::PatternLayout("%d [%t] %-5p %c - %m%n");
+  log4cxx::FileAppenderPtr appender = new log4cxx::FileAppender(pattern, "/tmp/game.log");
   log4cxx::helpers::Pool p;
   appender->activateOptions(p);
   return log4cxx::AppenderPtr(appender);

@@ -4,15 +4,17 @@
 
 #include <ECS/GameLoop.h>
 #include <chrono>
+#include <thread>
 
 namespace ECS {
 void GameLoop::Loop() {
   auto previous = std::chrono::system_clock::now();
   while (running) {
     auto current = std::chrono::system_clock::now();
-    std::chrono::duration<double> elapsed = current - previous;
+    std::chrono::duration<double, std::ratio<1>> elapsed = current - previous;
     previous = current;
     Update(elapsed.count());
+//    std::this_thread::sleep_for(std::chrono::milliseconds(30));
   }
 }
 void GameLoop::Stop() {

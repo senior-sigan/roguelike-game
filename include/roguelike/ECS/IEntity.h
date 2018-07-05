@@ -11,7 +11,7 @@ namespace ECS {
 class IEntity {
   friend class EntityManager;
 
-  ComponentManager *componentManager{};  // TODO: should be filled in the EntityManager
+  ComponentManagerPtr componentManager;  // TODO: should be filled in the EntityManager
   EntityID entityID{};                   // TODO: should bew filled in the EntityManager
 
  public:
@@ -24,27 +24,27 @@ class IEntity {
 
   template<class TComponent>
   std::shared_ptr<TComponent> GetComponent() const {
-    return this->componentManager->GetComponent<TComponent>(entityID);
+    return componentManager->GetComponent<TComponent>(entityID);
   }
 
   template<class TComponent>
   bool HasComponent() const {
-    auto component = this->componentManager->GetComponent<TComponent>(entityID);
+    auto component = componentManager->GetComponent<TComponent>(entityID);
     return component != nullptr;
   }
 
   template<class TComponent, class... TParam>
   void AddComponent(TParam &&... params) {
-    this->componentManager->AddComponent<TComponent>(entityID, std::forward<TParam>(params)...);
+    componentManager->AddComponent<TComponent>(entityID, std::forward<TParam>(params)...);
   }
 
   template<class TComponent>
   void RemoveComponent() {
-    this->componentManager->RemoveComponent<TComponent>(entityID);
+    componentManager->RemoveComponent<TComponent>(entityID);
   }
 
   void RemoveAllComponents() {
-    this->componentManager->RemoveAllComponents(entityID);
+    componentManager->RemoveAllComponents(entityID);
   }
 
   virtual void OnCreated() {}

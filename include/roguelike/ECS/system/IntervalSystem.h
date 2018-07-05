@@ -19,12 +19,15 @@ template<class T>
 class IntervalSystem : public ISystem {
   friend class SystemManager;
   static const SystemTypeID STATIC_TYPE_ID;
-  const double interval{};
-  double currentTime{};
+  const double interval;
+  double currentTime;
 
-  LOG_INIT("IntervalSystem");
+  // TODO: remove this logger to fix segmentation fault.
+  // But you'll get strange game behaviour - it became super fast. Seems like skip steps.
+//  LOG_INIT("IntervalSystem");
 
   void _PreUpdate(double dt) override {
+    if (currentTime < 0) currentTime = 0;
     PreUpdate(dt);
     currentTime += dt;  // Every PRE update increment timer
     if (currentTime >= interval) {

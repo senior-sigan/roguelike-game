@@ -63,6 +63,8 @@ class ComponentManager {
     container.clear();
   }
 };
+
+typedef std::shared_ptr<ComponentManager> ComponentManagerPtr;
 }
 
 #endif  // ROGUELIKE_COMPONENTMANAGER_H

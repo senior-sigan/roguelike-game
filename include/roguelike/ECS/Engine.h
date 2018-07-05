@@ -13,10 +13,9 @@
 #include "ECS/system/SystemManager.h"
 namespace ECS {
 class Engine : public IEngineControl, public GameLoop {
-  LOG_INIT("Engine");
-  EntityManager *entityManager;
-  ComponentManager *componentManager;
-  SystemManager *systemManager;
+  EntityManagerPtr entityManager;
+  ComponentManagerPtr componentManager;
+  SystemManagerPtr systemManager;
   Event::EventDispatcher *eventDispatcher;
   Event::EventListener *eventListener;
   Event::EventSender *eventSender;
@@ -26,15 +25,13 @@ class Engine : public IEngineControl, public GameLoop {
  public:
   Engine();
 
-  virtual ~Engine();
-
-  EntityManager *GetEntityManager() const override {
+  EntityManagerPtr GetEntityManager() const override {
     return entityManager;
   }
-  ComponentManager *GetComponentManager() const override {
+  ComponentManagerPtr GetComponentManager() const override {
     return componentManager;
   }
-  SystemManager *GetSystemManager() const override {
+  SystemManagerPtr GetSystemManager() const override {
     return systemManager;
   }
   Event::EventDispatcher *GetEventHandler() const override {
@@ -45,5 +42,7 @@ class Engine : public IEngineControl, public GameLoop {
 
   void OnDestroy();
 };
+
+typedef std::shared_ptr<Engine> EnginePtr;
 }
 #endif  // ROGUELIKE_ENGINE_H

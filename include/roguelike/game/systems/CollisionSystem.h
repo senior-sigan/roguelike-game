@@ -13,8 +13,6 @@
  * Respond to calculate collisions of the all ColliderComponents
  */
 class CollisionSystem : public ECS::IteratingSystem<CollisionSystem> {
-  LOG_INIT("CollisionSystem");
-
  public:
   void PreProcessEntity(const ECS::IEntityPtr &entity, double dt) override;
 

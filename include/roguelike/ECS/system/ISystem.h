@@ -5,6 +5,7 @@
 #ifndef ROGUELIKE_ISYSTEM_H
 #define ROGUELIKE_ISYSTEM_H
 
+#include <ECS/EntityManager.h>
 #include <ECS/Event/EventDispatcher.h>
 #include <ECS/IEngineControl.h>
 #include <ECS/IEntity.h>
@@ -15,18 +16,18 @@ namespace ECS {
 
 class ISystem : public IUpdate {
   friend class SystemManager;
-  EntityManager *entityManager{};
-  IEngineControl *engineControl{};
+  EntityManagerPtr entityManager;
+  IEngineControl* engineControl;
 
  protected:
   Event::EventSender *eventSender{};
   Event::EventListener *eventListener{};
 
  public:
-  IEngineControl *GetEngineControl() const {
+  IEngineControl* GetEngineControl() const {
     return engineControl;
   }
-  EntityManager *GetEntityManager() const {
+  EntityManagerPtr GetEntityManager() const {
     return entityManager;
   }
 
@@ -50,6 +51,8 @@ class ISystem : public IUpdate {
     return !(*this < rhs);
   }
 };
+
+typedef std::shared_ptr<ISystem> ISystemPtr;
 }
 
 #endif  // ROGUELIKE_ISYSTEM_H

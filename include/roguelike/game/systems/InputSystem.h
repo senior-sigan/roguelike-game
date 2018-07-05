@@ -11,7 +11,6 @@
 class InputSystem : public ECS::IntervalSystem<InputSystem> {
   static const uint KEYS_SIZE = 255;
   bool currentKeys[KEYS_SIZE]{};
-  LOG_INIT("InputSystem");
   void Clear();
 
  public:
@@ -28,5 +27,7 @@ class InputSystem : public ECS::IntervalSystem<InputSystem> {
 
   bool GetButtonDown(unsigned int key);
 };
+
+typedef std::shared_ptr<InputSystem> InputSystemPtr;
 
 #endif  // ROGUELIKE_INPUTSYSTEM_H

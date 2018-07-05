@@ -16,7 +16,7 @@
 #include <game/systems/RenderingSystem.h>
 
 namespace {
-void createEntity(ECS::Engine* const engine, int x, int y, char tile) {
+void createEntity(const ECS::EnginePtr &engine, int x, int y, char tile) {
   // TODO: create a configuration file that map tiles to entities and remove switch
   switch (tile) {
     case 0: {
@@ -33,17 +33,17 @@ void createEntity(ECS::Engine* const engine, int x, int y, char tile) {
 }
 }
 
-ECS::Engine* Stage_1::load() {
+ECS::EnginePtr Stage_1::load() {
   // TODO: By the way, we can load them from config files!
   auto engine = GetEngine();
 
-  engine->GetSystemManager()->CreateAndGet<InputSystem>();
-  engine->GetSystemManager()->CreateAndGet<RenderingSystem>();
-  engine->GetSystemManager()->CreateAndGet<ControlSystem>();
-  engine->GetSystemManager()->CreateAndGet<CollisionSystem>();
-  engine->GetSystemManager()->CreateAndGet<MovementSystem>();
-  engine->GetSystemManager()->CreateAndGet<ItemGatheringSystem>();
-  engine->GetSystemManager()->CreateAndGet<ExitSystem>();
+  engine->GetSystemManager()->Create<InputSystem>();
+  engine->GetSystemManager()->Create<RenderingSystem>();
+  engine->GetSystemManager()->Create<ControlSystem>();
+  engine->GetSystemManager()->Create<CollisionSystem>();
+  engine->GetSystemManager()->Create<MovementSystem>();
+  engine->GetSystemManager()->Create<ItemGatheringSystem>();
+  engine->GetSystemManager()->Create<ExitSystem>();
 
   engine->GetEntityManager()->CreateAndGet<PlayerEntity>(Core::Vector2(1, 1));
 

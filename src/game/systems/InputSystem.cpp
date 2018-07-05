@@ -13,7 +13,6 @@ void InputSystem::PostUpdateInterval(double dt) {
   for (uint i = 0; i < KEYS_SIZE; i++) {
     if (currentKeys[i]) {
       // TODO: We may send events to subscribers.
-      //            LOG_DEBUG(i);
     }
   }
   Clear();
@@ -23,11 +22,10 @@ void InputSystem::Clear() {
     currentKey = false;
   }
 }
-bool InputSystem::GetButtonDown(unsigned int key) {
+bool InputSystem::GetButtonDown(uint key) {
   if (key < KEYS_SIZE) {
     return currentKeys[key];
   } else {
-    LOG_WARN("Button key must be between [0..255], but got " << key);
     return false;
   }
 }

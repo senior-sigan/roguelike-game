@@ -19,8 +19,8 @@ template<class T>
 class IntervalIteratingSystem : public ISystem {
   friend class SystemManager;
   static const SystemTypeID STATIC_TYPE_ID;
-  const double interval{};
-  double currentTime{};
+  const double interval;
+  double currentTime;
 
   void _PreUpdate(double dt) override {
     PreUpdate(dt);
@@ -29,6 +29,7 @@ class IntervalIteratingSystem : public ISystem {
         PreProcessEntity(entity.second, dt);
       }
     }
+    if (currentTime < 0) currentTime = 0;
     currentTime += dt;  // Every PRE update increment timer
     if (currentTime >= interval) {
       _PreUpdateInterval(currentTime);

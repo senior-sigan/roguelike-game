@@ -13,13 +13,13 @@ class EntityManager {
   friend class SystemManager;
   LOG_INIT("EntityManager");
   EntityID currentID = 0;
-  ComponentManager *componentManager;
+  ComponentManagerPtr componentManager;
 
  public:
   std::unordered_map<EntityID, std::shared_ptr<IEntity>> container;
   std::set<EntityID> toDelete;
 
-  explicit EntityManager(ComponentManager *componentManager) : componentManager(componentManager) {
+  explicit EntityManager(const ComponentManagerPtr &componentManager) : componentManager(componentManager) {
     LOG_INFO("EntityManager was initialized");
   }
 
@@ -70,6 +70,8 @@ class EntityManager {
     return container[id];
   }
 };
+
+typedef std::shared_ptr<EntityManager> EntityManagerPtr;
 }
 
 #endif  // ROGUELIKE_ENTITYMANAGER_H
