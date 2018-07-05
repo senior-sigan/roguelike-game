@@ -5,11 +5,11 @@
 #ifndef ROGUELIKE_COMPONENTMANAGER_H
 #define ROGUELIKE_COMPONENTMANAGER_H
 
+#include <ECS/IComponent.h>
+#include <ECS/Platform.h>
+#include <Log/logging.h>
 #include <unordered_map>
 #include <utility>
-#include "ECS/IComponent.h"
-#include "ECS/Platform.h"
-#include "Log/logging.h"
 
 namespace ECS {
 /**
@@ -27,7 +27,7 @@ struct pairhash {
 
 class ComponentManager {
   LOG_INIT("ComponentManager");
-  std::unordered_map<std::pair<EntityID, ComponentTypeID>, IComponent *, pairhash> container;
+  std::unordered_map<std::pair<EntityID, ComponentTypeID>, std::shared_ptr<IComponent>, pairhash> container;
   ComponentID currentID = 0;
 
  public:
@@ -36,19 +36,18 @@ class ComponentManager {
   }
 
   template<class TComponent, class... TParam>
-  TComponent *AddComponent(const EntityID entityID, TParam &&... params) {
+  void AddComponent(const EntityID entityID, TParam &&... params) {
     auto component = new TComponent(std::forward<TParam>(params)...);
     auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
     component->ownerID = entityID;
     component->componentID = currentID++;
-    container[key] = component;
+    container[key] = std::shared_ptr<TComponent>(component);
     component->OnCreated();
-    return component;
   }
   template<class TComponent>
-  TComponent *GetComponent(EntityID entityID) {
+  std::shared_ptr<TComponent> GetComponent(EntityID entityID) {
     auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
-    return static_cast<TComponent *>(container[key]);
+    return std::static_pointer_cast<TComponent>(container[key]);
   }
   template<class TComponent>
   void RemoveComponent(EntityID entityID) {

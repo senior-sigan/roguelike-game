@@ -23,7 +23,7 @@ class IEntity {
   }
 
   template<class TComponent>
-  TComponent *GetComponent() const {
+  std::shared_ptr<TComponent> GetComponent() const {
     return this->componentManager->GetComponent<TComponent>(entityID);
   }
 
@@ -34,8 +34,8 @@ class IEntity {
   }
 
   template<class TComponent, class... TParam>
-  TComponent *AddComponent(TParam &&... params) {
-    return this->componentManager->AddComponent<TComponent>(entityID, std::forward<TParam>(params)...);
+  void AddComponent(TParam &&... params) {
+    this->componentManager->AddComponent<TComponent>(entityID, std::forward<TParam>(params)...);
   }
 
   template<class TComponent>

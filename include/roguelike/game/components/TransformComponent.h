@@ -14,4 +14,6 @@ class TransformComponent : public ECS::Component<TransformComponent> {
   Core::Vector2 position;
 };
 
+typedef std::shared_ptr<TransformComponent> TransformComponentPtr;
+
 #endif  // ROGUELIKE_TRANSFORMCOMPONENT_H

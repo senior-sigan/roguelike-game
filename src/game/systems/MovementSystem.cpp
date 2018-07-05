@@ -31,7 +31,7 @@ Core::Rectangle rectangle(const ECS::IEntity* entity) {
   return Core::Rectangle(Core::Vector2(xLeft, yUpper), bcc->size);
 }
 
-void applyForce(TransformComponent* const tc, MovementComponent* const mc) {
+void applyForce(const TransformComponentPtr& tc, const MovementComponentPtr& mc) {
   tc->position.x += mc->force.x * mc->direction.x;
   tc->position.y += mc->force.y * mc->direction.y;
 
@@ -46,7 +46,7 @@ void applyForce(TransformComponent* const tc, MovementComponent* const mc) {
   if (mc->force.y < 0) mc->force.y = 0;
 }
 
-void stopMovement(MovementComponent* const mc) {
+void stopMovement(const MovementComponentPtr &mc) {
   mc->force = Core::Vector2::ZERO;
 }
 
