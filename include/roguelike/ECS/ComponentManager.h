@@ -47,7 +47,7 @@ class ComponentManager {
   template<class TComponent>
   std::shared_ptr<TComponent> GetComponent(EntityID entityID) {
     auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
-    return std::static_pointer_cast<TComponent>(container[key]);
+    return std::dynamic_pointer_cast<TComponent>(container[key]);
   }
   template<class TComponent>
   void RemoveComponent(EntityID entityID) {

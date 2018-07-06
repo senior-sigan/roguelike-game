@@ -8,13 +8,11 @@
 void InputSystem::PreUpdate(double dt) {
   int key = getch();
   currentKeys[key] = true;
+  LOG_INFO("current time " << GetCurrentTime() << " " << dt);
 }
 void InputSystem::PostUpdateInterval(double dt) {
-  for (uint i = 0; i < KEYS_SIZE; i++) {
-    if (currentKeys[i]) {
-      // TODO: We may send events to subscribers.
-    }
-  }
+  LOG_INFO("long upd " << dt);
+  // TODO: We may send events to subscribers.
   Clear();
 }
 void InputSystem::Clear() {

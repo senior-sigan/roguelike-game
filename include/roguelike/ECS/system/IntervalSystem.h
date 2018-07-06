@@ -21,15 +21,12 @@ class IntervalSystem : public ISystem {
   static const SystemTypeID STATIC_TYPE_ID;
   const double interval;
   double currentTime;
-
-  // TODO: remove this logger to fix segmentation fault.
-  // But you'll get strange game behaviour - it became super fast. Seems like skip steps.
-//  LOG_INIT("IntervalSystem");
+  bool OFFSET = false; // TODO: MAGIC IS HERE. DO NOT REMOVE, OTHERWAISE BUUUUM!!!!!!!!
 
   void _PreUpdate(double dt) override {
-    if (currentTime < 0) currentTime = 0;
     PreUpdate(dt);
-    currentTime += dt;  // Every PRE update increment timer
+    if (currentTime < 0) currentTime = 0;
+    if (dt > 0) currentTime += dt;  // Every PRE update increment timer
     if (currentTime >= interval) {
       PreUpdateInterval(currentTime);
     }
@@ -57,6 +54,10 @@ class IntervalSystem : public ISystem {
 
   SystemTypeID GetTypeID() const override {
     return STATIC_TYPE_ID;
+  }
+
+  double GetCurrentTime() {
+    return currentTime;
   }
 
   virtual void PreUpdate(double dt) {}

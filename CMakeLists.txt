@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.11)
 project(roguelike LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -Wno-unused-parameter -Wno-undefined-var-template -fPIC -march=native")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Wall -Werror -Wextra -Wno-unused-parameter -Wno-undefined-var-template -fPIC -march=native")
+#set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 # флаги добавления дебажных символов.
 # TODO: унести это в отдельный target, чтобы делать релизные сборки без флагов

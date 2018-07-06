@@ -30,7 +30,7 @@ class IntervalIteratingSystem : public ISystem {
       }
     }
     if (currentTime < 0) currentTime = 0;
-    currentTime += dt;  // Every PRE update increment timer
+    if (dt > 0) currentTime += dt;  // Every PRE update increment timer
     if (currentTime >= interval) {
       _PreUpdateInterval(currentTime);
     }

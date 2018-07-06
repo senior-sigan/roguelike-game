@@ -13,6 +13,8 @@ class InputSystem : public ECS::IntervalSystem<InputSystem> {
   bool currentKeys[KEYS_SIZE]{};
   void Clear();
 
+  LOG_INIT("InputSystem");
+
  public:
   explicit InputSystem() : IntervalSystem(IPS) {
     Clear();

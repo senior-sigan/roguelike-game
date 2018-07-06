@@ -30,7 +30,7 @@ class SystemManager {
 
   template<class TSystem>
   std::shared_ptr<TSystem> Get() {
-    return std::static_pointer_cast<TSystem>(container[TSystem::STATIC_TYPE_ID]);
+    return std::dynamic_pointer_cast<TSystem>(container[TSystem::STATIC_TYPE_ID]);
   }
 
   template<class TSystem, class... TParam>
