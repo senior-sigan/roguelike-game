@@ -21,7 +21,7 @@ class IntervalSystem : public ISystem {
   static const SystemTypeID STATIC_TYPE_ID;
   const double interval;
   double currentTime;
-  bool OFFSET = false; // TODO: MAGIC IS HERE. DO NOT REMOVE, OTHERWAISE BUUUUM!!!!!!!!
+  bool OFFSET = false;  // TODO: MAGIC IS HERE. DO NOT REMOVE, OTHERWAISE BUUUUM!!!!!!!!
 
   void _PreUpdate(double dt) override {
     PreUpdate(dt);
