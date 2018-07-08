@@ -16,7 +16,6 @@ class IntervalSystem : public ISystem {
   friend class SystemManager;
   const double interval;
   double currentTime;
-  bool OFFSET = false;  // TODO: MAGIC IS HERE. DO NOT REMOVE, OTHERWAISE BUUUUM!!!!!!!!
 
   void _PreUpdate(double dt) override;
 
@@ -26,6 +25,7 @@ class IntervalSystem : public ISystem {
 
  public:
   explicit IntervalSystem(double interval);
+  ~IntervalSystem() override;
 
   double GetCurrentTime() {
     return currentTime;

@@ -49,6 +49,8 @@ class ISystem : public IUpdate {
   bool operator>=(const ISystem &rhs) const {
     return !(*this < rhs);
   }
+
+  virtual ~ISystem() = default;
 };
 
 typedef std::shared_ptr<ISystem> ISystemPtr;

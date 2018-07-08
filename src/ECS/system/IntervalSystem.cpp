@@ -28,3 +28,6 @@ void ECS::IntervalSystem::_PostUpdate(double dt) {
 ECS::IntervalSystem::IntervalSystem(const double interval) : interval(interval) {
   currentTime = 0;
 }
+ECS::IntervalSystem::~IntervalSystem() {
+  currentTime = 0;
+}

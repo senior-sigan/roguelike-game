@@ -28,10 +28,11 @@ class SystemManager {
                          IEngineControl *engineControl1);
   virtual ~SystemManager();
 
-  template<class TSystem>
-  std::shared_ptr<TSystem> Get() {
-    return std::dynamic_pointer_cast<TSystem>(container[typeid(TSystem)]);
-  }
+// TODO: this cast break the pointers in the systems. It's strange
+// template<class TSystem>
+//  std::shared_ptr<TSystem> Get() {
+//    return std::dynamic_pointer_cast<TSystem>(container[typeid(TSystem)]);
+//  }
 
   template<class TSystem, class... TParam>
   void Create(TParam &&... params) {

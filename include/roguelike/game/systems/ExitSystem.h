@@ -13,9 +13,7 @@ class ExitSystem : public ECS::IntervalSystem {
   explicit ExitSystem() : IntervalSystem(IPS) {}
 
   void PreUpdateInterval(double dt) override {
-    auto inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
-
-    if (inputSystem->GetButtonDown('q')) {
+    if (Input::Instance().GetButtonDown('q')) {
       GetEngineControl()->Stop();
     }
   }

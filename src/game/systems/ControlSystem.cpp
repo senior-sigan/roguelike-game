@@ -6,23 +6,22 @@
 #include <game/systems/ControlSystem.h>
 
 void ControlSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) {
-  auto inputSystem = GetEngineControl()->GetSystemManager()->Get<InputSystem>();
   auto cc = entity->GetComponent<ControlComponent>();
   auto mc = entity->GetComponent<MovementComponent>();
 
-  if (inputSystem->GetButtonDown(cc->up)) {
+  if (Input::Instance().GetButtonDown(cc->up)) {
     mc->force.y += mc->speed.y;
     mc->direction = Core::Vector2::UP;
   }
-  if (inputSystem->GetButtonDown(cc->down)) {
+  if (Input::Instance().GetButtonDown(cc->down)) {
     mc->force.y += mc->speed.y;
     mc->direction = Core::Vector2::DOWN;
   }
-  if (inputSystem->GetButtonDown(cc->right)) {
+  if (Input::Instance().GetButtonDown(cc->right)) {
     mc->force.x += mc->speed.x;
     mc->direction = Core::Vector2::RIGHT;
   }
-  if (inputSystem->GetButtonDown(cc->left)) {
+  if (Input::Instance().GetButtonDown(cc->left)) {
     mc->force.x += mc->speed.x;
     mc->direction = Core::Vector2::LEFT;
   }

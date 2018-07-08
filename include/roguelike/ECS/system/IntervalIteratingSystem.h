@@ -28,6 +28,10 @@ class IntervalIteratingSystem : public ISystem {
  public:
   explicit IntervalIteratingSystem(double interval);
 
+  double GetCurrentTime() {
+    return currentTime;
+  }
+
   virtual void PreUpdate(double dt) {}
   virtual void Update(double dt) {}
   virtual void PostUpdate(double dt) {}

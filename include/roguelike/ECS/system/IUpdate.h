@@ -12,6 +12,8 @@ class IUpdate {
   virtual void _PreUpdate(double dt) = 0;
   virtual void _Update(double dt) = 0;
   virtual void _PostUpdate(double dt) = 0;
+ public:
+  virtual ~IUpdate() = default;
 };
 
 #endif  // ROGUELIKE_IUPDATEABLE_H
