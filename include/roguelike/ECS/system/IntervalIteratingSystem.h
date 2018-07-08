@@ -11,10 +11,7 @@ namespace ECS {
 
 /**
  * It's a combination of interval and iterating systems.
- *
- * @tparam T
  */
-template<class T>
 class IntervalIteratingSystem : public ISystem {
   friend class SystemManager;
   const double interval;

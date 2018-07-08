@@ -8,7 +8,6 @@
 #include <ECS/EntityManager.h>
 #include <ECS/system/ISystem.h>
 namespace ECS {
-template<class T>
 class IteratingSystem : public ISystem {
   friend class SystemManager;
 

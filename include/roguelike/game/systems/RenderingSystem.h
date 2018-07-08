@@ -20,7 +20,7 @@ struct Tile {
   explicit Tile(char symbol = ' ', int color = 0) : symbol(symbol), color(color) {}
 };
 
-class RenderingSystem : public ECS::IntervalIteratingSystem<RenderingSystem> {
+class RenderingSystem : public ECS::IntervalIteratingSystem {
   // TODO: get somehow this sizes and be ready when it's changed. Or is it world size??? Not render page?
   static const uint width = 80;
   static const uint height = 24;

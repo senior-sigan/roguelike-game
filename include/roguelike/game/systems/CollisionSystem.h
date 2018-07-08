@@ -12,7 +12,7 @@
 /**
  * Respond to calculate collisions of the all ColliderComponents
  */
-class CollisionSystem : public ECS::IteratingSystem<CollisionSystem> {
+class CollisionSystem : public ECS::IteratingSystem {
  public:
   void PreProcessEntity(const ECS::IEntityPtr &entity, double dt) override;
 

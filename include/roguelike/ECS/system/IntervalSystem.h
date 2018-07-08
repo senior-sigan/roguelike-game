@@ -11,10 +11,7 @@ namespace ECS {
 /**
  * Update commands will be called on every world update, but after given interval.
  * If you need iterates over Entities, use IteratingSystem.
- *
- * @tparam T
  */
-template<class T>
 class IntervalSystem : public ISystem {
   friend class SystemManager;
   const double interval;

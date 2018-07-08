@@ -8,7 +8,7 @@
 #include <ECS/system/IntervalSystem.h>
 #include <game/Consts.h>
 
-class InputSystem : public ECS::IntervalSystem<InputSystem> {
+class InputSystem : public ECS::IntervalSystem {
   static const uint KEYS_SIZE = 255;
   bool currentKeys[KEYS_SIZE]{};
   void Clear();

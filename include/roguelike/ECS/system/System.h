@@ -12,10 +12,7 @@ namespace ECS {
 /**
  * General System. Update commands will be called on every world update.
  * If you need iterates over Entities, use IteratingSystem.
- *
- * @tparam T
  */
-template<class T>
 class System : public ISystem {
   friend class SystemManager;
 
