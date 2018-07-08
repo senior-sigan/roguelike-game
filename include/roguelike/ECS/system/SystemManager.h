@@ -18,13 +18,13 @@ class SystemManager {
   std::map<SystemTypeID, ISystemPtr> container;  // special storage for fast lookup
 
   EntityManagerPtr entityManager;
-  Event::EventDispatcher *eventDispatcher;
+  Event::EventDispatcherPtr eventDispatcher;
   IEngineControl *engineControl;
 
   void Update(double delta);
 
  public:
-  explicit SystemManager(const EntityManagerPtr &entityManager, Event::EventDispatcher *eventDispatcher,
+  explicit SystemManager(const EntityManagerPtr &entityManager, const Event::EventDispatcherPtr &eventDispatcher,
                          IEngineControl *engineControl1);
   virtual ~SystemManager();
 
@@ -52,12 +52,7 @@ class SystemManager {
     container.erase(std::type_index(typeid(TSystem)));
   }
 
-  void DestroyAllSystems() {
-    for (auto system : container) {
-      system.second->OnDestroy();
-    }
-    container.clear();
-  }
+  void DestroyAllSystems();
 };
 
 typedef std::shared_ptr<SystemManager> SystemManagerPtr;

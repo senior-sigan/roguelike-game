@@ -18,34 +18,14 @@ class IntervalSystem : public ISystem {
   double currentTime;
   bool OFFSET = false;  // TODO: MAGIC IS HERE. DO NOT REMOVE, OTHERWAISE BUUUUM!!!!!!!!
 
-  void _PreUpdate(double dt) override {
-    PreUpdate(dt);
-    if (currentTime < 0) currentTime = 0;
-    if (dt > 0) currentTime += dt;  // Every PRE update increment timer
-    if (currentTime >= interval) {
-      PreUpdateInterval(currentTime);
-    }
-  }
+  void _PreUpdate(double dt) override;
 
-  void _Update(double dt) override {
-    Update(dt);
-    if (currentTime >= interval) {
-      UpdateInterval(currentTime);
-    }
-  }
+  void _Update(double dt) override;
 
-  void _PostUpdate(double dt) override {
-    PostUpdate(dt);
-    if (currentTime >= interval) {
-      PostUpdateInterval(currentTime);
-      currentTime -= interval;  // Every POST update decrement timer
-    }
-  }
+  void _PostUpdate(double dt) override;
 
  public:
-  explicit IntervalSystem(const double interval) : interval(interval) {
-    currentTime = 0;
-  }
+  explicit IntervalSystem(double interval);
 
   double GetCurrentTime() {
     return currentTime;

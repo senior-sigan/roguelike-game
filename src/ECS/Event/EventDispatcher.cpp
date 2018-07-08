@@ -19,6 +19,6 @@ void EventDispatcher::DispatchEvents(double deltaTime) {
 
   eventSender->events.remove_if([&](const IEvent* event) -> bool { return event->isToDelete(); });
 }
-EventDispatcher::EventDispatcher(EventSender* eventSender, EventListener* eventListener)
+EventDispatcher::EventDispatcher(const EventSenderPtr &eventSender, const EventListenerPtr &eventListener)
     : eventSender(eventSender), eventListener(eventListener) {}
 }

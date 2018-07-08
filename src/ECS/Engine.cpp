@@ -14,9 +14,9 @@ void Engine::Update(double deltaTime) {
   // TODO: destroy entities, components, resend destruction events.
 }
 Engine::Engine() {
-  eventListener = new Event::EventListener();
-  eventSender = new Event::EventSender();
-  eventDispatcher = new Event::EventDispatcher(eventSender, eventListener);
+  eventListener = std::make_shared<Event::EventListener>();
+  eventSender = std::make_shared<Event::EventSender>();
+  eventDispatcher = std::make_shared<Event::EventDispatcher>(eventSender, eventListener);
   componentManager = std::make_shared<ComponentManager>();
   entityManager = std::make_shared<EntityManager>(componentManager);
   systemManager = std::make_shared<SystemManager>(entityManager, eventDispatcher, this);

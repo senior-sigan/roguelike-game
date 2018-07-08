@@ -11,14 +11,16 @@ namespace ECS::Event {
 
 class EventDispatcher {
  public:
-  EventSender *eventSender;
-  EventListener *eventListener;
+  EventSenderPtr eventSender;
+  EventListenerPtr eventListener;
 
-  EventDispatcher(EventSender *eventSender, EventListener *eventListener);
+  EventDispatcher(const EventSenderPtr& eventSender, const EventListenerPtr& eventListener);
 
   // Invoke all the events from the incoming queue
   void DispatchEvents(double deltaTime);
 };
+
+typedef std::shared_ptr<EventDispatcher> EventDispatcherPtr;
 }
 
 #endif  // ROGUELIKE_EVENTHANDLER_H

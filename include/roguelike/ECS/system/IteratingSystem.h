@@ -11,30 +11,9 @@ namespace ECS {
 class IteratingSystem : public ISystem {
   friend class SystemManager;
 
-  void _PreUpdate(double dt) override {
-    PreUpdate(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PreProcessEntity(entity.second, dt);
-      }
-    }
-  }
-  void _Update(double dt) override {
-    Update(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        ProcessEntity(entity.second, dt);
-      }
-    }
-  }
-  void _PostUpdate(double dt) override {
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PostProcessEntity(entity.second, dt);
-      }
-    }
-    PostUpdate(dt);
-  }
+  void _PreUpdate(double dt) override;
+  void _Update(double dt) override;
+  void _PostUpdate(double dt) override;
 
  public:
   virtual void PreUpdate(double dt) {}

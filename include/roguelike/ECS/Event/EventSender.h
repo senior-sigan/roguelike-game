@@ -69,6 +69,8 @@ class EventSender {
     events.push_back(event);
   }
 };
+
+typedef std::shared_ptr<EventSender> EventSenderPtr;
 }
 
 #endif  // ROGUELIKE_EVENTSENDER_H

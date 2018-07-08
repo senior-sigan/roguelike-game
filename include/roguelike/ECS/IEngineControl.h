@@ -19,7 +19,7 @@ class IEngineControl {
   virtual std::shared_ptr<EntityManager> GetEntityManager() const = 0;
   virtual std::shared_ptr<ComponentManager> GetComponentManager() const = 0;
   virtual std::shared_ptr<SystemManager> GetSystemManager() const = 0;
-  virtual Event::EventDispatcher *GetEventHandler() const = 0;
+  virtual Event::EventDispatcherPtr GetEventHandler() const = 0;
 };
 }
 

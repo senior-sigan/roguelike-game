@@ -6,7 +6,7 @@
 #include <ECS/system/SystemManager.h>
 
 namespace ECS {
-SystemManager::SystemManager(const EntityManagerPtr &entityManager, Event::EventDispatcher *eventDispatcher,
+SystemManager::SystemManager(const EntityManagerPtr &entityManager, const Event::EventDispatcherPtr &eventDispatcher,
                              IEngineControl *engineControl)
     : entityManager(entityManager), eventDispatcher(eventDispatcher), engineControl(engineControl) {
   LOG_INFO("SystemManager was initialized");
@@ -30,5 +30,11 @@ void SystemManager::Update(double delta) {
   for (auto system : container) {
     system.second->_PostUpdate(delta);
   }
+}
+void SystemManager::DestroyAllSystems() {
+  for (auto system : container) {
+    system.second->OnDestroy();
+  }
+  container.clear();
 }
 }

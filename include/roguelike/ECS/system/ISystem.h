@@ -17,14 +17,14 @@ namespace ECS {
 class ISystem : public IUpdate {
   friend class SystemManager;
   EntityManagerPtr entityManager;
-  IEngineControl* engineControl;
+  IEngineControl *engineControl;
 
  protected:
-  Event::EventSender *eventSender{};
-  Event::EventListener *eventListener{};
+  Event::EventSenderPtr eventSender;
+  Event::EventListenerPtr eventListener;
 
  public:
-  IEngineControl* GetEngineControl() const {
+  IEngineControl *GetEngineControl() const {
     return engineControl;
   }
   EntityManagerPtr GetEntityManager() const {
