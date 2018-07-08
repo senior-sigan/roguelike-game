@@ -12,24 +12,14 @@ class Input {
   friend class InputSystem;
   static const uint8_t KEYS_SIZE = 255;
   bool currentKeys[KEYS_SIZE]{};
-  void Clear() {
-    for (bool &currentKey : currentKeys) {
-      currentKey = false;
-    }
-  }
+  void Clear();
   Input() {
     Clear();
   }
   ~Input() = default;
 
  public:
-  bool GetButtonDown(unsigned int key) {
-    if (key < KEYS_SIZE) {
-      return currentKeys[key];
-    } else {
-      return false;
-    }
-  }
+  bool GetButtonDown(unsigned int key);
 
   static Input &Instance() {
     static Input instance;

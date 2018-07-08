@@ -13,3 +13,16 @@ void InputSystem::PostUpdateInterval(double dt) {
   // TODO: We may send events to subscribers.
   Input::Instance().Clear();
 }
+
+bool Input::GetButtonDown(unsigned int key) {
+  if (key < KEYS_SIZE) {
+    return currentKeys[key];
+  } else {
+    return false;
+  }
+}
+void Input::Clear() {
+  for (bool &currentKey : currentKeys) {
+    currentKey = false;
+  }
+}

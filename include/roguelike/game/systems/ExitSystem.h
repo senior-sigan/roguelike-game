@@ -12,11 +12,7 @@ class ExitSystem : public ECS::IntervalSystem {
  public:
   explicit ExitSystem() : IntervalSystem(IPS) {}
 
-  void PreUpdateInterval(double dt) override {
-    if (Input::Instance().GetButtonDown('q')) {
-      GetEngineControl()->Stop();
-    }
-  }
+  void PreUpdateInterval(double dt) override;
 };
 
 #endif  // ROGUELIKE_EXITSYSTEM_H
