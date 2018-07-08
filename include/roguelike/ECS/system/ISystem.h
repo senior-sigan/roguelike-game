@@ -17,14 +17,14 @@ namespace ECS {
 class ISystem : public IUpdate {
   friend class SystemManager;
   EntityManagerPtr entityManager;
-  IEngineControl* engineControl;
+  IEngineControl *engineControl;
 
  protected:
-  Event::EventSender *eventSender{};
-  Event::EventListener *eventListener{};
+  Event::EventSenderPtr eventSender;
+  Event::EventListenerPtr eventListener;
 
  public:
-  IEngineControl* GetEngineControl() const {
+  IEngineControl *GetEngineControl() const {
     return engineControl;
   }
   EntityManagerPtr GetEntityManager() const {
@@ -34,7 +34,6 @@ class ISystem : public IUpdate {
   virtual SystemPriority GetSystemPriority() const {
     return 0;
   }
-  virtual SystemTypeID GetTypeID() const = 0;
   virtual void OnCreated() {}
   virtual void OnDestroy() {}
 

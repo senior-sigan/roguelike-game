@@ -7,7 +7,7 @@
 #include <game/systems/RenderingSystem.h>
 
 void Game::SetupECS() {
-  auto stage = new Stage_1();
+  auto stage = std::make_shared<Stage_1>();
   engine = stage->load();
 }
 void Game::Loop() {

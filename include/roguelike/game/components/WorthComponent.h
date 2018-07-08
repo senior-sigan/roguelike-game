@@ -5,8 +5,8 @@
 #ifndef ROGUELIKE_WORTHCOMPONENT_H
 #define ROGUELIKE_WORTHCOMPONENT_H
 
-#include <ECS/Component.h>
-class WorthComponent : public ECS::Component<WorthComponent> {
+#include <ECS/IComponent.h>
+class WorthComponent : public ECS::IComponent {
   int value;
 
  public:

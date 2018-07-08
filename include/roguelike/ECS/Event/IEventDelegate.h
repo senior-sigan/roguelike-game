@@ -16,6 +16,8 @@ class IEventDelegate {
   virtual bool operator==(const IEventDelegate *other) const = 0;
   virtual IEventDelegate *clone() = 0;
 };
+
+typedef std::shared_ptr<IEventDelegate> IEventDelegatePtr;
 }
 
 #endif  // ROGUELIKE_IEVENTDELEGATE_H

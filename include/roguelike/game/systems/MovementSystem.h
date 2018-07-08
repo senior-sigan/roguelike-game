@@ -6,7 +6,7 @@
 #define ROGUELIKE_MOVEMENTSYSTEM_H
 
 #include <ECS/system/IteratingSystem.h>
-class MovementSystem : public ECS::IteratingSystem<MovementSystem> {
+class MovementSystem : public ECS::IteratingSystem {
  public:
   void ProcessEntity(const ECS::IEntityPtr &entity, double dt) override;
 

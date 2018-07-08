@@ -5,13 +5,13 @@
 #ifndef ROGUELIKE_COINENTITY_H
 #define ROGUELIKE_COINENTITY_H
 
-#include <ECS/Entity.h>
+#include <ECS/IEntity.h>
 #include <game/components/BoxColliderComponent.h>
 #include <game/components/ItemComponent.h>
 #include <game/components/RenderComponent.h>
 #include <game/components/TransformComponent.h>
 #include <game/components/WorthComponent.h>
-class CoinEntity : public ECS::Entity<CoinEntity> {
+class CoinEntity : public ECS::IEntity {
   Core::Vector2 pos;
   int value;
 

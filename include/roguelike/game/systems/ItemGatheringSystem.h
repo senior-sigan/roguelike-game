@@ -7,7 +7,7 @@
 
 #include <ECS/system/IteratingSystem.h>
 
-class ItemGatheringSystem : public ECS::IteratingSystem<ItemGatheringSystem> {
+class ItemGatheringSystem : public ECS::IteratingSystem {
  public:
   void ProcessEntity(const ECS::IEntityPtr &entity, double dt) override;
 

@@ -18,19 +18,19 @@ class SystemManager {
   std::map<SystemTypeID, ISystemPtr> container;  // special storage for fast lookup
 
   EntityManagerPtr entityManager;
-  Event::EventDispatcher *eventDispatcher;
+  Event::EventDispatcherPtr eventDispatcher;
   IEngineControl *engineControl;
 
   void Update(double delta);
 
  public:
-  explicit SystemManager(const EntityManagerPtr &entityManager, Event::EventDispatcher *eventDispatcher,
+  explicit SystemManager(const EntityManagerPtr &entityManager, const Event::EventDispatcherPtr &eventDispatcher,
                          IEngineControl *engineControl1);
   virtual ~SystemManager();
 
   template<class TSystem>
   std::shared_ptr<TSystem> Get() {
-    return std::dynamic_pointer_cast<TSystem>(container[TSystem::STATIC_TYPE_ID]);
+    return std::dynamic_pointer_cast<TSystem>(container[typeid(TSystem)]);
   }
 
   template<class TSystem, class... TParam>
@@ -41,23 +41,18 @@ class SystemManager {
     system->engineControl = engineControl;
     system->entityManager = entityManager;
     system->OnCreated();
-    container[TSystem::STATIC_TYPE_ID] = std::shared_ptr<TSystem>(system);
+    container[std::type_index(typeid(TSystem))] = std::shared_ptr<TSystem>(system);
     LOG_INFO("System was created: " << typeid(TSystem).name());
   }
 
   template<class TSystem>
   void Destroy() {
-    auto system = container[TSystem::STATIC_TYPE_ID];
+    auto system = container[typeid(TSystem)];
     system->OnDestroy();
-    container.erase(TSystem::STATIC_TYPE_ID);
+    container.erase(std::type_index(typeid(TSystem)));
   }
 
-  void DestroyAllSystems() {
-    for (auto system : container) {
-      system.second->OnDestroy();
-    }
-    container.clear();
-  }
+  void DestroyAllSystems();
 };
 
 typedef std::shared_ptr<SystemManager> SystemManagerPtr;

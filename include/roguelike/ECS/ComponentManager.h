@@ -38,7 +38,7 @@ class ComponentManager {
   template<class TComponent, class... TParam>
   void AddComponent(const EntityID entityID, TParam &&... params) {
     auto component = new TComponent(std::forward<TParam>(params)...);
-    auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
+    auto key = std::make_pair(entityID, std::type_index(typeid(TComponent)));
     component->ownerID = entityID;
     component->componentID = currentID++;
     container[key] = std::shared_ptr<TComponent>(component);
@@ -46,12 +46,12 @@ class ComponentManager {
   }
   template<class TComponent>
   std::shared_ptr<TComponent> GetComponent(EntityID entityID) {
-    auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
+    auto key = std::make_pair(entityID, std::type_index(typeid(TComponent)));
     return std::dynamic_pointer_cast<TComponent>(container[key]);
   }
   template<class TComponent>
   void RemoveComponent(EntityID entityID) {
-    auto key = std::make_pair(entityID, TComponent::STATIC_TYPE_ID);
+    auto key = std::make_pair(entityID, std::type_index(typeid(TComponent)));
     container.erase(key);
   }
 

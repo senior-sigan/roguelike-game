@@ -5,8 +5,8 @@
 #ifndef ROGUELIKE_GATHERERCOMPONENT_H
 #define ROGUELIKE_GATHERERCOMPONENT_H
 
-#include <ECS/Component.h>
-class GathererComponent : public ECS::Component<GathererComponent> {
+#include <ECS/IComponent.h>
+class GathererComponent : public ECS::IComponent {
   int cash = 0;
 
  public:

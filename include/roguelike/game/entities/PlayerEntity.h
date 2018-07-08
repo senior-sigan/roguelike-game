@@ -5,7 +5,7 @@
 #ifndef ROGUELIKE_PLAYERENTITY_H
 #define ROGUELIKE_PLAYERENTITY_H
 
-#include <ECS/Entity.h>
+#include <ECS/IEntity.h>
 #include <game/components/BoxColliderComponent.h>
 #include <game/components/ControlComponent.h>
 #include <game/components/GathererComponent.h>
@@ -13,7 +13,7 @@
 #include <game/components/RenderComponent.h>
 #include <game/components/TransformComponent.h>
 
-class PlayerEntity : public ECS::Entity<PlayerEntity> {
+class PlayerEntity : public ECS::IEntity {
   Core::Vector2 pos;
 
  public:

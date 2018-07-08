@@ -16,9 +16,9 @@ class Engine : public IEngineControl, public GameLoop {
   EntityManagerPtr entityManager;
   ComponentManagerPtr componentManager;
   SystemManagerPtr systemManager;
-  Event::EventDispatcher *eventDispatcher;
-  Event::EventListener *eventListener;
-  Event::EventSender *eventSender;
+  Event::EventDispatcherPtr eventDispatcher;
+  Event::EventListenerPtr eventListener;
+  Event::EventSenderPtr eventSender;
 
   void Update(double deltaTime) override;
 
@@ -34,7 +34,7 @@ class Engine : public IEngineControl, public GameLoop {
   SystemManagerPtr GetSystemManager() const override {
     return systemManager;
   }
-  Event::EventDispatcher *GetEventHandler() const override {
+  Event::EventDispatcherPtr GetEventHandler() const override {
     return eventDispatcher;
   }
 

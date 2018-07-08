@@ -6,44 +6,16 @@
 #define ROGUELIKE_ITERATINGSYSTEM_H
 
 #include <ECS/EntityManager.h>
-#include <ECS/FamilyTypeID.h>
 #include <ECS/system/ISystem.h>
 namespace ECS {
-template<class T>
 class IteratingSystem : public ISystem {
   friend class SystemManager;
-  static const SystemTypeID STATIC_TYPE_ID;
 
-  void _PreUpdate(double dt) override {
-    PreUpdate(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PreProcessEntity(entity.second, dt);
-      }
-    }
-  }
-  void _Update(double dt) override {
-    Update(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        ProcessEntity(entity.second, dt);
-      }
-    }
-  }
-  void _PostUpdate(double dt) override {
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PostProcessEntity(entity.second, dt);
-      }
-    }
-    PostUpdate(dt);
-  }
+  void _PreUpdate(double dt) override;
+  void _Update(double dt) override;
+  void _PostUpdate(double dt) override;
 
  public:
-  SystemTypeID GetTypeID() const override {
-    return STATIC_TYPE_ID;
-  }
-
   virtual void PreUpdate(double dt) {}
   virtual void Update(double dt) {}
   virtual void PostUpdate(double dt) {}
@@ -60,8 +32,5 @@ class IteratingSystem : public ISystem {
     return false;
   }
 };
-
-template<class T>
-const ECS::SystemTypeID ECS::IteratingSystem<T>::STATIC_TYPE_ID = ECS::Internal::FamilyTypeID<ECS::ISystem>::Get<T>();
 }
 #endif  // ROGUELIKE_ITERATINGSYSTEM_H

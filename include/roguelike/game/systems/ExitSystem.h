@@ -8,7 +8,7 @@
 #include <ECS/system/IntervalSystem.h>
 #include <game/systems/InputSystem.h>
 
-class ExitSystem : public ECS::IntervalSystem<ExitSystem> {
+class ExitSystem : public ECS::IntervalSystem {
  public:
   explicit ExitSystem() : IntervalSystem(IPS) {}
 

@@ -10,7 +10,7 @@
 #include <game/components/ControlComponent.h>
 #include <game/components/TransformComponent.h>
 #include <game/systems/InputSystem.h>
-class ControlSystem : public ECS::IntervalIteratingSystem<ControlSystem> {
+class ControlSystem : public ECS::IntervalIteratingSystem {
  public:
   explicit ControlSystem() : IntervalIteratingSystem(IPS) {}
 

@@ -6,94 +6,27 @@
 #define ROGUELIKE_INTERVALITERATINGSYSTEM_H
 
 #include <ECS/EntityManager.h>
-#include <ECS/FamilyTypeID.h>
 #include <ECS/system/ISystem.h>
 namespace ECS {
 
 /**
  * It's a combination of interval and iterating systems.
- *
- * @tparam T
  */
-template<class T>
 class IntervalIteratingSystem : public ISystem {
   friend class SystemManager;
-  static const SystemTypeID STATIC_TYPE_ID;
   const double interval;
   double currentTime;
 
-  void _PreUpdate(double dt) override {
-    PreUpdate(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PreProcessEntity(entity.second, dt);
-      }
-    }
-    if (currentTime < 0) currentTime = 0;
-    if (dt > 0) currentTime += dt;  // Every PRE update increment timer
-    if (currentTime >= interval) {
-      _PreUpdateInterval(currentTime);
-    }
-  }
+  void _PreUpdate(double dt) override;
+  void _Update(double dt) override;
+  void _PostUpdate(double dt) override;
 
-  void _Update(double dt) override {
-    Update(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        ProcessEntity(entity.second, dt);
-      }
-    }
-    if (currentTime >= interval) {
-      _UpdateInterval(currentTime);
-    }
-  }
-
-  void _PostUpdate(double dt) override {
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PostProcessEntity(entity.second, dt);
-      }
-    }
-    PostUpdate(dt);
-    if (currentTime >= interval) {
-      _PostUpdateInterval(currentTime);
-      currentTime -= interval;  // Every POST update decrement timer
-    }
-  }
-
-  void _PreUpdateInterval(double dt) {
-    PreUpdateInterval(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PreProcessEntityInterval(entity.second, dt);
-      }
-    }
-  }
-  void _UpdateInterval(double dt) {
-    UpdateInterval(dt);
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        ProcessEntityInterval(entity.second, dt);
-      }
-    }
-  }
-  void _PostUpdateInterval(double dt) {
-    for (auto entity : GetEntityManager()->container) {
-      if (FamilyFilter(entity.second)) {
-        PostProcessEntityInterval(entity.second, dt);
-      }
-    }
-    PostUpdateInterval(dt);
-  }
+  void _PreUpdateInterval(double dt);
+  void _UpdateInterval(double dt);
+  void _PostUpdateInterval(double dt);
 
  public:
-  explicit IntervalIteratingSystem(const double interval) : interval(interval) {
-    currentTime = 0;
-  }
-
-  SystemTypeID GetTypeID() const override {
-    return STATIC_TYPE_ID;
-  }
+  explicit IntervalIteratingSystem(double interval);
 
   virtual void PreUpdate(double dt) {}
   virtual void Update(double dt) {}
@@ -119,11 +52,6 @@ class IntervalIteratingSystem : public ISystem {
     return false;
   }
 };
-
-template<class T>
-const ECS::SystemTypeID ECS::IntervalIteratingSystem<T>::STATIC_TYPE_ID =
-    ECS::Internal::FamilyTypeID<ECS::ISystem>::Get<T>();
-
 }
 
 #endif  // ROGUELIKE_INTERVALITERATINGSYSTEM_H

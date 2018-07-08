@@ -5,7 +5,7 @@
 #ifndef ROGUELIKE_BOXCOLLIDERCOMPONENT_H
 #define ROGUELIKE_BOXCOLLIDERCOMPONENT_H
 
-#include <ECS/Component.h>
+#include <ECS/IComponent.h>
 #include <ECS/IEntity.h>
 #include <core/vector2.h>
 #include <set>
@@ -15,7 +15,7 @@
  * Could be trigger to only fire an event about collision
  * or could be physical "wall".
  */
-class BoxColliderComponent : public ECS::Component<BoxColliderComponent> {
+class BoxColliderComponent : public ECS::IComponent {
   std::set<ECS::IEntityPtr> collisions{};
 
  public:

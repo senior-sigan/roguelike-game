@@ -5,12 +5,12 @@
 #ifndef ROGUELIKE_WALLENTITY_H
 #define ROGUELIKE_WALLENTITY_H
 
-#include <ECS/Entity.h>
+#include <ECS/IEntity.h>
 #include <game/components/BoxColliderComponent.h>
 #include <game/components/ControlComponent.h>
 #include <game/components/RenderComponent.h>
 #include <game/components/TransformComponent.h>
-class WallEntity : public ECS::Entity<WallEntity> {
+class WallEntity : public ECS::IEntity {
   Core::Vector2 pos;
 
  public:

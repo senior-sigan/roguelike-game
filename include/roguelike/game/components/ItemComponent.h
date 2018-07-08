@@ -5,7 +5,7 @@
 #ifndef ROGUELIKE_ITEMCOMPONENT_H
 #define ROGUELIKE_ITEMCOMPONENT_H
 
-#include <ECS/Component.h>
-class ItemComponent : public ECS::Component<ItemComponent> {};
+#include <ECS/IComponent.h>
+class ItemComponent : public ECS::IComponent {};
 
 #endif  // ROGUELIKE_ITEMCOMPONENT_H

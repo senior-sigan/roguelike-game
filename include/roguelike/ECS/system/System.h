@@ -5,7 +5,6 @@
 #ifndef ROGUELIKE_SYSTEM_H
 #define ROGUELIKE_SYSTEM_H
 
-#include <ECS/FamilyTypeID.h>
 #include <ECS/system/ISystem.h>
 #include <ECS/system/IUpdate.h>
 namespace ECS {
@@ -13,18 +12,9 @@ namespace ECS {
 /**
  * General System. Update commands will be called on every world update.
  * If you need iterates over Entities, use IteratingSystem.
- *
- * @tparam T
  */
-template<class T>
 class System : public ISystem {
   friend class SystemManager;
-  static const SystemTypeID STATIC_TYPE_ID;
-
- public:
-  SystemTypeID GetTypeID() const override {
-    return STATIC_TYPE_ID;
-  }
 
  private:
   void _PreUpdate(double dt) override {
@@ -42,9 +32,6 @@ class System : public ISystem {
   virtual void Update(double dt) {}
   virtual void PostUpdate(double dt) {}
 };
-
-template<class T>
-const ECS::SystemTypeID ECS::System<T>::STATIC_TYPE_ID = ECS::Internal::FamilyTypeID<ECS::ISystem>::Get<T>();
 
 }
 

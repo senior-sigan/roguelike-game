@@ -10,13 +10,15 @@
 #include <gmpxx.h>
 #include <cstdio>
 #include <limits>
+#include <typeinfo>
+#include <typeindex>
 
 namespace ECS {
 
 using ObjectID = size_t;
-using TypeID = size_t;
+using TypeID = std::type_index;
 
-using EventTypeID = TypeID;
+using EventTypeID = std::type_index;
 
 using EventDelegateID = ObjectID;
 using EventDelegateTypeID = TypeID;
@@ -32,11 +34,9 @@ using SystemID = ObjectID;
 
 using SystemPriority = uint16_t;
 
-static const TypeID INITIAL_TYPE_ID = 0;
 static const ObjectID INITIAL_OBJECT_ID = 0;
 
 static const ObjectID INVALID_OBJECT_ID = std::numeric_limits<ObjectID>::max();
-static const TypeID INVALID_TYPE_ID = std::numeric_limits<TypeID>::max();
 
 }
 

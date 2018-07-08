@@ -37,9 +37,6 @@ class IEvent {
   bool isFitInDelay() const;
 
   bool isFitInRepeats() const;
-
- public:
-  virtual ECS::EventTypeID GetTypeId() const = 0;
 };
 }
 
