@@ -12,7 +12,6 @@ namespace ECS {
 template<class T>
 class IteratingSystem : public ISystem {
   friend class SystemManager;
-  static const SystemTypeID STATIC_TYPE_ID;
 
   void _PreUpdate(double dt) override {
     PreUpdate(dt);
@@ -40,10 +39,6 @@ class IteratingSystem : public ISystem {
   }
 
  public:
-  SystemTypeID GetTypeID() const override {
-    return STATIC_TYPE_ID;
-  }
-
   virtual void PreUpdate(double dt) {}
   virtual void Update(double dt) {}
   virtual void PostUpdate(double dt) {}
@@ -60,8 +55,5 @@ class IteratingSystem : public ISystem {
     return false;
   }
 };
-
-template<class T>
-const ECS::SystemTypeID ECS::IteratingSystem<T>::STATIC_TYPE_ID = ECS::Internal::FamilyTypeID<ECS::ISystem>::Get<T>();
 }
 #endif  // ROGUELIKE_ITERATINGSYSTEM_H

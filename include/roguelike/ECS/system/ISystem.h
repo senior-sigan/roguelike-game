@@ -34,7 +34,6 @@ class ISystem : public IUpdate {
   virtual SystemPriority GetSystemPriority() const {
     return 0;
   }
-  virtual SystemTypeID GetTypeID() const = 0;
   virtual void OnCreated() {}
   virtual void OnDestroy() {}
 

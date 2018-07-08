@@ -30,7 +30,7 @@ class SystemManager {
 
   template<class TSystem>
   std::shared_ptr<TSystem> Get() {
-    return std::dynamic_pointer_cast<TSystem>(container[TSystem::STATIC_TYPE_ID]);
+    return std::dynamic_pointer_cast<TSystem>(container[typeid(TSystem)]);
   }
 
   template<class TSystem, class... TParam>
@@ -41,15 +41,15 @@ class SystemManager {
     system->engineControl = engineControl;
     system->entityManager = entityManager;
     system->OnCreated();
-    container[TSystem::STATIC_TYPE_ID] = std::shared_ptr<TSystem>(system);
+    container[typeid(TSystem)] = std::shared_ptr<TSystem>(system);
     LOG_INFO("System was created: " << typeid(TSystem).name());
   }
 
   template<class TSystem>
   void Destroy() {
-    auto system = container[TSystem::STATIC_TYPE_ID];
+    auto system = container[typeid(TSystem)];
     system->OnDestroy();
-    container.erase(TSystem::STATIC_TYPE_ID);
+    container.erase(typeid(TSystem));
   }
 
   void DestroyAllSystems() {

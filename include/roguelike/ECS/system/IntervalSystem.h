@@ -18,7 +18,6 @@ namespace ECS {
 template<class T>
 class IntervalSystem : public ISystem {
   friend class SystemManager;
-  static const SystemTypeID STATIC_TYPE_ID;
   const double interval;
   double currentTime;
   bool OFFSET = false;  // TODO: MAGIC IS HERE. DO NOT REMOVE, OTHERWAISE BUUUUM!!!!!!!!
@@ -52,10 +51,6 @@ class IntervalSystem : public ISystem {
     currentTime = 0;
   }
 
-  SystemTypeID GetTypeID() const override {
-    return STATIC_TYPE_ID;
-  }
-
   double GetCurrentTime() {
     return currentTime;
   }
@@ -68,9 +63,6 @@ class IntervalSystem : public ISystem {
   virtual void UpdateInterval(double dt) {}
   virtual void PostUpdateInterval(double dt) {}
 };
-
-template<class T>
-const ECS::SystemTypeID ECS::IntervalSystem<T>::STATIC_TYPE_ID = ECS::Internal::FamilyTypeID<ECS::ISystem>::Get<T>();
 
 }
 

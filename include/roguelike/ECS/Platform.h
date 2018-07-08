@@ -10,6 +10,8 @@
 #include <gmpxx.h>
 #include <cstdio>
 #include <limits>
+#include <typeinfo>
+#include <typeindex>
 
 namespace ECS {
 
@@ -27,7 +29,7 @@ using ComponentID = ObjectID;
 using EntityTypeID = TypeID;
 using EntityID = ObjectID;
 
-using SystemTypeID = TypeID;
+using SystemTypeID = std::type_index;
 using SystemID = ObjectID;
 
 using SystemPriority = uint16_t;

@@ -18,7 +18,6 @@ namespace ECS {
 template<class T>
 class IntervalIteratingSystem : public ISystem {
   friend class SystemManager;
-  static const SystemTypeID STATIC_TYPE_ID;
   const double interval;
   double currentTime;
 
@@ -91,10 +90,6 @@ class IntervalIteratingSystem : public ISystem {
     currentTime = 0;
   }
 
-  SystemTypeID GetTypeID() const override {
-    return STATIC_TYPE_ID;
-  }
-
   virtual void PreUpdate(double dt) {}
   virtual void Update(double dt) {}
   virtual void PostUpdate(double dt) {}
@@ -119,11 +114,6 @@ class IntervalIteratingSystem : public ISystem {
     return false;
   }
 };
-
-template<class T>
-const ECS::SystemTypeID ECS::IntervalIteratingSystem<T>::STATIC_TYPE_ID =
-    ECS::Internal::FamilyTypeID<ECS::ISystem>::Get<T>();
-
 }
 
 #endif  // ROGUELIKE_INTERVALITERATINGSYSTEM_H
