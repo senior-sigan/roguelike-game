@@ -10,7 +10,6 @@
 #include <game/systems/CollisionSystem.h>
 #include <game/systems/ControlSystem.h>
 #include <game/systems/ExitSystem.h>
-#include <game/systems/InputSystem.h>
 #include <game/systems/ItemGatheringSystem.h>
 #include <game/systems/MovementSystem.h>
 #include <game/systems/RenderingSystem.h>
@@ -27,8 +26,7 @@ void createEntity(const ECS::EnginePtr &engine, int x, int y, char tile) {
       engine->GetEntityManager()->CreateAndGet<CoinEntity>(Core::Vector2(x, y), 1);
       break;
     }
-    default:
-      break;
+    default:break;
   }
 }
 }

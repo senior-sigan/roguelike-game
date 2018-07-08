@@ -14,7 +14,7 @@ void GameLoop::Loop() {
     std::chrono::duration<double, std::ratio<1>> elapsed = current - previous;
     previous = current;
     Update(elapsed.count());
-//    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(30));
   }
 }
 void GameLoop::Stop() {

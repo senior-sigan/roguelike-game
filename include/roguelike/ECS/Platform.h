@@ -10,8 +10,8 @@
 #include <gmpxx.h>
 #include <cstdio>
 #include <limits>
-#include <typeinfo>
 #include <typeindex>
+#include <typeinfo>
 
 namespace ECS {
 

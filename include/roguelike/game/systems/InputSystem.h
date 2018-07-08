@@ -13,14 +13,15 @@ class Input {
   static const uint8_t KEYS_SIZE = 255;
   bool currentKeys[KEYS_SIZE]{};
   void Clear() {
-    for (bool& currentKey : currentKeys) {
+    for (bool &currentKey : currentKeys) {
       currentKey = false;
     }
   }
   Input() {
     Clear();
-  };
+  }
   ~Input() = default;
+
  public:
   bool GetButtonDown(unsigned int key) {
     if (key < KEYS_SIZE) {
@@ -30,16 +31,15 @@ class Input {
     }
   }
 
-  static Input& Instance() {
+  static Input &Instance() {
     static Input instance;
     return instance;
   }
-  Input(Input const&) = delete;
-  Input& operator= (Input const&) = delete;
+  Input(Input const &) = delete;
+  Input &operator=(Input const &) = delete;
 };
 
 class InputSystem : public ECS::IntervalSystem {
-  LOG_INIT("InputSystem");
  public:
   explicit InputSystem() : IntervalSystem(IPS) {}
 

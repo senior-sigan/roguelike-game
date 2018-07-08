@@ -14,7 +14,7 @@ class EventDispatcher {
   EventSenderPtr eventSender;
   EventListenerPtr eventListener;
 
-  EventDispatcher(const EventSenderPtr& eventSender, const EventListenerPtr& eventListener);
+  EventDispatcher(const EventSenderPtr &eventSender, const EventListenerPtr &eventListener);
 
   // Invoke all the events from the incoming queue
   void DispatchEvents(double deltaTime);

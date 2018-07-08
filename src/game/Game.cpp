@@ -4,7 +4,6 @@
 
 #include <game/Game.h>
 #include <game/stages/Stage_1.h>
-#include <game/systems/RenderingSystem.h>
 
 void Game::SetupECS() {
   auto stage = std::make_shared<Stage_1>();
