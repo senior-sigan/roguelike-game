@@ -5,7 +5,6 @@
 #ifndef ROGUELIKE_SYSTEM_H
 #define ROGUELIKE_SYSTEM_H
 
-#include <ECS/FamilyTypeID.h>
 #include <ECS/system/ISystem.h>
 #include <ECS/system/IUpdate.h>
 namespace ECS {

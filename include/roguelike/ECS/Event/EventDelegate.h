@@ -38,7 +38,7 @@ class EventDelegate : public IEventDelegate {
   }
 
   inline EventTypeID GetEventTypeId() const override {
-    return TEvent::STATIC_TYPE_ID;
+    return std::type_index(typeid(TEvent));
   }
 
   EventDelegateID GetDelegateId() const override {

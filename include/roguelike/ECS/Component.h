@@ -5,23 +5,12 @@
 #ifndef ROGUELIKE_COMPONENT_H
 #define ROGUELIKE_COMPONENT_H
 
-#include <ECS/FamilyTypeID.h>
 #include <ECS/IComponent.h>
 namespace ECS {
 
 template<class TComponent>
 class Component : public ECS::IComponent {
   friend class ComponentManager;
-  static const ComponentTypeID STATIC_TYPE_ID;
-
- public:
-  ComponentTypeID GetTypeID() const override {
-    return STATIC_TYPE_ID;
-  }
 };
-
-template<class TComponent>
-const ECS::ComponentTypeID ECS::Component<TComponent>::STATIC_TYPE_ID =
-    ECS::Internal::FamilyTypeID<ECS::IComponent>::Get<TComponent>();
 }
 #endif  // ROGUELIKE_COMPONENT_H

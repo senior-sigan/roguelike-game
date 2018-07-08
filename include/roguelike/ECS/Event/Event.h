@@ -6,22 +6,11 @@
 #define ROGUELIKE_EVENT_H
 
 #include <ECS/Event/IEvent.h>
-#include <ECS/FamilyTypeID.h>
 #include <ECS/Platform.h>
 namespace ECS::Event {
 
 template<class TEvent>
-class Event : public IEvent {
- public:
-  static const EventTypeID STATIC_TYPE_ID;
-  const EventTypeID GetTypeId() const override {
-    return STATIC_TYPE_ID;
-  }
-};
+class Event : public IEvent {};
 }
-
-template<class TEvent>
-const ECS::EventTypeID ECS::Event::Event<TEvent>::STATIC_TYPE_ID =
-    ECS::Internal::FamilyTypeID<ECS::Event::IEvent>::Get<TEvent>();
 
 #endif  // ROGUELIKE_EVENT_H

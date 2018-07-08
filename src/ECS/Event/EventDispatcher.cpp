@@ -10,7 +10,7 @@ void EventDispatcher::DispatchEvents(double deltaTime) {
   for (auto event : eventSender->events) {
     event->update(deltaTime);
     for (auto callback : eventListener->delegates) {
-      if (callback->GetEventTypeId() == event->GetTypeId() && event->isInvokableNow()) {
+      if (callback->GetEventTypeId() == std::type_index(typeid(event)) && event->isInvokableNow()) {
         callback->invoke(event);
         event->registerCall();
       }

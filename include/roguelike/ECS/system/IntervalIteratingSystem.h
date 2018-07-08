@@ -6,7 +6,6 @@
 #define ROGUELIKE_INTERVALITERATINGSYSTEM_H
 
 #include <ECS/EntityManager.h>
-#include <ECS/FamilyTypeID.h>
 #include <ECS/system/ISystem.h>
 namespace ECS {
 

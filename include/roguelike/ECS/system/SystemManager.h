@@ -41,7 +41,7 @@ class SystemManager {
     system->engineControl = engineControl;
     system->entityManager = entityManager;
     system->OnCreated();
-    container[typeid(TSystem)] = std::shared_ptr<TSystem>(system);
+    container[std::type_index(typeid(TSystem))] = std::shared_ptr<TSystem>(system);
     LOG_INFO("System was created: " << typeid(TSystem).name());
   }
 
@@ -49,7 +49,7 @@ class SystemManager {
   void Destroy() {
     auto system = container[typeid(TSystem)];
     system->OnDestroy();
-    container.erase(typeid(TSystem));
+    container.erase(std::type_index(typeid(TSystem)));
   }
 
   void DestroyAllSystems() {

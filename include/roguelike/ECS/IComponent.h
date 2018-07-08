@@ -15,8 +15,6 @@ class IComponent {
   EntityID ownerID{};
 
  public:
-  virtual ComponentTypeID GetTypeID() const = 0;
-
   ComponentID GetID() const {
     return this->componentID;
   }

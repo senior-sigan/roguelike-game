@@ -5,7 +5,6 @@
 #ifndef ROGUELIKE_ENTITY_H
 #define ROGUELIKE_ENTITY_H
 
-#include "ECS/FamilyTypeID.h"
 #include "ECS/IEntity.h"
 namespace ECS {
 

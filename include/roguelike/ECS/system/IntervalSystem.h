@@ -5,7 +5,6 @@
 #ifndef ROGUELIKE_INTERVALSYSTEM_H
 #define ROGUELIKE_INTERVALSYSTEM_H
 
-#include <ECS/FamilyTypeID.h>
 #include <ECS/system/ISystem.h>
 namespace ECS {
 
