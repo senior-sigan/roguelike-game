@@ -9,7 +9,7 @@
 
 class ItemGatheringSystem : public ECS::IteratingSystem {
  public:
-  void ProcessEntity(const ECS::IEntityPtr &entity, double dt) override;
+  void ProcessEntity(const ECS::IEntityPtr &entity, f64 dt) override;
 
   bool FamilyFilter(const ECS::IEntityPtr &entity) const override;
 };

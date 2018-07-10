@@ -5,16 +5,16 @@
 #include <game/systems/InputSystem.h>
 #include <ncurses.h>
 
-void InputSystem::PreUpdate(double dt) {
-  int key = getch();
+void InputSystem::PreUpdate(f64 dt) {
+  i32 key = getch();
   Input::Instance().currentKeys[key] = true;
 }
-void InputSystem::PostUpdateInterval(double dt) {
+void InputSystem::PostUpdateInterval(f64 dt) {
   // TODO: We may send events to subscribers.
   Input::Instance().Clear();
 }
 
-bool Input::GetButtonDown(unsigned int key) {
+bool Input::GetButtonDown(u32 key) {
   if (key < KEYS_SIZE) {
     return currentKeys[key];
   } else {

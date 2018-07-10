@@ -10,7 +10,7 @@
 
 class TransformComponent : public ECS::IComponent {
  public:
-  explicit TransformComponent(const Core::Vector2 position) : position(position) {}
+  explicit TransformComponent(const Core::Vector2 &position) : position(position) {}
   Core::Vector2 position;
 };
 

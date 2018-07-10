@@ -5,12 +5,13 @@
 #ifndef ROGUELIKE_GAMELOOP_H
 #define ROGUELIKE_GAMELOOP_H
 
+#include <core/types.h>
 namespace ECS {
 class GameLoop {
   bool running = true;
 
  protected:
-  virtual void Update(double deltaTime) = 0;
+  virtual void Update(f64 deltaTime) = 0;
 
  public:
   void Loop();

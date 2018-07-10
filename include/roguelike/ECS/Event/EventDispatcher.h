@@ -17,7 +17,7 @@ class EventDispatcher {
   EventDispatcher(const EventSenderPtr &eventSender, const EventListenerPtr &eventListener);
 
   // Invoke all the events from the incoming queue
-  void DispatchEvents(double deltaTime);
+  void DispatchEvents(f64 deltaTime);
 };
 
 typedef std::shared_ptr<EventDispatcher> EventDispatcherPtr;

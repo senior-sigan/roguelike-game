@@ -10,27 +10,27 @@
 
 struct Tile {
   char symbol;
-  int color;
+  i32 color;
 
   void Clear() {
     symbol = ' ';
     color = 0;
   }
 
-  explicit Tile(char symbol = ' ', int color = 0) : symbol(symbol), color(color) {}
+  explicit Tile(char symbol = ' ', i32 color = 0) : symbol(symbol), color(color) {}
 };
 
 class RenderingSystem : public ECS::IntervalIteratingSystem {
   // TODO: get somehow this sizes and be ready when it's changed. Or is it world size??? Not render page?
-  static const uint width = 80;
-  static const uint height = 24;
+  static const u32 width = 80;
+  static const u32 height = 24;
   Tile screen[width][height];
 
  public:
   explicit RenderingSystem();
 
-  void PostUpdateInterval(double dt) override;
-  void ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) override;
+  void PostUpdateInterval(f64 dt) override;
+  void ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) override;
 
   bool FamilyFilter(const ECS::IEntityPtr &entity) const override;
   void OnCreated() override;

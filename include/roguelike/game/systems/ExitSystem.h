@@ -12,7 +12,7 @@ class ExitSystem : public ECS::IntervalSystem {
  public:
   explicit ExitSystem() : IntervalSystem(IPS) {}
 
-  void PreUpdateInterval(double dt) override;
+  void PreUpdateInterval(f64 dt) override;
 };
 
 #endif  // ROGUELIKE_EXITSYSTEM_H

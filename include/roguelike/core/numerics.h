@@ -5,8 +5,9 @@
 #ifndef ROGUELIKE_NUMERICS_H
 #define ROGUELIKE_NUMERICS_H
 
-bool unsigned_less(int a, unsigned int b) {
-  return a < 0 || static_cast<unsigned int>(a) < b;
+#include "core/types.h"
+bool unsigned_less(i32 a, u32 b) {
+  return a < 0 || static_cast<u32>(a) < b;
 }
 
 #endif  // ROGUELIKE_NUMERICS_H

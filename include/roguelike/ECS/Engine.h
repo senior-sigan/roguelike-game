@@ -20,7 +20,7 @@ class Engine : public IEngineControl, public GameLoop {
   Event::EventListenerPtr eventListener;
   Event::EventSenderPtr eventSender;
 
-  void Update(double deltaTime) override;
+  void Update(f64 deltaTime) override;
 
  public:
   Engine();

@@ -17,20 +17,20 @@ class System : public ISystem {
   friend class SystemManager;
 
  private:
-  void _PreUpdate(double dt) override {
+  void _PreUpdate(f64 dt) override {
     PreUpdate(dt);
   }
-  void _Update(double dt) override {
+  void _Update(f64 dt) override {
     Update(dt);
   }
-  void _PostUpdate(double dt) override {
+  void _PostUpdate(f64 dt) override {
     PostUpdate(dt);
   }
 
  public:
-  virtual void PreUpdate(double dt) {}
-  virtual void Update(double dt) {}
-  virtual void PostUpdate(double dt) {}
+  virtual void PreUpdate(f64 dt) {}
+  virtual void Update(f64 dt) {}
+  virtual void PostUpdate(f64 dt) {}
 };
 
 }

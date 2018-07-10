@@ -6,19 +6,20 @@
 #define ROGUELIKE_IEVEMT_H
 
 #include <ECS/Platform.h>
+#include <core/types.h>
 
 namespace ECS::Event {
 class IEvent {
   friend class EventSender;
   friend class EventDispatcher;
 
-  int64_t repeats = 0;  // constant
-  double after = 0;     // constant
-  double interval = 0;  // constant
+  i64 repeats = 0;  // constant
+  f64 after = 0;     // constant
+  f64 interval = 0;  // constant
 
   bool wasCalled = false;
-  double currentTime = 0;
-  int64_t calls = 0;
+  f64 currentTime = 0;
+  i64 calls = 0;
   bool shouldUpdate = true;
 
   /**
@@ -26,7 +27,7 @@ class IEvent {
    * when it's ready for delivery when [after] and [interval] is used.
    * @param deltaTime in seconds
    */
-  void update(double deltaTime);
+  void update(f64 deltaTime);
 
   void registerCall();
 
@@ -38,6 +39,8 @@ class IEvent {
 
   bool isFitInRepeats() const;
 };
+
+typedef std::shared_ptr<IEvent> IEventPtr;
 }
 
 #endif  // ROGUELIKE_IEVEMT_H

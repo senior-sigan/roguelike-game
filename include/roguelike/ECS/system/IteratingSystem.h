@@ -11,18 +11,18 @@ namespace ECS {
 class IteratingSystem : public ISystem {
   friend class SystemManager;
 
-  void _PreUpdate(double dt) override;
-  void _Update(double dt) override;
-  void _PostUpdate(double dt) override;
+  void _PreUpdate(f64 dt) override;
+  void _Update(f64 dt) override;
+  void _PostUpdate(f64 dt) override;
 
  public:
-  virtual void PreUpdate(double dt) {}
-  virtual void Update(double dt) {}
-  virtual void PostUpdate(double dt) {}
+  virtual void PreUpdate(f64 dt) {}
+  virtual void Update(f64 dt) {}
+  virtual void PostUpdate(f64 dt) {}
 
-  virtual void PreProcessEntity(const IEntityPtr &entity, double dt) {}
-  virtual void ProcessEntity(const IEntityPtr &entity, double dt) {}
-  virtual void PostProcessEntity(const IEntityPtr &entity, double dt) {}
+  virtual void PreProcessEntity(const IEntityPtr &entity, f64 dt) {}
+  virtual void ProcessEntity(const IEntityPtr &entity, f64 dt) {}
+  virtual void PostProcessEntity(const IEntityPtr &entity, f64 dt) {}
 
   /**
    * Filter and pass only IEntities that satisfy the predicate.

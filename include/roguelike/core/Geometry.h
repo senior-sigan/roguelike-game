@@ -16,7 +16,7 @@ namespace Core {
  * @param r2 second rectangle
  * @return true if r1 and r2 intersect
  */
-bool Intersect(Rectangle r1, Rectangle r2);
+bool Intersect(const Rectangle &r1, const Rectangle &r2);
 
 /**
  * Checks if rectangle and line intersect
@@ -24,7 +24,7 @@ bool Intersect(Rectangle r1, Rectangle r2);
  * @param line
  * @return true if intersect and false otherwise
  */
-bool Intersect(Rectangle rectangle, Line line);
+bool Intersect(const Rectangle &rectangle, const Line &line);
 
 /**
  * Checks if the first rectangle contains the second.
@@ -33,7 +33,7 @@ bool Intersect(Rectangle rectangle, Line line);
  * @param r2 second Rectangle
  * @return true if r1 contains r2
  */
-bool Contains(Rectangle r1, Rectangle r2);
+bool Contains(const Rectangle &r1, const Rectangle &r2);
 
 }
 

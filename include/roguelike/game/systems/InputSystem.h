@@ -19,7 +19,7 @@ class Input {
   ~Input() = default;
 
  public:
-  bool GetButtonDown(unsigned int key);
+  bool GetButtonDown(u32 key);
 
   static Input &Instance() {
     static Input instance;
@@ -33,9 +33,9 @@ class InputSystem : public ECS::IntervalSystem {
  public:
   explicit InputSystem() : IntervalSystem(IPS) {}
 
-  void PreUpdate(double dt) override;
+  void PreUpdate(f64 dt) override;
 
-  void PostUpdateInterval(double dt) override;
+  void PostUpdateInterval(f64 dt) override;
 };
 
 typedef std::shared_ptr<InputSystem> InputSystemPtr;

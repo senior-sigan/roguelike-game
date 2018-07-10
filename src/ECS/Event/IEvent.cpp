@@ -5,7 +5,7 @@
 #include <ECS/Event/IEvent.h>
 
 namespace ECS::Event {
-void IEvent::update(double deltaTime) {
+void IEvent::update(f64 deltaTime) {
   currentTime += deltaTime;
   shouldUpdate = true;
 }

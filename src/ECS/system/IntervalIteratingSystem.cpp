@@ -4,7 +4,7 @@
 
 #include <ECS/system/IntervalIteratingSystem.h>
 
-void ECS::IntervalIteratingSystem::_PreUpdate(double dt) {
+void ECS::IntervalIteratingSystem::_PreUpdate(f64 dt) {
   PreUpdate(dt);
   for (auto entity : GetEntityManager()->container) {
     if (FamilyFilter(entity.second)) {
@@ -17,7 +17,7 @@ void ECS::IntervalIteratingSystem::_PreUpdate(double dt) {
     _PreUpdateInterval(currentTime);
   }
 }
-void ECS::IntervalIteratingSystem::_Update(double dt) {
+void ECS::IntervalIteratingSystem::_Update(f64 dt) {
   Update(dt);
   for (auto entity : GetEntityManager()->container) {
     if (FamilyFilter(entity.second)) {
@@ -28,7 +28,7 @@ void ECS::IntervalIteratingSystem::_Update(double dt) {
     _UpdateInterval(currentTime);
   }
 }
-void ECS::IntervalIteratingSystem::_PostUpdate(double dt) {
+void ECS::IntervalIteratingSystem::_PostUpdate(f64 dt) {
   for (auto entity : GetEntityManager()->container) {
     if (FamilyFilter(entity.second)) {
       PostProcessEntity(entity.second, dt);
@@ -40,7 +40,7 @@ void ECS::IntervalIteratingSystem::_PostUpdate(double dt) {
     currentTime -= interval;  // Every POST update decrement timer
   }
 }
-void ECS::IntervalIteratingSystem::_UpdateInterval(double dt) {
+void ECS::IntervalIteratingSystem::_UpdateInterval(f64 dt) {
   UpdateInterval(dt);
   for (auto entity : GetEntityManager()->container) {
     if (FamilyFilter(entity.second)) {
@@ -48,7 +48,7 @@ void ECS::IntervalIteratingSystem::_UpdateInterval(double dt) {
     }
   }
 }
-void ECS::IntervalIteratingSystem::_PostUpdateInterval(double dt) {
+void ECS::IntervalIteratingSystem::_PostUpdateInterval(f64 dt) {
   for (auto entity : GetEntityManager()->container) {
     if (FamilyFilter(entity.second)) {
       PostProcessEntityInterval(entity.second, dt);
@@ -56,7 +56,7 @@ void ECS::IntervalIteratingSystem::_PostUpdateInterval(double dt) {
   }
   PostUpdateInterval(dt);
 }
-void ECS::IntervalIteratingSystem::_PreUpdateInterval(double dt) {
+void ECS::IntervalIteratingSystem::_PreUpdateInterval(f64 dt) {
   PreUpdateInterval(dt);
   for (auto entity : GetEntityManager()->container) {
     if (FamilyFilter(entity.second)) {
@@ -64,6 +64,6 @@ void ECS::IntervalIteratingSystem::_PreUpdateInterval(double dt) {
     }
   }
 }
-ECS::IntervalIteratingSystem::IntervalIteratingSystem(const double interval) : interval(interval) {
+ECS::IntervalIteratingSystem::IntervalIteratingSystem(const f64 interval) : interval(interval) {
   currentTime = 0;
 }

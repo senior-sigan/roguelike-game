@@ -11,20 +11,20 @@ Core::Rectangle rectangle(const ECS::IEntityPtr &entity) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
 
-  int xLeft = tc->position.x + bcc->offset.x;
-  int yUpper = tc->position.y - bcc->offset.y;
+  auto xLeft = tc->position.x + bcc->offset.x;
+  auto yUpper = tc->position.y - bcc->offset.y;
 
   return Core::Rectangle(Core::Vector2(xLeft, yUpper), bcc->size);
 }
 
 }
 
-void CollisionSystem::PreProcessEntity(const ECS::IEntityPtr &entity, double dt) {
+void CollisionSystem::PreProcessEntity(const ECS::IEntityPtr &entity, f64 dt) {
   // Before each collision system iteration
   // we clear registered collisions on the previous step.
   entity->GetComponent<BoxColliderComponent>()->Clear();
 }
-void CollisionSystem::ProcessEntity(const ECS::IEntityPtr &entity, double dt) {
+void CollisionSystem::ProcessEntity(const ECS::IEntityPtr &entity, f64 dt) {
   auto bc1 = entity->GetComponent<BoxColliderComponent>();
   if (!bc1->isMovable) {
     // We do not need to check whether non-movable objects collide or not.

@@ -7,12 +7,12 @@
 
 #include <ECS/IComponent.h>
 class WorthComponent : public ECS::IComponent {
-  int value;
+  i32 value;
 
  public:
-  explicit WorthComponent(int value) : value(value) {}
+  explicit WorthComponent(i32 value) : value(value) {}
 
-  int GetValue() const {
+  i32 GetValue() const {
     return value;
   }
 };

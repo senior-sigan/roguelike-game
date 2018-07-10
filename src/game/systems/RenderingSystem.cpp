@@ -10,9 +10,9 @@
 #include <game/systems/RenderingSystem.h>
 #include <ncurses.h>
 
-void RenderingSystem::PostUpdateInterval(double dt) {
-  for (uint w = 0; w < width; w++) {
-    for (uint h = 0; h < height; h++) {
+void RenderingSystem::PostUpdateInterval(f64 dt) {
+  for (u32 w = 0; w < width; w++) {
+    for (u32 h = 0; h < height; h++) {
       auto tile = this->screen[w][h];
       attron(COLOR_PAIR(tile.color));
       mvaddch(h, w, tile.symbol);
@@ -23,7 +23,7 @@ void RenderingSystem::PostUpdateInterval(double dt) {
   refresh();
 }
 
-void RenderingSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) {
+void RenderingSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) {
   auto rc = entity->GetComponent<RenderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
 
@@ -37,8 +37,8 @@ bool RenderingSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
   return entity->HasComponent<RenderComponent>() && entity->HasComponent<TransformComponent>();
 }
 RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {
-  for (uint w = 0; w < width; w++) {
-    for (uint h = 0; h < height; h++) {
+  for (u32 w = 0; w < width; w++) {
+    for (u32 h = 0; h < height; h++) {
       this->screen[w][h] = Tile();
     }
   }

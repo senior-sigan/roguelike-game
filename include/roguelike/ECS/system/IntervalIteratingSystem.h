@@ -14,39 +14,39 @@ namespace ECS {
  */
 class IntervalIteratingSystem : public ISystem {
   friend class SystemManager;
-  const double interval;
-  double currentTime;
+  const f64 interval;
+  f64 currentTime;
 
-  void _PreUpdate(double dt) override;
-  void _Update(double dt) override;
-  void _PostUpdate(double dt) override;
+  void _PreUpdate(f64 dt) override;
+  void _Update(f64 dt) override;
+  void _PostUpdate(f64 dt) override;
 
-  void _PreUpdateInterval(double dt);
-  void _UpdateInterval(double dt);
-  void _PostUpdateInterval(double dt);
+  void _PreUpdateInterval(f64 dt);
+  void _UpdateInterval(f64 dt);
+  void _PostUpdateInterval(f64 dt);
 
  public:
-  explicit IntervalIteratingSystem(double interval);
+  explicit IntervalIteratingSystem(f64 interval);
 
-  double GetCurrentTime() {
+  f64 GetCurrentTime() {
     return currentTime;
   }
 
-  virtual void PreUpdate(double dt) {}
-  virtual void Update(double dt) {}
-  virtual void PostUpdate(double dt) {}
+  virtual void PreUpdate(f64 dt) {}
+  virtual void Update(f64 dt) {}
+  virtual void PostUpdate(f64 dt) {}
 
-  virtual void PreProcessEntity(const IEntityPtr &entity, double dt) {}
-  virtual void ProcessEntity(const IEntityPtr &entity, double dt) {}
-  virtual void PostProcessEntity(const IEntityPtr &entity, double dt) {}
+  virtual void PreProcessEntity(const IEntityPtr &entity, f64 dt) {}
+  virtual void ProcessEntity(const IEntityPtr &entity, f64 dt) {}
+  virtual void PostProcessEntity(const IEntityPtr &entity, f64 dt) {}
 
-  virtual void PreUpdateInterval(double dt) {}
-  virtual void UpdateInterval(double dt) {}
-  virtual void PostUpdateInterval(double dt) {}
+  virtual void PreUpdateInterval(f64 dt) {}
+  virtual void UpdateInterval(f64 dt) {}
+  virtual void PostUpdateInterval(f64 dt) {}
 
-  virtual void PreProcessEntityInterval(const IEntityPtr &entity, double dt) {}
-  virtual void ProcessEntityInterval(const IEntityPtr &entity, double dt) {}
-  virtual void PostProcessEntityInterval(const IEntityPtr &entity, double dt) {}
+  virtual void PreProcessEntityInterval(const IEntityPtr &entity, f64 dt) {}
+  virtual void ProcessEntityInterval(const IEntityPtr &entity, f64 dt) {}
+  virtual void PostProcessEntityInterval(const IEntityPtr &entity, f64 dt) {}
 
   /**
    * Filter and pass only IEntities that satisfy the predicate.

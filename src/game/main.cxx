@@ -4,7 +4,7 @@
 
 #include "game/Game.h"
 
-int main() {
+i32 main() {
   LOG_CONFIGURE();
   auto game = std::make_unique<Game>();
   game->Start();

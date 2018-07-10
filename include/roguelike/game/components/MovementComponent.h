@@ -9,7 +9,7 @@
 #include <core/vector2.h>
 class MovementComponent : public ECS::IComponent {
  public:
-  MovementComponent(const Core::Vector2 speed, const Core::Vector2 slowDownSpeed)
+  MovementComponent(const Core::Vector2 &speed, const Core::Vector2 &slowDownSpeed)
       : speed(speed), slowDownSpeed(slowDownSpeed) {}
 
   Core::Vector2 direction = Core::Vector2::ZERO;

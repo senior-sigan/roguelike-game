@@ -4,7 +4,7 @@
 
 #include <game/systems/ExitSystem.h>
 
-void ExitSystem::PreUpdateInterval(double dt) {
+void ExitSystem::PreUpdateInterval(f64 dt) {
   if (Input::Instance().GetButtonDown('q')) {
     GetEngineControl()->Stop();
   }

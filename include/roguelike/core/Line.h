@@ -15,7 +15,7 @@ class Line {
 
  public:
   Line(const Vector2 &a, const Vector2 &b);
-  double GetLength() const;
+  f64 GetLength() const;
 };
 
 }

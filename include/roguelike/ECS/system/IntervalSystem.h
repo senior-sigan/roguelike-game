@@ -14,30 +14,30 @@ namespace ECS {
  */
 class IntervalSystem : public ISystem {
   friend class SystemManager;
-  const double interval;
-  double currentTime;
+  const f64 interval;
+  f64 currentTime;
 
-  void _PreUpdate(double dt) override;
+  void _PreUpdate(f64 dt) override;
 
-  void _Update(double dt) override;
+  void _Update(f64 dt) override;
 
-  void _PostUpdate(double dt) override;
+  void _PostUpdate(f64 dt) override;
 
  public:
-  explicit IntervalSystem(double interval);
+  explicit IntervalSystem(f64 interval);
   ~IntervalSystem() override;
 
-  double GetCurrentTime() {
+  f64 GetCurrentTime() {
     return currentTime;
   }
 
-  virtual void PreUpdate(double dt) {}
-  virtual void Update(double dt) {}
-  virtual void PostUpdate(double dt) {}
+  virtual void PreUpdate(f64 dt) {}
+  virtual void Update(f64 dt) {}
+  virtual void PostUpdate(f64 dt) {}
 
-  virtual void PreUpdateInterval(double dt) {}
-  virtual void UpdateInterval(double dt) {}
-  virtual void PostUpdateInterval(double dt) {}
+  virtual void PreUpdateInterval(f64 dt) {}
+  virtual void UpdateInterval(f64 dt) {}
+  virtual void PostUpdateInterval(f64 dt) {}
 };
 
 }

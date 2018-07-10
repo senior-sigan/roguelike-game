@@ -5,7 +5,7 @@
 #include <ECS/Engine.h>
 
 namespace ECS {
-void Engine::Update(double deltaTime) {
+void Engine::Update(f64 deltaTime) {
   // TODO: may be instead of delta time we'll have step number?
   // So ticker class should be abstract so we can support delta time and delta step.
   systemManager->Update(deltaTime);

@@ -14,7 +14,7 @@ class Rectangle {
   Vector2 size;
 
  public:
-  explicit Rectangle(const Vector2 leftUpper, const Vector2 size) : leftUpper(leftUpper), size(size) {
+  explicit Rectangle(const Vector2 &leftUpper, const Vector2 &size) : leftUpper(leftUpper), size(size) {
     assert(size.x >= 0);
     assert(size.y >= 0);
   }
@@ -24,22 +24,22 @@ class Rectangle {
   Vector2 const GetSize() const {
     return size;
   }
-  int GetX1() const {
+  i32 GetX1() const {
     return leftUpper.x;
   }
-  int GetY1() const {
+  i32 GetY1() const {
     return leftUpper.y;
   }
-  int GetX2() const {
+  i32 GetX2() const {
     return leftUpper.x + GetWidth();
   }
-  int GetY2() const {
+  i32 GetY2() const {
     return leftUpper.y + GetHeight();
   }
-  int GetWidth() const {
+  i32 GetWidth() const {
     return size.x;
   }
-  int GetHeight() const {
+  i32 GetHeight() const {
     return size.y;
   }
 };

@@ -13,10 +13,10 @@
 #include <game/components/WorthComponent.h>
 class CoinEntity : public ECS::IEntity {
   Core::Vector2 pos;
-  int value;
+  i32 value;
 
  public:
-  explicit CoinEntity(const Core::Vector2 &pos, int value) : pos(pos), value(value) {}
+  explicit CoinEntity(const Core::Vector2 &pos, i32 value) : pos(pos), value(value) {}
 
   void OnCreated() override {
     AddComponent<TransformComponent>(pos);

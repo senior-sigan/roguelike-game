@@ -8,10 +8,10 @@
 #include <ECS/IComponent.h>
 class ControlComponent : public ECS::IComponent {
  public:
-  unsigned int up = 119;
-  unsigned int down = 115;
-  unsigned int left = 97;
-  unsigned int right = 100;
+  u32 up = 119;
+  u32 down = 115;
+  u32 left = 97;
+  u32 right = 100;
 };
 
 #endif  // ROGUELIKE_CONTROLSCOMPONENT_H

@@ -9,15 +9,15 @@
 
 struct Texture1D {
   const char symbol;
-  const int color;
-  explicit Texture1D(const char symbol, const int color = 0) : symbol(symbol), color(color) {}
+  const i32 color;
+  explicit Texture1D(const char symbol, const i32 color = 0) : symbol(symbol), color(color) {}
 };
 
 class RenderComponent : public ECS::IComponent {
  public:
   // TODO: we may need 2D textures fot big objects, like a wall or smth else.
   Texture1D texture;
-  explicit RenderComponent(Texture1D texture) : texture(texture) {}
+  explicit RenderComponent(const Texture1D& texture) : texture(texture) {}
 };
 
 #endif  // ROGUELIKE_RENDERCOMPONENT_H

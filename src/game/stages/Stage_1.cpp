@@ -15,7 +15,7 @@
 #include <game/systems/RenderingSystem.h>
 
 namespace {
-void createEntity(const ECS::EnginePtr &engine, int x, int y, char tile) {
+void createEntity(const ECS::EnginePtr &engine, u32 x, u32 y, char tile) {
   // TODO: create a configuration file that map tiles to entities and remove switch
   switch (tile) {
     case 0: {
@@ -45,8 +45,8 @@ ECS::EnginePtr Stage_1::load() {
 
   engine->GetEntityManager()->CreateAndGet<PlayerEntity>(Core::Vector2(1, 1));
 
-  for (uint x = 0; x < lvl::width; x++) {
-    for (uint y = 0; y < lvl::height; y++) {
+  for (u32 x = 0; x < lvl::width; x++) {
+    for (u32 y = 0; y < lvl::height; y++) {
       createEntity(engine, x, y, lvl::data[y * lvl::width + x]);
     }
   }

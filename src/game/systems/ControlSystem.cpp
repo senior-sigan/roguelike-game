@@ -5,7 +5,7 @@
 #include <game/components/MovementComponent.h>
 #include <game/systems/ControlSystem.h>
 
-void ControlSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) {
+void ControlSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) {
   auto cc = entity->GetComponent<ControlComponent>();
   auto mc = entity->GetComponent<MovementComponent>();
 

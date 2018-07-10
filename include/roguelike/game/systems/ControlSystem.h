@@ -14,7 +14,7 @@ class ControlSystem : public ECS::IntervalIteratingSystem {
  public:
   explicit ControlSystem() : IntervalIteratingSystem(IPS) {}
 
-  void ProcessEntityInterval(const ECS::IEntityPtr &entity, double dt) override;
+  void ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) override;
 
   bool FamilyFilter(const ECS::IEntityPtr &entity) const override;
 };

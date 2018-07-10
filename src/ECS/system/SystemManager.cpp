@@ -16,7 +16,7 @@ SystemManager::~SystemManager() {
   container.clear();
 }
 
-void SystemManager::Update(double delta) {
+void SystemManager::Update(f64 delta) {
   // TODO: iterate over systems with some order which is set by priority property.
 
   for (auto system : container) {

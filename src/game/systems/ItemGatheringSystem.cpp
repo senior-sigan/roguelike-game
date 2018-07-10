@@ -7,7 +7,7 @@
 #include <game/components/ItemComponent.h>
 #include <game/components/WorthComponent.h>
 
-void ItemGatheringSystem::ProcessEntity(const ECS::IEntityPtr &entity, double dt) {
+void ItemGatheringSystem::ProcessEntity(const ECS::IEntityPtr &entity, f64 dt) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto wc = entity->GetComponent<WorthComponent>();
   for (auto collider : bcc->GetCollisions()) {

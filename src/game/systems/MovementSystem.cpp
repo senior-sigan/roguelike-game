@@ -15,8 +15,8 @@ Core::Rectangle futureRectangle(const ECS::IEntityPtr &entity) {
   auto tc = entity->GetComponent<TransformComponent>();
   auto mc = entity->GetComponent<MovementComponent>();
 
-  int xLeftFuture = tc->position.x + bcc->offset.x + mc->force.x * mc->direction.x;
-  int yUpperFuture = tc->position.y - bcc->offset.y + mc->force.y * mc->direction.y;
+  auto xLeftFuture = tc->position.x + bcc->offset.x + mc->force.x * mc->direction.x;
+  auto yUpperFuture = tc->position.y - bcc->offset.y + mc->force.y * mc->direction.y;
 
   return Core::Rectangle(Core::Vector2(xLeftFuture, yUpperFuture), bcc->size);
 }
@@ -25,8 +25,8 @@ Core::Rectangle rectangle(const ECS::IEntityPtr &entity) {
   auto bcc = entity->GetComponent<BoxColliderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
 
-  int xLeft = tc->position.x + bcc->offset.x;
-  int yUpper = tc->position.y - bcc->offset.y;
+  auto xLeft = tc->position.x + bcc->offset.x;
+  auto yUpper = tc->position.y - bcc->offset.y;
 
   return Core::Rectangle(Core::Vector2(xLeft, yUpper), bcc->size);
 }
@@ -74,7 +74,7 @@ bool canApplyForce(const ECS::IEntityPtr &entity, const ECS::ISystem* const syst
 }
 }
 
-void MovementSystem::ProcessEntity(const ECS::IEntityPtr &entity, double dt) {
+void MovementSystem::ProcessEntity(const ECS::IEntityPtr &entity, f64 dt) {
   // TODO: apply movement only when it's allowed.
   // Movement could be blocked because of collision in the future.
   // Collision system checks collisions right now and here,

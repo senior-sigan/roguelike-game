@@ -7,8 +7,8 @@
 
 /*  GIMP header image file format (INDEXED): /Users/ilya/Desktop/lvl.h  */
 namespace lvl {
-static unsigned int width = 80;
-static unsigned int height = 24;
+static u32 width = 80;
+static u32 height = 24;
 
 static char data[] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

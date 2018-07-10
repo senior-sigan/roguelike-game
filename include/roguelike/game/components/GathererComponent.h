@@ -7,10 +7,10 @@
 
 #include <ECS/IComponent.h>
 class GathererComponent : public ECS::IComponent {
-  int cash = 0;
+  i32 cash = 0;
 
  public:
-  int SaveCache(int value) {
+  i32 SaveCache(i32 value) {
     cash += value;
     return cash;
   }

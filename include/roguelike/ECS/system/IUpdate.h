@@ -9,9 +9,9 @@ class IUpdate {
   friend class SystemManager;
 
  protected:
-  virtual void _PreUpdate(double dt) = 0;
-  virtual void _Update(double dt) = 0;
-  virtual void _PostUpdate(double dt) = 0;
+  virtual void _PreUpdate(f64 dt) = 0;
+  virtual void _Update(f64 dt) = 0;
+  virtual void _PostUpdate(f64 dt) = 0;
  public:
   virtual ~IUpdate() = default;
 };

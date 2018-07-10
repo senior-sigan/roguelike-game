@@ -5,11 +5,12 @@
 #ifndef ROGUELIKE_VECTOR_H
 #define ROGUELIKE_VECTOR_H
 
+#include "core/types.h"
 namespace Core {
 struct Vector2 {
-  int x;
-  int y;
-  Vector2(int x, int y) : x(x), y(y) {}
+  i32 x;
+  i32 y;
+  Vector2(i32 x, i32 y) : x(x), y(y) {}
 
   bool operator==(const Vector2 &other) const {
     return x == other.x && y == other.y;

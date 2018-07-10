@@ -5,7 +5,7 @@
 #include <ECS/Event/EventDispatcher.h>
 
 namespace ECS::Event {
-void EventDispatcher::DispatchEvents(double deltaTime) {
+void EventDispatcher::DispatchEvents(f64 deltaTime) {
   // TODO: is it fast enough? maybe use map?
   for (auto event : eventSender->events) {
     event->update(deltaTime);

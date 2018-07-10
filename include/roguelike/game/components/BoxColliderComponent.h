@@ -19,7 +19,7 @@ class BoxColliderComponent : public ECS::IComponent {
   std::set<ECS::IEntityPtr> collisions{};
 
  public:
-  explicit BoxColliderComponent(const Core::Vector2 size, const Core::Vector2 offset, bool isTrigger = false,
+  explicit BoxColliderComponent(const Core::Vector2& size, const Core::Vector2& offset, bool isTrigger = false,
                                 bool isMovable = true)
       : size(size), offset(offset), isTrigger(isTrigger), isMovable(isMovable) {}
 
@@ -32,7 +32,7 @@ class BoxColliderComponent : public ECS::IComponent {
     return collisions;
   }
 
-  void Collide(const ECS::IEntityPtr &entity) {
+  void Collide(const ECS::IEntityPtr& entity) {
     collisions.emplace(entity);
   }
 

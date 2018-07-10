@@ -21,7 +21,7 @@ class SystemManager {
   Event::EventDispatcherPtr eventDispatcher;
   IEngineControl *engineControl;
 
-  void Update(double delta);
+  void Update(f64 delta);
 
  public:
   explicit SystemManager(const EntityManagerPtr &entityManager, const Event::EventDispatcherPtr &eventDispatcher,
