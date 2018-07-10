@@ -9,39 +9,38 @@
 #include <game/components/TransformComponent.h>
 #include <game/systems/RenderingSystem.h>
 #include <ncurses.h>
+#include <game/components/RenderTargetComponent.h>
 
 void RenderingSystem::PostUpdateInterval(f64 dt) {
-  for (u32 w = 0; w < width; w++) {
-    for (u32 h = 0; h < height; h++) {
-      auto tile = this->screen[w][h];
+  auto target = GetEntityManager()->Get(targetID);
+  auto rtc = target->GetComponent<RenderTargetComponent>();
+
+  for (u32 w = 0; w < rtc->size.x; w++) {
+    for (u32 h = 0; h < rtc->size.y; h++) {
+      auto tile = rtc->screen[w][h];
       attron(COLOR_PAIR(tile.color));
       mvaddch(h, w, tile.symbol);
       attroff(COLOR_PAIR(tile.color));
-      this->screen[w][h].Clear();
+      rtc->screen[w][h].Clear();
     }
   }
   refresh();
 }
 
 void RenderingSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) {
+  auto target = GetEntityManager()->Get(targetID);
   auto rc = entity->GetComponent<RenderComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
+  auto rtc = target->GetComponent<RenderTargetComponent>();
 
-  if (tc->position.x >= 0 && tc->position.y >= 0 && unsigned_less(tc->position.x, width) &&
-      unsigned_less(tc->position.y, height)) {
-    this->screen[tc->position.x][tc->position.y] = Tile(rc->texture.symbol, rc->texture.color);
+  if (tc->position.x >= 0 && tc->position.y >= 0 && unsigned_less(tc->position.x, rtc->size.x) &&
+      unsigned_less(tc->position.y, rtc->size.y)) {
+    rtc->screen[tc->position.x][tc->position.y] = Tile(rc->texture.symbol, rc->texture.color);
   }
 }
 
 bool RenderingSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
   return entity->HasComponent<RenderComponent>() && entity->HasComponent<TransformComponent>();
-}
-RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {
-  for (u32 w = 0; w < width; w++) {
-    for (u32 h = 0; h < height; h++) {
-      this->screen[w][h] = Tile();
-    }
-  }
 }
 void RenderingSystem::OnCreated() {
   initscr();
@@ -62,3 +61,5 @@ void RenderingSystem::OnCreated() {
 void RenderingSystem::OnDestroy() {
   endwin();
 }
+RenderingSystem::RenderingSystem(const ECS::EntityID targetID)
+    : IntervalIteratingSystem(FPS), targetID(targetID) {}

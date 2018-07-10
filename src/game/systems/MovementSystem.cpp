@@ -63,6 +63,7 @@ bool canApplyForce(const ECS::IEntityPtr &entity, const ECS::ISystem* const syst
   for (auto other : system->GetEntityManager()->container) {
     auto entity2 = other.second;
     if (entity2 == entity) continue;
+    if (!entity2->HasComponent<BoxColliderComponent>()) continue;
     if (entity2->GetComponent<BoxColliderComponent>()->isTrigger) continue;
     auto box2 = rectangle(entity2);
     if (Intersect(box1, box2)) {

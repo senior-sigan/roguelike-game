@@ -13,6 +13,7 @@
 #include <game/systems/ItemGatheringSystem.h>
 #include <game/systems/MovementSystem.h>
 #include <game/systems/RenderingSystem.h>
+#include <game/entities/WindowEntity.h>
 
 namespace {
 void createEntity(const ECS::EnginePtr &engine, u32 x, u32 y, char tile) {
@@ -35,8 +36,10 @@ ECS::EnginePtr Stage_1::load() {
   // TODO: By the way, we can load them from config files!
   auto engine = GetEngine();
 
+  auto mainScreen = engine->GetEntityManager()->Create<WindowEntity>(Core::Vector2::ZERO, Core::Vector2u(80, 24));
+
   engine->GetSystemManager()->Create<InputSystem>();
-  engine->GetSystemManager()->Create<RenderingSystem>();
+  engine->GetSystemManager()->Create<RenderingSystem>(mainScreen);
   engine->GetSystemManager()->Create<ControlSystem>();
   engine->GetSystemManager()->Create<CollisionSystem>();
   engine->GetSystemManager()->Create<MovementSystem>();

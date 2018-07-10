@@ -26,6 +26,23 @@ struct Vector2 {
   static Vector2 ZERO;
   static Vector2 ONE;
 };
+
+// TODO: create a template....
+struct Vector2u {
+  u32 x;
+  u32 y;
+  Vector2u(u32 x, u32 y) : x(x), y(y) {}
+
+  bool operator==(const Vector2u &other) const {
+    return x == other.x && y == other.y;
+  }
+  bool operator!=(const Vector2u &other) const {
+    return !(other == *this);
+  }
+
+  static Vector2u ONE;
+  static Vector2u ZERO;
+};
 }
 
 #endif  // ROGUELIKE_VECTOR_H

@@ -10,9 +10,11 @@
 #include <game/components/TransformComponent.h>
 class WindowEntity : public ECS::IEntity {
   Core::Vector2 pos;
-  Core::Vector2 size;
+  Core::Vector2u size;
 
  public:
+  WindowEntity(const Core::Vector2 &pos, const Core::Vector2u &size) : pos(pos), size(size) {}
+
   void OnCreated() override {
     AddComponent<RenderTargetComponent>(size);
     AddComponent<TransformComponent>(pos);

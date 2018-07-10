@@ -8,26 +8,13 @@
 #include <ECS/system/IntervalIteratingSystem.h>
 #include <ECS/system/System.h>
 
-struct Tile {
-  char symbol;
-  i32 color;
-
-  void Clear() {
-    symbol = ' ';
-    color = 0;
-  }
-
-  explicit Tile(char symbol = ' ', i32 color = 0) : symbol(symbol), color(color) {}
-};
-
 class RenderingSystem : public ECS::IntervalIteratingSystem {
-  // TODO: get somehow this sizes and be ready when it's changed. Or is it world size??? Not render page?
-  static const u32 width = 80;
-  static const u32 height = 24;
-  Tile screen[width][height];
-
+  const ECS::EntityID targetID;
  public:
-  explicit RenderingSystem();
+  // TODO: actually rendering system should get this target from the engine by some tag.
+  // We would like to add as many rener target as we want without modifying this constructor
+  // Maybe rendering system should select groups of renderabel objects and rendering target
+  explicit RenderingSystem(const ECS::EntityID targetID);
 
   void PostUpdateInterval(f64 dt) override;
   void ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) override;
