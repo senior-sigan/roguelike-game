@@ -8,4 +8,4 @@
 
 const f64 FPS = 1.0 / 30.0;  // it means 25Hz
 const f64 IPS = 1.0 / 60.0;  // it means 50Hz
-#endif                          // ROGUELIKE_CONSTS_H
+#endif                       // ROGUELIKE_CONSTS_H

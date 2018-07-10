@@ -15,9 +15,13 @@ struct Texture1D {
 
 class RenderComponent : public ECS::IComponent {
  public:
-  // TODO: we may need 2D textures fot big objects, like a wall or smth else.
+  // TODO: we may need 2D textures for big objects, like a wall or smth else.
   Texture1D texture;
-  explicit RenderComponent(const Texture1D& texture) : texture(texture) {}
+  // TODO: we can allow entities to have parent and child.
+  // SO this things, like target id is actually parent id.
+  ECS::EntityID targetID;
+  explicit RenderComponent(const Texture1D &texture, const ECS::EntityID &targetID)
+      : texture(texture), targetID(targetID) {}
 };
 
 #endif  // ROGUELIKE_RENDERCOMPONENT_H

@@ -15,13 +15,14 @@
 
 class PlayerEntity : public ECS::IEntity {
   Core::Vector2 pos;
+  ECS::EntityID targetID;
 
  public:
-  explicit PlayerEntity(const Core::Vector2 &pos) : pos(pos) {}
+  explicit PlayerEntity(const Core::Vector2 &pos, const ECS::EntityID &targetID) : pos(pos), targetID(targetID) {}
 
   void OnCreated() override {
     AddComponent<TransformComponent>(pos);
-    AddComponent<RenderComponent>(Texture1D('@', 2));
+    AddComponent<RenderComponent>(Texture1D('@', 2), targetID);
     AddComponent<ControlComponent>();
     AddComponent<MovementComponent>(Core::Vector2::ONE, Core::Vector2::ONE);
     AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false, true);

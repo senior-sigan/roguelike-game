@@ -3,7 +3,11 @@
  */
 
 #include <game/entities/CoinEntity.h>
+#include <game/entities/ConsoleWindowEntity.h>
+#include <game/entities/FillerEntity.h>
+#include <game/entities/GameWindowEntity.h>
 #include <game/entities/PlayerEntity.h>
+#include <game/entities/StatsWindowEntity.h>
 #include <game/entities/WallEntity.h>
 #include <game/stages/Stage_1.h>
 #include <game/stages/lvl1.h>
@@ -13,21 +17,21 @@
 #include <game/systems/ItemGatheringSystem.h>
 #include <game/systems/MovementSystem.h>
 #include <game/systems/RenderingSystem.h>
-#include <game/entities/WindowEntity.h>
 
 namespace {
-void createEntity(const ECS::EnginePtr &engine, u32 x, u32 y, char tile) {
+void createEntity(const ECS::EnginePtr &engine, u32 x, u32 y, char tile, const ECS::EntityID &targetID) {
   // TODO: create a configuration file that map tiles to entities and remove switch
   switch (tile) {
     case 0: {
-      engine->GetEntityManager()->CreateAndGet<WallEntity>(Core::Vector2(x, y));
+      engine->GetEntityManager()->CreateAndGet<WallEntity>(Core::Vector2(x, y), targetID);
       break;
     }
     case 1: {
-      engine->GetEntityManager()->CreateAndGet<CoinEntity>(Core::Vector2(x, y), 1);
+      engine->GetEntityManager()->CreateAndGet<CoinEntity>(Core::Vector2(x, y), 1, targetID);
       break;
     }
-    default:break;
+    default:
+      break;
   }
 }
 }
@@ -36,23 +40,33 @@ ECS::EnginePtr Stage_1::load() {
   // TODO: By the way, we can load them from config files!
   auto engine = GetEngine();
 
-  auto mainScreen = engine->GetEntityManager()->Create<WindowEntity>(Core::Vector2::ZERO, Core::Vector2u(80, 24));
+  auto gameScreenId = engine->GetEntityManager()->Create<GameWindowEntity>(
+      Core::Vector2::ZERO, Core::Vector2u(80, 24));
+  auto consoleScreenId = engine->GetEntityManager()->Create<ConsoleWindowEntity>(
+      Core::Vector2(0, 24), Core::Vector2u(80, 7));
+  auto statsScreenId = engine->GetEntityManager()->Create<StatsWindowEntity>(
+      Core::Vector2(80, 0), Core::Vector2u(20, 31));
 
   engine->GetSystemManager()->Create<InputSystem>();
-  engine->GetSystemManager()->Create<RenderingSystem>(mainScreen);
+  engine->GetSystemManager()->Create<RenderingSystem>();
   engine->GetSystemManager()->Create<ControlSystem>();
   engine->GetSystemManager()->Create<CollisionSystem>();
   engine->GetSystemManager()->Create<MovementSystem>();
   engine->GetSystemManager()->Create<ItemGatheringSystem>();
   engine->GetSystemManager()->Create<ExitSystem>();
 
-  engine->GetEntityManager()->CreateAndGet<PlayerEntity>(Core::Vector2(1, 1));
+  engine->GetEntityManager()->CreateAndGet<PlayerEntity>(Core::Vector2(1, 1), gameScreenId);
 
   for (u32 x = 0; x < lvl::width; x++) {
     for (u32 y = 0; y < lvl::height; y++) {
-      createEntity(engine, x, y, lvl::data[y * lvl::width + x]);
+      createEntity(engine, x, y, lvl::data[y * lvl::width + x], gameScreenId);
     }
   }
+
+  engine->GetEntityManager()->CreateAndGet<FillerEntity>(Core::Vector2(0, 0), consoleScreenId);
+  engine->GetEntityManager()->CreateAndGet<FillerEntity>(Core::Vector2(79, 6), consoleScreenId);
+  engine->GetEntityManager()->CreateAndGet<FillerEntity>(Core::Vector2(0, 0), statsScreenId);
+  engine->GetEntityManager()->CreateAndGet<FillerEntity>(Core::Vector2(19, 30), statsScreenId);
 
   return engine;
 }

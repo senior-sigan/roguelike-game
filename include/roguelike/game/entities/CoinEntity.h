@@ -14,13 +14,15 @@
 class CoinEntity : public ECS::IEntity {
   Core::Vector2 pos;
   i32 value;
+  ECS::EntityID targetID;
 
  public:
-  explicit CoinEntity(const Core::Vector2 &pos, i32 value) : pos(pos), value(value) {}
+  explicit CoinEntity(const Core::Vector2 &pos, i32 value, const ECS::EntityID &targetID)
+      : pos(pos), value(value), targetID(targetID) {}
 
   void OnCreated() override {
     AddComponent<TransformComponent>(pos);
-    AddComponent<RenderComponent>(Texture1D('$', 1));
+    AddComponent<RenderComponent>(Texture1D('$', 1), targetID);
     AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, true, false);
     AddComponent<ItemComponent>();
     AddComponent<WorthComponent>(value);

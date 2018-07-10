@@ -12,13 +12,14 @@
 #include <game/components/TransformComponent.h>
 class WallEntity : public ECS::IEntity {
   Core::Vector2 pos;
+  ECS::EntityID targetID;
 
  public:
-  explicit WallEntity(const Core::Vector2 &pos) : pos(pos) {}
+  explicit WallEntity(const Core::Vector2 &pos, const ECS::EntityID &targetID) : pos(pos), targetID(targetID) {}
 
   void OnCreated() override {
     AddComponent<TransformComponent>(pos);
-    AddComponent<RenderComponent>(Texture1D('#'));
+    AddComponent<RenderComponent>(Texture1D('#'), targetID);
     AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false, false);
   }
 };
