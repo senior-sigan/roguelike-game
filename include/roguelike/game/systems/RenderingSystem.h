@@ -15,8 +15,7 @@ class RenderingSystem : public ECS::IntervalIteratingSystem {
   // Maybe rendering system should select groups of renderabel objects and rendering target
   explicit RenderingSystem();
 
-  void PostUpdateInterval(f64 dt) override;
-  void ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) override;
+  void PostProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) override;
 
   bool FamilyFilter(const ECS::IEntityPtr &entity) const override;
   void OnCreated() override;

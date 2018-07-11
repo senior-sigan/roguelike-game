@@ -10,7 +10,7 @@
 #include <game/components/ControlComponent.h>
 #include <game/components/GathererComponent.h>
 #include <game/components/MovementComponent.h>
-#include <game/components/RenderComponent.h>
+#include <game/components/TileComponent.h>
 #include <game/components/TransformComponent.h>
 
 class PlayerEntity : public ECS::IEntity {
@@ -22,7 +22,7 @@ class PlayerEntity : public ECS::IEntity {
 
   void OnCreated() override {
     AddComponent<TransformComponent>(pos);
-    AddComponent<RenderComponent>(Texture1D('@', 2), targetID);
+    AddComponent<TileComponent>(Texture1D('@', 2), targetID);
     AddComponent<ControlComponent>();
     AddComponent<MovementComponent>(Core::Vector2::ONE, Core::Vector2::ONE);
     AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, false, true);

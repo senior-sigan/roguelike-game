@@ -13,14 +13,14 @@ struct Texture1D {
   explicit Texture1D(const char symbol, const i32 color = 0) : symbol(symbol), color(color) {}
 };
 
-class RenderComponent : public ECS::IComponent {
+class TileComponent : public ECS::IComponent {
  public:
   // TODO: we may need 2D textures for big objects, like a wall or smth else.
   Texture1D texture;
   // TODO: we can allow entities to have parent and child.
   // SO this things, like target id is actually parent id.
   ECS::EntityID targetID;
-  explicit RenderComponent(const Texture1D &texture, const ECS::EntityID &targetID)
+  explicit TileComponent(const Texture1D &texture, const ECS::EntityID &targetID)
       : texture(texture), targetID(targetID) {}
 };
 

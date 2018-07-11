@@ -5,18 +5,13 @@
 #include <ECS/IEntity.h>
 #include <core/numerics.h>
 #include <game/Consts.h>
-#include <game/components/RenderComponent.h>
+#include <game/components/TileComponent.h>
 #include <game/components/RenderTargetComponent.h>
 #include <game/components/TransformComponent.h>
 #include <game/systems/RenderingSystem.h>
 #include <ncurses.h>
 
-namespace {
-bool filterRenderTarget(const ECS::IEntityPtr &entity) {
-  return entity->HasComponent<RenderTargetComponent>() && entity->HasComponent<TransformComponent>();
-}
-
-void draw(const ECS::IEntityPtr &entity) {
+void RenderingSystem::PostProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) {
   auto rtc = entity->GetComponent<RenderTargetComponent>();
   auto tc = entity->GetComponent<TransformComponent>();
   for (u32 w = 0; w < rtc->size.x; w++) {
@@ -30,31 +25,9 @@ void draw(const ECS::IEntityPtr &entity) {
   }
   refresh();
 }
-}
-
-void RenderingSystem::PostUpdateInterval(f64 dt) {
-  for (auto el : GetEntityManager()->container) {
-    auto entity = el.second;
-    if (filterRenderTarget(entity)) {
-      draw(entity);
-    }
-  }
-}
-
-void RenderingSystem::ProcessEntityInterval(const ECS::IEntityPtr &entity, f64 dt) {
-  auto rc = entity->GetComponent<RenderComponent>();
-  auto tc = entity->GetComponent<TransformComponent>();
-  auto target = GetEntityManager()->Get(rc->targetID);
-  auto rtc = target->GetComponent<RenderTargetComponent>();
-
-  if (tc->position.x >= 0 && tc->position.y >= 0 && unsigned_less(tc->position.x, rtc->size.x) &&
-      unsigned_less(tc->position.y, rtc->size.y)) {
-    rtc->screen[tc->position.x][tc->position.y] = Tile(rc->texture.symbol, rc->texture.color);
-  }
-}
 
 bool RenderingSystem::FamilyFilter(const ECS::IEntityPtr &entity) const {
-  return entity->HasComponent<RenderComponent>() && entity->HasComponent<TransformComponent>();
+  return entity->HasComponent<RenderTargetComponent>() && entity->HasComponent<TransformComponent>();
 }
 void RenderingSystem::OnCreated() {
   initscr();

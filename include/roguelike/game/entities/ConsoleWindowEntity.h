@@ -8,6 +8,7 @@
 #include <ECS/IEntity.h>
 #include <game/components/RenderTargetComponent.h>
 #include <game/components/TransformComponent.h>
+#include <game/components/LogComponent.h>
 
 class ConsoleWindowEntity : public ECS::IEntity {
   Core::Vector2 pos;
@@ -19,6 +20,7 @@ class ConsoleWindowEntity : public ECS::IEntity {
   void OnCreated() override {
     AddComponent<RenderTargetComponent>(size);
     AddComponent<TransformComponent>(pos);
+    AddComponent<LogComponent>();
   }
 };
 

@@ -8,7 +8,7 @@
 #include <ECS/IEntity.h>
 #include <game/components/BoxColliderComponent.h>
 #include <game/components/ControlComponent.h>
-#include <game/components/RenderComponent.h>
+#include <game/components/TileComponent.h>
 #include <game/components/TransformComponent.h>
 class FillerEntity : public ECS::IEntity {
   Core::Vector2 pos;
@@ -19,7 +19,7 @@ class FillerEntity : public ECS::IEntity {
 
   void OnCreated() override {
     AddComponent<TransformComponent>(pos);
-    AddComponent<RenderComponent>(Texture1D(' ', 3), targetID);
+    AddComponent<TileComponent>(Texture1D(' ', 3), targetID);
   }
 };
 

@@ -8,7 +8,7 @@
 #include <ECS/IEntity.h>
 #include <game/components/BoxColliderComponent.h>
 #include <game/components/ItemComponent.h>
-#include <game/components/RenderComponent.h>
+#include <game/components/TileComponent.h>
 #include <game/components/TransformComponent.h>
 #include <game/components/WorthComponent.h>
 class CoinEntity : public ECS::IEntity {
@@ -22,7 +22,7 @@ class CoinEntity : public ECS::IEntity {
 
   void OnCreated() override {
     AddComponent<TransformComponent>(pos);
-    AddComponent<RenderComponent>(Texture1D('$', 1), targetID);
+    AddComponent<TileComponent>(Texture1D('$', 1), targetID);
     AddComponent<BoxColliderComponent>(Core::Vector2::ONE, Core::Vector2::ZERO, true, false);
     AddComponent<ItemComponent>();
     AddComponent<WorthComponent>(value);

@@ -17,6 +17,7 @@
 #include <game/systems/ItemGatheringSystem.h>
 #include <game/systems/MovementSystem.h>
 #include <game/systems/RenderingSystem.h>
+#include <game/systems/TileRenderingSystem.h>
 
 namespace {
 void createEntity(const ECS::EnginePtr &engine, u32 x, u32 y, char tile, const ECS::EntityID &targetID) {
@@ -49,6 +50,7 @@ ECS::EnginePtr Stage_1::load() {
 
   engine->GetSystemManager()->Create<InputSystem>();
   engine->GetSystemManager()->Create<RenderingSystem>();
+  engine->GetSystemManager()->Create<TileRenderingSystem>();
   engine->GetSystemManager()->Create<ControlSystem>();
   engine->GetSystemManager()->Create<CollisionSystem>();
   engine->GetSystemManager()->Create<MovementSystem>();
