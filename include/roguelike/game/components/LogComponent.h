@@ -7,25 +7,29 @@
 
 #include <ECS/IComponent.h>
 #include <core/types.h>
-#include <queue>
+#include <list>
 #include <string>
 
 /**
  * Component store lines of text in a fixed size queue.
  */
 class LogComponent : public ECS::IComponent {
-  std::queue<std::string> log;
+  std::list<std::string> log;
   u32 max_size;
 
  public:
+  const ECS::EntityID targetID;
+
+  explicit LogComponent(u32 max_size, const ECS::EntityID targetID) : max_size(max_size), targetID(targetID) {}
+
   void Append(const std::string &text) {
     if (log.size() >= max_size) {
-      log.pop();
+      log.pop_front();
     }
-    log.push(text);
+    log.push_back(text);
   }
 
-  const std::queue<std::string> Get() const {
+  const std::list<std::string> Get() const {
     return log;
   }
 };

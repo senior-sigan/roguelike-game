@@ -6,6 +6,7 @@
 #define ROGUELIKE_RENDERCOMPONENT_H
 
 #include <ECS/IComponent.h>
+#include <core/types.h>
 
 struct Texture1D {
   const char symbol;

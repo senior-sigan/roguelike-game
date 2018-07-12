@@ -18,8 +18,6 @@ class ISystem : public IUpdate {
   friend class SystemManager;
   EntityManagerPtr entityManager;
   IEngineControl *engineControl;
-
- protected:
   Event::EventSenderPtr eventSender;
   Event::EventListenerPtr eventListener;
 
@@ -29,6 +27,12 @@ class ISystem : public IUpdate {
   }
   EntityManagerPtr GetEntityManager() const {
     return entityManager;
+  }
+  Event::EventSenderPtr GetEventSender() const {
+    return eventSender;
+  }
+  Event::EventListenerPtr GetEventListener() const {
+    return eventListener;
   }
 
   virtual SystemPriority GetSystemPriority() const {

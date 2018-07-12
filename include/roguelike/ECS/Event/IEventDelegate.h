@@ -10,10 +10,10 @@
 namespace ECS::Event {
 class IEventDelegate {
  public:
-  virtual inline void invoke(const IEvent *event) = 0;
-  virtual inline EventDelegateID GetDelegateId() const = 0;
-  virtual inline EventTypeID GetEventTypeId() const = 0;
-  virtual bool operator==(const IEventDelegate *other) const = 0;
+  virtual void invoke(const IEventPtr &event) = 0;
+  virtual EventDelegateID GetDelegateId() const = 0;
+  virtual EventTypeID GetEventTypeId() const = 0;
+  //  virtual bool operator==(const IEventDelegate *other) const = 0;
   virtual IEventDelegate *clone() = 0;
 };
 

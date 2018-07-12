@@ -4,7 +4,7 @@ mkdir_build:
 	[ -d ./cmake-build-debug ] | mkdir -p cmake-build-debug
 
 build:
-	cd cmake-build-debug;make roguelike
+	cd cmake-build-debug;make roguelike -j4
 
 reload: mkdir_build
 	cd cmake-build-debug;cmake ..
@@ -16,7 +16,7 @@ clean:
 	rm -rf cmake-build-debug
 
 fast_build:
-	cd cmake-build-debug;make roguelike
+	cd cmake-build-debug;make roguelike -j4
 
 run: fast_build exec
 

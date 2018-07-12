@@ -6,11 +6,14 @@
 #define ROGUELIKE_EVENTSENDER_H
 
 #include <ECS/Event/IEvent.h>
+#include <Log/logging.h>
 #include <list>
+
 namespace ECS::Event {
 class EventSender {
   friend class EventDispatcher;
-  std::list<IEvent *> events;
+  std::list<IEventPtr> events;
+  LOG_INIT("EventSender");
 
  public:
   /**
@@ -21,10 +24,12 @@ class EventSender {
    */
   template<class TEvent, class... ARGS>
   void Send(ARGS &&... eventArgs) {
-    IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
+    LOG_INFO("Send even " << typeid(TEvent).name());
+    auto event = std::make_shared<TEvent>(std::forward<ARGS>(eventArgs)...);
     event->after = 0;
     event->interval = 0;
     event->repeats = 0;
+    event->typeIndex = std::type_index(typeid(TEvent));
     events.push_back(event);
   }
 
@@ -37,11 +42,12 @@ class EventSender {
    */
   template<class TEvent, class... ARGS>
   void SendDelayed(f64 after, ARGS &&... eventArgs) {
-    IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
+    auto event = std::make_shared<TEvent>(std::forward<ARGS>(eventArgs)...);
     if (after < 0) after = 0;
     event->after = after;
     event->interval = 0;
     event->repeats = 0;
+    event->typeIndex = std::type_index(typeid(TEvent));
     events.push_back(event);
   }
 
@@ -59,13 +65,14 @@ class EventSender {
    */
   template<class TEvent, class... ARGS>
   void SendInterval(f64 after, f64 interval, int64_t repeats, ARGS &&... eventArgs) {
-    IEvent *event = new TEvent(std::forward<ARGS>(eventArgs)...);
+    auto event = std::make_shared<TEvent>(std::forward<ARGS>(eventArgs)...);
     if (after < 0) after = 0;
     if (interval < 0) interval = 0;
     if (repeats < 0) repeats = -1;
     event->after = after;
     event->interval = interval;
     event->repeats = repeats;
+    event->typeIndex = std::type_index(typeid(TEvent));
     events.push_back(event);
   }
 };

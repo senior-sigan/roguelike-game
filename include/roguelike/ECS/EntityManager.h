@@ -36,7 +36,7 @@ class EntityManager {
     entity->componentManager = this->componentManager;
     container[entity->entityID] = entity;
     entity->OnCreated();
-    LOG_INFO("Entity was created: " << typeid(TEntity).name());
+    // LOG_DEBUG("Entity was created: " << typeid(TEntity).name());
     return entity;
   }
 

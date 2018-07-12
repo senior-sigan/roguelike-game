@@ -15,7 +15,7 @@ set(STYLE_FILTER)
 #set(STYLE_FILTER ${STYLE_FILTER}-whitespace/tab,)
 set(STYLE_FILTER ${STYLE_FILTER}-whitespace/ending_newline,)
 
-#set(STYLE_FILTER ${STYLE_FILTER}-build/include_order,)
+set(STYLE_FILTER ${STYLE_FILTER}-build/include_order,)
 set(STYLE_FILTER ${STYLE_FILTER}-build/namespaces,)
 #set(STYLE_FILTER ${STYLE_FILTER}-build/include_what_you_use,)
 set(STYLE_FILTER ${STYLE_FILTER}-build/header_guard,)

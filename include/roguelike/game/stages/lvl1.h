@@ -5,6 +5,8 @@
 #ifndef ROGUELIKE_LVL1_H
 #define ROGUELIKE_LVL1_H
 
+#include "core/types.h"
+
 /*  GIMP header image file format (INDEXED): /Users/ilya/Desktop/lvl.h  */
 namespace lvl {
 static u32 width = 80;

@@ -15,12 +15,11 @@ class ConsoleWindowEntity : public ECS::IEntity {
   Core::Vector2u size;
 
  public:
-  ConsoleWindowEntity(const Core::Vector2 &pos, const Core::Vector2u &size) : pos(pos), size(size) {}
+  explicit ConsoleWindowEntity(const Core::Vector2 &pos, const Core::Vector2u &size) : pos(pos), size(size) {}
 
   void OnCreated() override {
     AddComponent<RenderTargetComponent>(size);
     AddComponent<TransformComponent>(pos);
-    AddComponent<LogComponent>();
   }
 };
 

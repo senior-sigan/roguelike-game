@@ -6,6 +6,8 @@
 #define ROGUELIKE_GATHERERCOMPONENT_H
 
 #include <ECS/IComponent.h>
+#include <core/types.h>
+
 class GathererComponent : public ECS::IComponent {
   i32 cash = 0;
 

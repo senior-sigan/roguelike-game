@@ -13,7 +13,7 @@ class IEvent {
   friend class EventSender;
   friend class EventDispatcher;
 
-  i64 repeats = 0;  // constant
+  i64 repeats = 0;   // constant
   f64 after = 0;     // constant
   f64 interval = 0;  // constant
 
@@ -21,6 +21,8 @@ class IEvent {
   f64 currentTime = 0;
   i64 calls = 0;
   bool shouldUpdate = true;
+
+  std::type_index typeIndex = std::type_index(typeid(IEvent));
 
   /**
    * Event tracks time inside to notify dispatcher
@@ -38,6 +40,10 @@ class IEvent {
   bool isFitInDelay() const;
 
   bool isFitInRepeats() const;
+
+  std::type_index GetEventTypeId() const {
+    return typeIndex;
+  }
 };
 
 typedef std::shared_ptr<IEvent> IEventPtr;
