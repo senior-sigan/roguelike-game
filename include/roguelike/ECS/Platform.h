@@ -7,7 +7,7 @@
 #ifndef ROGUELIKE_PLATFORM_H
 #define ROGUELIKE_PLATFORM_H
 
-#include <gmpxx.h>
+#include <memory>
 #include <cstdio>
 #include <limits>
 #include <typeindex>
