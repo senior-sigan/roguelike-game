@@ -15,8 +15,13 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMake")
 find_package(log4cxx REQUIRED)
 include_directories(${LOG4CXX_INCLUDE_DIR})
 
-find_package(Curses REQUIRED)
-include_directories(${CURSES_INCLUDE_DIR})
+#find_package(Curses REQUIRED)
+#include_directories(${CURSES_INCLUDE_DIR})
+#add_compile_definitions(NCURSES)
+
+find_package(BearLibTerminal REQUIRED)
+include_directories(SYSTEM ${BLT_INCLUDE_DIRS})
+add_compile_definitions(BEARLIBTERMINAL)
 
 SET(PROJECT_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include/roguelike)
 SET(PROJECT_SOURCES_DIR ${PROJECT_SOURCE_DIR}/src)

@@ -7,9 +7,9 @@
 #ifndef ROGUELIKE_PLATFORM_H
 #define ROGUELIKE_PLATFORM_H
 
-#include <memory>
 #include <cstdio>
 #include <limits>
+#include <memory>
 #include <typeindex>
 #include <typeinfo>
 

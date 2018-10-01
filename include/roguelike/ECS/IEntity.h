@@ -17,7 +17,9 @@ class IEntity {
  public:
   virtual ~IEntity() = default;
 
-  EntityID GetID() const { return entityID; }
+  EntityID GetID() const {
+    return entityID;
+  }
 
   template<class TComponent>
   std::shared_ptr<TComponent> GetComponent() const {

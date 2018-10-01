@@ -2,6 +2,8 @@
  * Created by Илья Сиганов on 04.06.2018.
  */
 
+#ifdef NCURSES
+
 #include <ECS/IEntity.h>
 #include <core/numerics.h>
 #include <game/Consts.h>
@@ -50,3 +52,5 @@ void RenderingSystem::OnDestroy() {
   endwin();
 }
 RenderingSystem::RenderingSystem() : IntervalIteratingSystem(FPS) {}
+
+#endif

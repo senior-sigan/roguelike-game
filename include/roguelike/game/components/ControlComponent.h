@@ -6,12 +6,16 @@
 #define ROGUELIKE_CONTROLSCOMPONENT_H
 
 #include <ECS/IComponent.h>
+#include <game/buttons.h>
+#include <core/types.h>
+
 class ControlComponent : public ECS::IComponent {
  public:
-  u32 up = 119;
-  u32 down = 115;
-  u32 left = 97;
-  u32 right = 100;
+  // TODO: actually we would better to have different implementations or config file....
+  u32 up = UP_KEY;
+  u32 down = DOWN_KEY;
+  u32 left = LEFT_KEY;
+  u32 right = RIGHT_KEY;
 };
 
 #endif  // ROGUELIKE_CONTROLSCOMPONENT_H

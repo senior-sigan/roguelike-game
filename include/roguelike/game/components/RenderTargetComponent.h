@@ -32,7 +32,7 @@ class RenderTargetComponent : public ECS::IComponent {
       screen[x] = new Tile[size.y];
     }
   }
-  virtual ~RenderTargetComponent() {
+  ~RenderTargetComponent() override {
     for (u32 x = 0; x < size.x; x++) {
       delete [] screen[x];
     }

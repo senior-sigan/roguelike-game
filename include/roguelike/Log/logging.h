@@ -11,7 +11,12 @@
 
 #define LOG_INIT(LOGGER_NAME) log4cxx::LoggerPtr logger = log4cxx::Logger::getLogger(LOGGER_NAME)
 
+#ifdef NCURSES
 #define LOG_CONFIGURE() log4cxx::BasicConfigurator::configure(syslogAppender())
+#else
+#define LOG_CONFIGURE() log4cxx::BasicConfigurator::configure()
+#endif
+
 #define LOG_PROP_CONFIGURE(PATH) log4cxx::PropertyConfigurator::configure(PATH)
 
 // Note that TRACE level is compiled out in release (non-debug) mode.

@@ -30,6 +30,7 @@ class Input {
 };
 
 class InputSystem : public ECS::IntervalSystem {
+  LOG_INIT("InputSystem");
  public:
   explicit InputSystem() : IntervalSystem(IPS) {}
 

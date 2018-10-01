@@ -2,14 +2,17 @@
  * Created by Илья Сиганов on 23.06.2018.
  */
 
-#ifdef NCURSES
+#ifdef BEARLIBTERMINAL
 
 #include <game/systems/InputSystem.h>
-#include <ncurses.h>
+#include <BearLibTerminal.h>
 
 void InputSystem::PreUpdate(f64 dt) {
-  i32 key = getch();
-  Input::Instance().currentKeys[key] = true;
+  if (terminal_has_input()) {
+    i32 key = terminal_read();  // TODO: here is some bug so keys, for example exit, isn't read.
+    LOG_INFO("key: " << key);
+    Input::Instance().currentKeys[key] = true;
+  }
 }
 void InputSystem::PostUpdateInterval(f64 dt) {
   // TODO: We may send events to subscribers.

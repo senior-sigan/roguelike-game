@@ -1,3 +1,6 @@
 add_executable(${PROJECT_NAME} game/main.cxx ${HEADERS} ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARY} ${LOG4CXX_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARY} ${LOG4CXX_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${LOG4CXX_LIBRARIES} ${BLT_LIBRARIES})
+
+file(COPY ${BLT_LIBRARY} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
