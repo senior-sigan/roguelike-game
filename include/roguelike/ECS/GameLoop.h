@@ -16,6 +16,7 @@ class GameLoop {
  public:
   void Loop();
   void Stop();
+  virtual ~GameLoop() = default;
 };
 }
 #endif  // ROGUELIKE_GAMELOOP_H

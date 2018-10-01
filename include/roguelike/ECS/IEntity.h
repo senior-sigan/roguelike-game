@@ -15,9 +15,9 @@ class IEntity {
   EntityID entityID{};                   // TODO: should bew filled in the EntityManager
 
  public:
-  EntityID GetID() const {
-    return entityID;
-  }
+  virtual ~IEntity() = default;
+
+  EntityID GetID() const { return entityID; }
 
   template<class TComponent>
   std::shared_ptr<TComponent> GetComponent() const {

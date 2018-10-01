@@ -15,6 +15,7 @@ class IEventDelegate {
   virtual EventTypeID GetEventTypeId() const = 0;
   //  virtual bool operator==(const IEventDelegate *other) const = 0;
   virtual IEventDelegate *clone() = 0;
+  virtual ~IEventDelegate() = default;
 };
 
 typedef std::shared_ptr<IEventDelegate> IEventDelegatePtr;

@@ -24,6 +24,8 @@ class IComponent {
   }
 
   virtual void OnCreated() {}
+
+  virtual ~IComponent() = default;
 };
 }
 

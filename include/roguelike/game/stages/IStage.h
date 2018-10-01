@@ -17,6 +17,7 @@ class IStage {
   }
 
   virtual ECS::EnginePtr load() = 0;
+  virtual ~IStage() = default;
 };
 
 #endif  // ROGUELIKE_ISTAGE_H

@@ -5,6 +5,8 @@
 #ifndef ROGUELIKE_IENGINECONTROL_H
 #define ROGUELIKE_IENGINECONTROL_H
 
+#include <memory>
+
 namespace ECS {
 class EntityManager;
 class ComponentManager;
@@ -20,6 +22,7 @@ class IEngineControl {
   virtual std::shared_ptr<ComponentManager> GetComponentManager() const = 0;
   virtual std::shared_ptr<SystemManager> GetSystemManager() const = 0;
   virtual std::shared_ptr<Event::EventDispatcher> GetEventHandler() const = 0;
+  virtual ~IEngineControl() = default;
 };
 }
 
